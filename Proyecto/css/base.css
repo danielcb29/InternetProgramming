@@ -55,13 +55,42 @@ nav > ul > li:hover > a {
 	border-bottom-color: white;
 	color: white;
 }
+
 /*footer*/
 footer{
 	width: 100%;
 }
 .footer-sections div{
-	width: 30%;
+	width: 32%;
 	display: inline-block;
+	text-align: center;
+}
+.footer-sections div > h4{
+	color: #FF7D12;
+	font-weight: bold;
+	font-size: 14px;
+	margin: 0;
+}
+.footer-sections div ul {
+	padding: 0;
+    margin: 0;
+}
+.footer-sections div ul li{
+	display: block;
+    list-style-type: none;
+    color: #5073c5;
+    
+}
+.footer-sections div ul li a{
+    color: #5073c5;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.section-separator{
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-right-color: gray;
 }
 #copyrigth {
 	width: 90%;
