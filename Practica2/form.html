@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+ 	<title>Formulario web</title>
+ 	<link rel="stylesheet" href="form-css.css">
+</head>
+<body>
+	<h1>Formulario de compra</h1>
+	<form action="/" method="post" >
+	  <fieldset>
+	    <legend>Personal details</legend>
+	    <div>
+		    <label>First Name:</label> 
+		    <input type="text" name="firstname" placeholder="First name only">
+		</div>
+	    <div>
+	    	<label>Last Name: </label>
+	    	<input type="text" name="lastname" placeholder="Last name only">
+	    </div>
+	    <div>
+	    	<label>Date of birth:</label> 
+	    	<input type="date" name="birth">
+	    </div>
+	    <div>
+	    	<label>Email:</label> 
+	    	<input type="email" name="email" placeholder="example@example.com">
+	    </div>
+	    <div>
+	    	<label>Url:</label> 
+	    	<input type="url" name="url" placeholder="example.com">
+	    </div>
+	    <div>
+	    	<label>Telephone:</label> 
+	    	<input type="tel" name="tel" placeholder="+34 000 00 00 00">
+	    </div>
+	    <div>
+	    	<label>Shoesize:</label> 
+	    	<input type="number" name="shoe">
+	    </div>
+	    <div>
+	    	<label>Flying skill level (1 low - 100 high):</label> 
+	    	<input type="range" min="1" max="100" name="fly" id="a" oninput="x.value=parseInt(a.value)" value="1"> <output id="out-range" name="x" for="a">1</output>
+	    </div>
+	  </fieldset>
+	  <fieldset>
+	  	<legend>Billing address</legend>
+	  	<div>
+	  		<label>Address:</label> 
+	  		<textarea id="text-add" name="address" rows="5" cols="15"></textarea>
+	  	</div>
+	  	<div>
+	  		<label>Post code:</label> 
+	  		<input type="text" name="post-code" >
+	  	</div>
+	    <div>
+	    	<label>Country:</label> 
+	    	<input type="text" name="country">
+	    </div>
+	  </fieldset>
+	  <fieldset>
+	  	<legend>Card details</legend>
+	  	<fieldset>
+	  		<legend>Card type</legend>
+	  		<div id="radio-card">
+	  			<input type="radio" name="VISA" value="VISA"> <label>VISA</label>
+	  			<input type="radio" name="Mastercard" value="Mastercard"><label>Matercard</label>
+	  			<input type="radio" name="AMEX" value="AMEX"><label>AMEX</label>
+	  		</div>
+	  	</fieldset><br>
+	  	<div>
+	  		<label>Name:</label> 
+	  		<input type="text" name="card-name" placeholder="Name as it apears in your card">
+	  	</div>
+	  	<div>
+	  		<label>Card numer:</label> 
+	  		<input type="number" name="card-number">
+	  	</div>
+	  	<div>
+	  		<label>Security code:</label> 
+	  		<input type="number" name="card-code">
+	  	</div>
+	  	<div>
+	  		<label>Expirity date:</label> 
+	  		<input type="date" name="card-date">
+	  	</div>
+	  </fieldset>
+	  <fieldset>
+	  	<input id="bt-submit" type="submit" value="Place Order">
+	  </fieldset>
+	</form>
+</body>
+</html>

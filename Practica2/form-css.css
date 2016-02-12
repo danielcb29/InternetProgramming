@@ -1,0 +1,29 @@
+body{
+	font-family: sans-serif;
+}
+fieldset{
+    border-color:#467352;
+    border-style: solid;
+    border-radius: 10px;
+}
+div label{
+	display: block;
+}
+#bt-submit{
+	float: right;
+}
+#out-range{
+	display: block;	
+}
+#text-add:focus{
+    border:1px solid red;
+    box-shadow:#719ECE;
+}
+#radio-card label{
+	display: inline-block;
+}
+legend{
+	font-size: 25px;
+	font-weight: bold;
+
+}
