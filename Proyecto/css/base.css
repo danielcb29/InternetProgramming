@@ -54,6 +54,7 @@ nav > ul > li:hover > a {
 	border-bottom-style: solid;
 	border-bottom-color: white;
 	color: white;
+	cursor: pointer;
 }
 
 /*footer*/
@@ -101,4 +102,17 @@ footer{
 	font-size: 12px;
 	font-style: italic;
 	color: #999;
+}
+article{
+	margin: 1.2em;
+}
+article h2 div{
+	display: inline-block;
+}
+article h2 div{
+	color: #025167;
+
+}
+.titulo-especifico {
+	color: #FF7D12;
 }
