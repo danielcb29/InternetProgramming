@@ -21,7 +21,7 @@
 
 .rg-inp{
 	padding: 11px;
-	padding-right: 132px;
+	padding-right: 30%;
 	margin-bottom: 22px;
 	border: none;
 	border-bottom: solid 2px #c9c9c9;
@@ -42,4 +42,6 @@
 }
 .img-sg{
 	float: right;
+	margin-right: 20%;
+	margin-top: 11%;
 }
