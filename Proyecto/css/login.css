@@ -21,16 +21,14 @@
 	color: white;
 	text-decoration: underline;
 }
-article{
-	padding-bottom: 10%;
-}
+
 article section{
 	display: inline-block;
 }
 .login-rigth{
 	float: right;
 	padding-right: 20%;
-	padding-top: 4%;
+	
 }
 .lg-inp{
 	padding: 10px;
