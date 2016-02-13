@@ -1,0 +1,45 @@
+#titulo{
+	color: #025167;
+	text-align: center;
+}
+#bloque-registro{
+	background-color: #025167;
+	margin: 3%;
+}
+#inputs{
+	padding: 3%;
+    padding-left: 8%;
+    color: white;
+}
+#inputs > div{
+	display: block;
+}
+.row label{
+	display: block;
+	margin: 1%;
+}
+
+.rg-inp{
+	padding: 11px;
+	padding-right: 132px;
+	margin-bottom: 22px;
+	border: none;
+	border-bottom: solid 2px #c9c9c9;
+	border-bottom: solid 2px #969696;
+	margin-left: 1%;
+}
+.rg-bt{
+	background-color: #e7e7e7;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.img-sg{
+	float: right;
+}

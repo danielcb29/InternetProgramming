@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
- 	<title>Login</title>
+ 	<title>Meneame</title>
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_196x196.png" type="image/png" sizes="196x196">
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_64x64.png" type="image/png" sizes="64x64">
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_16x16.png" type="image/png" sizes="16x16">
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_128x128.png" type="image/png" sizes="128x128">
  	<link rel="stylesheet" href="css/base.css">
- 	<link rel="stylesheet" href="css/login.css">
+ 	<link rel="stylesheet" href="css/registro.css">
 </head>
 <body>
 	<div class="head" id="nombre-categorias">
@@ -48,24 +48,34 @@
         </ul>
     </nav>
     <article>
-    	<section class="login-left">
-    		<h2><div class="titulo-general">Iniciar Sesion</div></h2>
-    		<p>
-    			Bienvenido a meneame,
-    		</p>
-    		<img src="img/news.png"> 
-    	</section>
-    	<section class="login-rigth">
-    		<div class="login-inputs">
+    	<h2 id="titulo">Registro</h2>
+    	<section id="bloque-registro">
+    		<div id="inputs">
     			<form action="" method="post">
-	    			<input class="lg-inp" type="text" placeholder="Nombre de usuario">
-	    			<input class="lg-inp" placeholder="Contraseña">
-	    			<input class="lg-bt" type="submit" value="Entrar">
-    			</form>
-    			<p>
-    				<a href="forgot">¿Ha olvidado su contraseña?</a>
-    			</p>
-    		</div> 
+	    			<div class="row">
+			    		<label>Nombre de usuario:</label>
+			    		<input class="rg-inp" type="text" requiered placeholder="nombre usuario">
+			    		<input type="button" value="Verificar">
+		    		</div>
+		    		<div class="row">
+			    		<label>Correo electronico:</label>
+			    		<input class="rg-inp" type="email" requiered placeholder="email">
+		    		</div>
+		    		<div class="row">
+			    		<label>Clave:</label>
+			    		<input class="rg-inp" type="password" requiered placeholder="clave">
+		    		</div>
+		    		<div class="row">
+			    		<label>Confirmar clave:</label>
+			    		<input class="rg-inp" type="password" requiered placeholder="verificar clave">
+		    		</div>
+		    		<input type="checkbox" requiered name="vehicle" value="ok">Acepto los terminos y condiciones <br/><br/>
+		    		<input class="rg-bt" type="submit" value="Enviar">
+		    	</form>
+	    	</div>
+	    	<div class="img-sg">
+	    		<img src="img/reg.png">
+	    	</div>
     	</section>
     </article>
     <footer>
