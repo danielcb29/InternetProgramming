@@ -11,6 +11,14 @@ body{
 }
 .head .rigth {
 	float: right;
+
+}
+.rigth a{
+	color: black;
+	text-decoration: none;
+}
+.rigth a:hover{
+	text-decoration: none;
 }
 #nombre-categorias{
 	background-color: #61B7CF;
@@ -50,7 +58,7 @@ nav > ul > li > a {
 nav > ul > li:hover > a {
     background-color:#216477;
 }
-#categorias ul li:hover a{
+#categorias ul li:hover a, .rigth a:hover{
 	border-bottom-style: solid;
 	border-bottom-color: white;
 	color: white;
