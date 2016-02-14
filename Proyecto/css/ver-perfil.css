@@ -15,7 +15,8 @@ table{
 }
 #pic-user{
 	float: right;
-
+	padding-right: 28%;
+	padding-top: 2%;
 }
 #pic-user img{
 	display: block;
