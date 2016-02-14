@@ -12,7 +12,7 @@ body{
 }
 .head div{
 	display: inline-block;
-	padding: 0.8em;
+	padding: 0.5em;
 }
 .head .rigth {
 	float: right;
@@ -128,4 +128,18 @@ article h2 div{
 }
 .titulo-especifico {
 	color: #FF7D12;
+}
+.login-succ{
+	color: white;
+}
+.login-succ img{
+	padding: 0px 0px 0px 0px;
+	margin: -6px 0px;
+	width: 30px;
+	height: 30px;
+}
+#shutdown{
+	vertical-align: middle;
+	width: 25px;
+	height: 25px;
 }
