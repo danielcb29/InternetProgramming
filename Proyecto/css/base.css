@@ -4,7 +4,12 @@ body{
     font-size: 15px;
     font-family: Verdana, sans-serif;
 }
-
+.titulo div{
+	display: inline-block;
+}
+.titulo-general{
+	color: #025167;
+}
 .head div{
 	display: inline-block;
 	padding: 0.8em;

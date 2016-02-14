@@ -128,10 +128,10 @@ ul.pagination li a {
 }
 
 ul.pagination li a.active {
-	float: center;
     background-color: #025167;
     color: white;
     border-radius: 5px;
 }
-
-ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+ul.pagination li a:hover:not(.active) {
+	background-color: #ddd;
+}
