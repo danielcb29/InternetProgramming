@@ -12,8 +12,7 @@
 .comment{
 	margin: 3%;
 	margin-top: 0;
-	padding-right: 8%;
-	
+	margin-right: 11%;
 }
 .comment a{
 	text-decoration: none;
@@ -33,7 +32,6 @@
 .comment-foot{
 	display: inline-block;
 	font-size: 80%;
-	padding-right: 60%;
 	color: #666;
 }
 .num-votes{
@@ -50,5 +48,6 @@
 	text-align: right;
 }
 .comment .comment{
-	
+	margin-left: 3%;
+	margin-top: 2%;
 }
