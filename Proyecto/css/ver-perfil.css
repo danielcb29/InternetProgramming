@@ -1,0 +1,32 @@
+fieldset{
+	background-color: #FFF1E2;
+	/* border-color: #FF7D12; */
+	/* border-width: 1px; */
+	border-style: none;
+	margin: 1%;
+	margin-bottom: 2%;
+}
+fieldset legend{
+	color: #FF7D12;
+	font-weight: bold;
+}
+table{
+	font-size: 13px;
+}
+#pic-user{
+	float: right;
+
+}
+#pic-user img{
+	display: block;
+	border: 1px solid #ccc;
+	width: 82px;
+	height: 82px;
+	margin-bottom: 12%;
+}
+#bt-cambiar{
+	background-color: #FF7D12;
+	color: white;
+	border: none;
+    font-weight: bold;
+}
