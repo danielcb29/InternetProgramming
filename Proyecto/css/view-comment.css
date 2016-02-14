@@ -30,3 +30,25 @@
 	color: #FF7D12;
 	font-weight: bold;
 }
+.comment-foot{
+	display: inline-block;
+	font-size: 80%;
+	padding-right: 60%;
+	color: #666;
+}
+.num-votes{
+	color: #FF7D12;
+	font-weight: bold;
+}
+.comment-user-prev{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}
+.comment-user{
+	float: right;
+	text-align: right;
+}
+.comment .comment{
+	
+}
