@@ -52,46 +52,40 @@
     </nav>
     <article>
     	<div class="titulo">
-    		<div class="titulo-general"><h2>Información del perfil:</h2></div>
-    		<div class="titulo-especifico"><h2>nombreusuario</h2></div>
+    		<div class="titulo-general"><h2>Enviar noticia:</h2></div>
     	</div>
     	<div id="modif-perfil">
     		<input type="button" value="Cancelar">
     	</div><br/><br/>
     	<fieldset>
-    		<legend>Información personal</legend>
-    		<div id="pic-user">
-    			<img alt="avatar usuario" src="img/pic-test.jpeg">
-    			<input id="bt-cambiar" type="button" value="Cambiar">
-    		</div>
-            <div class="cambio-perfil">
-                <form action="/" method="post">
-        			<label>usuario:</label>
-        			<input class="cam-inp" type="text" required placeholder="nombre de usuario">
-        			<label>correo electronico:</label>
-        			<input class="cam-inp" type="emai" required placeholder="correo electronico">
-        			<label>clave:</label>
-        			<input class="cam-inp" type="password" required placeholder="clave">
-        			<label>repetir clave:</label>
-        			<input class="cam-inp" type="password" required placeholder="verificar clave">
+    		<legend>Información de la noticia</legend>
+            <form action="/" method="post">
+        		<div id="pic-user">
+                    <label>Vista previa:</label>
+        			<img alt="previsualizacion noticia" src="img/pic-test.jpeg">
+        			<input id="bt-cambiar" type="button" value="Cambiar">
+        		</div>
+                <div class="cambio-perfil">
+        			<label>enlace:</label>
+        			<input class="cam-inp" type="url" required placeholder="url de la noticia">
+        			<label>titulo:</label>
+        			<input class="cam-inp" type="text" required placeholder="titulo">
+        			<label>etiquetas:</label>
+        			<input class="cam-inp" type="text" required placeholder="separadas por ,">
+        			<label>descripcion:</label>
+        			<textarea class="cam-inp" required cols="70" rows="10"></textarea>
+                    <label>categorias:</label>
+                    <input class="not-check" type="checkbox" name="tecnologia" value="Tecnologia">Tecnologia<br>
+                    <input class="not-check" type="checkbox" name="ocio" value="Ocio">Ocio<br>
+                    <input class="not-check" type="checkbox" name="cultura" value="Cultura">Cultura<br>
+                    <input class="not-check" type="checkbox" name="actualidad" value="Actualidad">Actualidad
                     <br/>
                     <div class="non-rg">
-                        <input type="submit" value="Guardar cambios">
+                        <input type="submit" value="Enviar noticia">
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
     	</fieldset>
-    	<fieldset>
-    		<legend>Borrar cuenta</legend>
-    		<p>
-                ¡Atención!, la cuenta sera deshabilitada,
-                Se borrara la información personal
-            </p>
-            <div class="non-rg">
-                <input type="button" value="Borrar">
-            </div>
-    	</fieldset>
-        
     </article>
     <footer>
 	    <div class="footer-sections">
