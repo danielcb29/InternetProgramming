@@ -34,6 +34,7 @@
 	display: inline-block;
 	font-size: 80%;
 	color: #666;
+	width: 100%;
 }
 .num-votes{
 	color: #FF7D12;
@@ -47,6 +48,9 @@
 .comment-user{
 	float: right;
 	text-align: right;
+}
+.comment-votes{
+	float: left;
 }
 .comment .comment{
 	margin-left: 3%;

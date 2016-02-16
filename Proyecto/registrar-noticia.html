@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+ 	<title>Nueva Noticia</title>
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_196x196.png" type="image/png" sizes="196x196">
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_64x64.png" type="image/png" sizes="64x64">
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_16x16.png" type="image/png" sizes="16x16">
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_128x128.png" type="image/png" sizes="128x128">
+ 	<link rel="stylesheet" href="css/base.css">
+ 	<link rel="stylesheet" href="css/ver-perfil.css">
+    <link rel="stylesheet" href="css/modificar-perfil.css">
+    <link rel="stylesheet" href="css/registrar-noticia.css">
+</head>
+<body>
+	<div class="head" id="nombre-categorias">
+		<div>
+			<img alt="" src="img/menu.png">
+			<a href=""><img alt="" src="img/logo-top.png"></a>
+			<img alt="" src="img/door.png">
+		</div>
+		<div id="categorias">
+			<ul>
+				<li><a>cultura y tecnologia</a></li>
+				<li><a>edicion general</a></li>
+				<li><a>deportes</a></li>
+			</ul>
+		</div>
+		<div class="rigth login-succ">
+			<a hred="">nombreusuario</a>
+			<img id="avatar-login" alt="avatar usuario" src="img/pic-test.jpeg">
+			<img id="shutdown" alt="" src="img/logout.png">
+		</div>
+	</div>
+	<div class="head" id="logo-search">
+		<div><img alt="" src="img/elef.png"></div>
+		<div><b>Nombre-categoria</b></div>
+		<div>
+			<img alt="" src="img/fb.png">
+			<img alt="" src="img/tw.png">
+		</div>
+		<div class="rigth">
+			<input id="search" type="text" placeholder="Buscar">
+		</div>
+	</div>
+	<nav>
+        <ul>
+            <li><a href="base.css">item</a></li>
+            <li><a href="base.css">item</a></li>
+            <li><a href="base.css">item</a></li>
+        </ul>
+    </nav>
+    <article>
+    	<div class="titulo">
+    		<div class="titulo-general"><h2>Información del perfil:</h2></div>
+    		<div class="titulo-especifico"><h2>nombreusuario</h2></div>
+    	</div>
+    	<div id="modif-perfil">
+    		<input type="button" value="Cancelar">
+    	</div><br/><br/>
+    	<fieldset>
+    		<legend>Información personal</legend>
+    		<div id="pic-user">
+    			<img alt="avatar usuario" src="img/pic-test.jpeg">
+    			<input id="bt-cambiar" type="button" value="Cambiar">
+    		</div>
+            <div class="cambio-perfil">
+                <form action="/" method="post">
+        			<label>usuario:</label>
+        			<input class="cam-inp" type="text" required placeholder="nombre de usuario">
+        			<label>correo electronico:</label>
+        			<input class="cam-inp" type="emai" required placeholder="correo electronico">
+        			<label>clave:</label>
+        			<input class="cam-inp" type="password" required placeholder="clave">
+        			<label>repetir clave:</label>
+        			<input class="cam-inp" type="password" required placeholder="verificar clave">
+                    <br/>
+                    <div class="non-rg">
+                        <input type="submit" value="Guardar cambios">
+                    </div>
+                </form>
+            </div>
+    	</fieldset>
+    	<fieldset>
+    		<legend>Borrar cuenta</legend>
+    		<p>
+                ¡Atención!, la cuenta sera deshabilitada,
+                Se borrara la información personal
+            </p>
+            <div class="non-rg">
+                <input type="button" value="Borrar">
+            </div>
+    	</fieldset>
+        
+    </article>
+    <footer>
+	    <div class="footer-sections">
+	    	<div class="section-separator">
+	    		<h4>seccion 1</h4>
+	    		<ul>
+		            <li><a href="base.css">enlace</a></li>
+		            <li><a href="base.css">enlace</a></li>
+		            <li><a href="base.css">enlace</a></li>
+		        </ul>
+	    	</div>
+	    	<div class="section-separator">
+	    		<h4>seccion 2</h4>
+	    		<ul>
+		            <li><a href="base.css">enlace</a></li>
+		            <li><a href="base.css">enlace</a></li>
+		            <li><a href="base.css">enlace</a></li>
+		        </ul>
+	    	</div>
+	    	<div>
+	    		<h4>seccion 3</h4>
+	    		<ul>
+		            <li><a href="base.css">enlace</a></li>
+		            <li><a href="base.css">enlace</a></li>
+		            <li><a href="base.css">enlace</a></li>
+		        </ul>
+	    	</div>
+    	</div>
+    	<div class="footer-sections">
+    		<img alt="" src="img/logo-bottom.png">
+    		<div id="copyrigth">
+    			<a>legal </a>/
+    			<a>quienes somos </a>/
+    			<a>HTML5</a> |
+    			Daniel Correa Barrios, Universidad de Extremadura
+    		</div>
+    	</div>
+    </footer>
+
+</body>
+</html>
