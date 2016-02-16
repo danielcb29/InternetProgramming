@@ -62,6 +62,7 @@ nav > ul > li > a {
 }
 nav > ul > li:hover > a {
     background-color:#216477;
+    color: white;
 }
 #categorias ul li:hover a, .rigth a:hover{
 	border-bottom-style: solid;

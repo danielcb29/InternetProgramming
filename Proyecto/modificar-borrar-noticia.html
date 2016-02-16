@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
- 	<title>Comentarios</title>
+ 	<title>Meneame</title>
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_196x196.png" sizes="196x196">
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_64x64.png" sizes="64x64">
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_16x16.png" sizes="16x16">
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_128x128.png" sizes="128x128">
  	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/lista-noticias.css">
-	<link rel="stylesheet" href="css/view-comment.css">
+	<link rel="stylesheet" href="css/modificar-borrar-noticia.css">
 </head>
 <body>
 	<div class="head" id="nombre-categorias">
@@ -57,6 +57,10 @@
     	<div id="visitadas"></div>
     </aside>
     <article>
+    	<div class="titulo">
+    		<div class="titulo-general"><h2>Noticias de categoria:</h2></div>
+    		 <div class="titulo-especifico"><h2>nombrecategoria</h2></div>
+    	</div>
     		<!--una notificia-->
 			<section>
 					<div class="info-menem">
@@ -89,7 +93,7 @@
 							</div>
 						</div>
 						<div class="contenido">
-							<img alt="Previsualizacion noticia" class="prev-noticia" src="img/pic-test.jpeg">
+							<img alt="Vista previa noticia" class="prev-noticia" src="img/pic-test.jpeg">
 							<p>
 								descripcion de la noticia bla bla bla
 								descripcion de la noticia bla bla bla
@@ -117,109 +121,27 @@
 							<span class="noticia-sep">categoria </span>
 							<span class="noticia-sep">| </span>
 							<span class="noticia-sep">karma: 7000</span>
-
 						</div>
-
 					</div>
-
+					<div class="delete-mod">
+						<input type="button" class="bt bt-modificar" value="Modificar Noticia">
+						<input type="button" class="bt bt-borrar" value="Borrar Noticia">
+					</div>
 			</section>
 			<!--fin una noticia-->
 
 			<!--fin todas las noticias-->
-			<!--inicio comentarios destacados-->
-			<section>
-				<div id="popular-comments">
-					Comentarios destacados:
-					<img alt="Usuario" class="new-pic" src="img/pic-test.jpeg">
-					<img alt="Usuario" class="new-pic" src="img/pic-test.jpeg">
-					<img alt="Usuario" class="new-pic" src="img/pic-test.jpeg">
-				</div>
-			</section>
-			<!--fin comentarios destacados-->
-			<!--inicio ver comentarios-->
-			<section class="comments-queue">
-				<div class="comment">
-					<div class="comment-body">
-						<p>
-							<span class="num-comment">#33</span> Lo que no se puede hacer es envasar aceite virgen extra en un envase cutre de plástico. Los italianos le compran el aceite a España por cuatro céntimos, luego lo envasan en botellas de vidrio muy chulas y luego lo venden a buen precio. <a href="www.eleconomista.es/empresas-finanzas">a</a>
-						</p>
-					</div>
-					<div class="comment-foot">
-						<div class="comment-user">
-							13/02/2016 3:00pm
-							<a href="user">usuario-tal</a>
-							<img alt="Usuario" class="comment-user-prev" src="img/pic-test.jpeg">
-						</div>
-						<div class="comment-votes">
-							Votos: <span class="num-votes">30</span>
-							Karma: <b>34</b>
-							<img alt="" src="img/karma.png">
-							<img alt="" src="img/vote_none.png">
-							<img alt="" src="img/reply.png">
-
-						</div>
-						
-					</div>
-					<!--comentario dentro de comentario-->
-					<div class="comment">
-						<div class="comment-body">
-							<p>
-								<span class="num-comment">#33</span> Lo que no se puede hacer es envasar aceite virgen extra en un envase cutre de plástico. Los italianos le compran el aceite a España por cuatro céntimos, luego lo envasan en botellas de vidrio muy chulas y luego lo venden a buen precio. <a href="www.eleconomista.es/empresas-finanzas">a</a>
-							</p>
-						</div>
-						<div class="comment-foot">
-							<div class="comment-user">
-								13/02/2016 3:00pm
-								<a href="user">usuario-tal</a>
-								<img alt="Usuario" class="comment-user-prev" src="img/pic-test.jpeg">
-							</div>
-							<div class="comment-votes">
-								Votos: <span class="num-votes">30</span>
-								Karma: <b>34</b>
-								<img alt="" src="img/karma.png">
-								<img alt="" src="img/vote_none.png">
-								<img alt="" src="img/reply.png">
-							</div>
-							
-						</div>
-						<!--comentario dentro de comentario-->
-						<div class="comment">
-							<div class="comment-body">
-								<p>
-									<span class="num-comment">#33</span> Lo que no se puede hacer es envasar aceite virgen extra en un envase cutre de plástico. Los italianos le compran el aceite a España por cuatro céntimos, luego lo envasan en botellas de vidrio muy chulas y luego lo venden a buen precio. <a href="www.eleconomista.es/empresas-finanzas">a</a>
-								</p>
-							</div>
-							<div class="comment-foot">
-								<div class="comment-user">
-									13/02/2016 3:00pm
-									<a href="user">usuario-tal</a>
-									<img alt="Usuario" class="comment-user-prev" src="img/pic-test.jpeg">
-								</div>
-								<div class="comment-votes">
-									Votos: <span class="num-votes">30</span>
-									Karma: <b>34</b>
-									<img alt="" src="img/karma.png">
-									<img alt="" src="img/vote_none.png">
-									<img alt="" src="img/reply.png">
-								</div>
-							</div>
-						</div>
-						<!--fin comentario dentro de comentario-->
-					</div>
-					<!--fin comentario dentro de comentario-->
-				</div>
-			</section>
-			<!--fin ver comentarios-->
-			<!--escribir comentario-->
-			<fieldset id="box-comment" >
-				<legend>Escriba un comentario:</legend>
-				<form method="post" action="/">
-					<textarea rows="7" cols="150"></textarea><br>
-					<input id="bt" type="submit" value="Enviar">
-				</form>
-
-			</fieldset>
-			<!--fin escribir comentario-->
+			<ul class="pagination">
+			  <li><a href="#">«anterior</a></li>
+			  <li><a href="#">1</a></li>
+			  <li><a class="active" href="#">2</a></li>
+			  <li><a href="#">3</a></li>
+			  <li><a href="#">4</a></li>
+			  <li><a href="#">5</a></li>
+			  <li><a href="#">6</a></li>
+			  <li><a href="#">7</a></li>
+			  <li><a href="#">siguiente»</a></li>
+			</ul>
     </article>
     <footer>
 	    <div class="footer-sections">
