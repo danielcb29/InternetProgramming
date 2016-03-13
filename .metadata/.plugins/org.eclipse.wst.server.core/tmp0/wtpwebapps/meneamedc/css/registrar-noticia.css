@@ -1,0 +1,11 @@
+#pic-user label{
+	color: #025167;
+	font-weight: bold;
+	margin: 1%;
+}
+.not-check{
+	padding: 11px;
+    padding-right: 30%;
+    margin-bottom: 22px;
+    margin-left: 1%;
+}

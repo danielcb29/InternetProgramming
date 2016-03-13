@@ -1,0 +1,146 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-family: Verdana, sans-serif;
+}
+.titulo div{
+	display: inline-block;
+}
+.titulo-general{
+	color: #025167;
+}
+.head div{
+	display: inline-block;
+	padding: 0.5em;
+}
+.head .rigth {
+	float: right;
+
+}
+.rigth a{
+	color: black;
+	text-decoration: none;
+}
+.rigth a:hover{
+	text-decoration: none;
+}
+#nombre-categorias{
+	background-color: #61B7CF;
+}
+#search{
+	padding: 10px;
+  	border: none;
+  	border-bottom: solid 2px #c9c9c9;
+  	border-bottom: solid 2px #969696;
+}
+#logo-search{
+	background-color: #EBF2F9;
+	font-size: 120%;
+}
+nav {
+    background-color: #025167;
+    margin: 0;
+    overflow: hidden;
+}
+nav ul, #categorias ul{
+    margin: 0;
+    padding: 0;
+}
+nav ul li, #categorias ul li {
+    display: inline-block;
+    list-style-type: none;
+    padding-right: 20px;
+}
+nav > ul > li > a {
+    color: #61B7CF;
+    /*background-color:#216477;*/
+    display: block;
+    line-height: 2em;
+    padding: 0.5em 0.5em;
+    text-decoration: none;
+}
+nav > ul > li:hover > a {
+    background-color:#216477;
+    color: white;
+}
+#categorias ul li:hover a, .rigth a:hover{
+	border-bottom-style: solid;
+	border-bottom-color: white;
+	color: white;
+	cursor: pointer;
+}
+
+/*footer*/
+footer{
+	width: 100%;
+}
+.footer-sections div{
+	width: 32%;
+	display: inline-block;
+	text-align: center;
+}
+.footer-sections div > h4{
+	color: #FF7D12;
+	font-weight: bold;
+	font-size: 14px;
+	margin: 0;
+}
+.footer-sections div ul {
+	padding: 0;
+    margin: 0;
+}
+.footer-sections div ul li{
+	display: block;
+    list-style-type: none;
+    color: #5073c5;
+    
+}
+.footer-sections div ul li a{
+    color: #5073c5;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.section-separator{
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-right-color: gray;
+}
+#copyrigth {
+	width: 90%;
+	border-top-style: solid;
+	border-top-color: #FF7D12; 
+	text-align: center;
+	font-family: Arial;
+	font-size: 12px;
+	font-style: italic;
+	color: #999;
+}
+article{
+	margin: 1.2em;
+}
+article h2 div{
+	display: inline-block;
+}
+article h2 div{
+	color: #025167;
+
+}
+.titulo-especifico {
+	color: #FF7D12;
+}
+.login-succ{
+	color: white;
+}
+.login-succ img{
+	padding: 0px 0px 0px 0px;
+	margin: -6px 0px;
+	width: 30px;
+	height: 30px;
+}
+#shutdown{
+	vertical-align: middle;
+	width: 25px;
+	height: 25px;
+}

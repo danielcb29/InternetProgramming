@@ -1,0 +1,137 @@
+aside{
+  float: right;
+}
+
+section div{
+  display: inline-block;
+}
+.info-menem{
+	background-color: #025167;
+	border-style: solid;
+	border-radius: 10px;
+	border-width: 1px;
+	border-color: #7f98a1;
+	text-align: center;
+	margin: 1.2em;
+	color: white;
+	width: 6%;
+}
+.info-menem > div, .user-and-date div, .votes div{
+	display: block;
+}
+.votes,.meneame,.clicks{
+	margin: 0.8em;
+}
+.clicks, .text-votes{
+	font-size: 10px;
+}
+.bt-meneame {
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	padding: 8px 24px;
+	font-size: 13px;
+	/*margin: 4px 2px;*/
+	cursor: pointer;
+	background-color: #EBF2F9;
+	color: #025167;
+	border-radius: 5px;
+	left: -28px;
+	border-style: solid;
+	border-width: 1px;
+	position: relative;
+}
+.bt-meneame:hover{
+	border-color: #61B7CF;
+}
+.info-noticia a{
+	text-decoration: none;
+	color: #FF7D12;
+}
+.info-noticia a:hover{
+	text-decoration: underline;
+}
+.new-pic{
+	border-radius: 50%;
+    height: 27px; 
+    width: 27px; 
+}
+.info-user-noticia{
+	font-size: 80%;
+	display: inline-block;
+}
+.info-noticia p{
+	font-size: 14px;
+}
+.info-noticia{
+	width: 80%;
+}
+.noticia-details{
+	font-size: 80%;
+	color: gray;
+}
+.info-noticia > div{
+	display: block;
+}
+.show-comments{
+	margin-top: 6px;
+	font-size: 80%;
+	color: gray;
+}
+.noticia-sep{
+	padding-right: 8px;
+}
+.comments-link{
+	font-size: 120%;
+}
+.contador{
+	padding: 1px 7px;
+	background-color: #025167;
+	color: white;
+	border-radius: 20%;
+}
+.social-icon{
+	width: 15px;
+	height: 15px;
+	opacity: 0.6;
+}
+.social-icon:hover{
+	opacity: 1;
+}
+.contenido{
+	display: inline-block;
+}
+.prev-noticia{
+	float: right;
+	width: 80px;
+	height: 80px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #025167;
+}
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    padding-left: 30%;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+ul.pagination li a.active {
+    background-color: #025167;
+    color: white;
+    border-radius: 5px;
+}
+ul.pagination li a:hover:not(.active) {
+	background-color: #ddd;
+}

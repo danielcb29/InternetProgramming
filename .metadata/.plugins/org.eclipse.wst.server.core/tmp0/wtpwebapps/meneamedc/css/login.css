@@ -1,0 +1,52 @@
+.login-left{
+	padding-left: 10%;
+	padding-top: 3%;
+	padding-bottom: 13%;
+}
+.login-inputs input {
+	display: block;
+}
+.login-inputs{
+	padding: 10%;
+	margin: 10%;
+	background-color: #025167;
+	font-size: 10px;
+	color: white;
+}
+.login-inputs a, .login-inputs a:visited{
+	color: white;
+	text-decoration: none;
+}
+.login-inputs a:hover{
+	color: white;
+	text-decoration: underline;
+}
+
+article section{
+	display: inline-block;
+}
+.login-rigth{
+	float: right;
+	padding-right: 20%;
+	
+}
+.lg-inp{
+	padding: 10px;
+	padding-right: 131px;
+	margin-bottom: 22px;
+	border: none;
+	border-bottom: solid 2px #c9c9c9;
+	border-bottom: solid 2px #969696;
+}
+.lg-bt{
+	background-color: #e7e7e7;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
