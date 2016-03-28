@@ -25,11 +25,18 @@
     		<h4>Usuario</h4>
     		<ul>
 	            <li><a href="login.html">Login</a></li>
-	            <c:if test="${user}"> 
-		            <li><a href="ver-perfil.html">Ver perfil</a></li>
-		            <li><a href="modificar-perfil.html">Modificar perfil</a></li>
-		            <li><a href="modificar-borrar-noticia.html">Ver mis noticias</a></li>
-	            </c:if>
+		         <c:choose>
+				    <c:when test="${empty user}">
+				        <br/>
+				        <br/>
+				        <br/>
+				    </c:when>
+				    <c:otherwise>
+				    	<li><a href="ver-perfil.html">Ver perfil</a></li>
+			            <li><a href="modificar-perfil.html">Modificar perfil</a></li>
+			            <li><a href="modificar-borrar-noticia.html">Ver mis noticias</a></li>
+				    </c:otherwise>
+				</c:choose>
 	        </ul>
     	</div>
    	</div>

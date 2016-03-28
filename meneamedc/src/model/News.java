@@ -1,16 +1,9 @@
 package model;
 
-import java.sql.Connection;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import dao.JDBCUserDAOImpl;
-import dao.UserDAO;
 
 public class News {
 	private long id;
@@ -97,24 +90,6 @@ public class News {
 	}
 	public void setHits(int hits) {
 		this.hits = hits;
-	}
-	//Metodos adicionales
-	public String usuario(){
-		//Connection conn = (Connection) getServletContext().getAttribute("dbConn");
-		//UserDAO userDao = new JDBCUserDAOImpl();
-		//user
-		//User u = userDao.get(this.owner);
-		//System.out.println(u.getName());
-		//List<User> u = userDao.getAll();
-		//System.out.println(u.size());
-		return "d";
-	}
-	
-	public Map<String, String> info(){
-		Map<String, String> info = new HashMap<String, String>();
-		info.put("usuario","Daniel");
-		info.put("ejemplo","Ejemplo");
-		return info;
 	}
 	
 

@@ -15,17 +15,17 @@
 		</ul>
 	</div>
 	<c:choose>
-	    <c:when test="${user}">
-	        <div class="rigth login-succ">
-				<a href="ver-perfil.html">${user.name}</a>
-				<img id="avatar-login" alt="avatar usuario" src="img/pic-test.jpeg">
-				<img id="shutdown" alt="" src="img/logout.png">
-			</div>
-	    </c:when>
-	    <c:otherwise>
+	    <c:when test="${empty user}">
 	        <div class="rigth">
 				<a href="">login</a> /
 				<a href="CrearUsuario">registrarse</a>
+			</div>
+	    </c:when>
+	    <c:otherwise>
+	    	<div class="rigth login-succ">
+				<a href="ver-perfil.html">${user.name}</a>
+				<img id="avatar-login" alt="avatar usuario" src="img/pic-test.jpeg">
+				<img id="shutdown" alt="" src="img/logout.png">
 			</div>
 	    </c:otherwise>
 	</c:choose>
@@ -46,9 +46,13 @@
 </div>
 <nav>
     <ul>
-    	<c:if test="${user}"> 
-        	<li><a href="registrar-noticia.html">enviar historia</a></li>
-        </c:if>
+    	<c:choose>
+		    <c:when test="${empty user}">
+		    </c:when>
+		    <c:otherwise>
+		    	<li><a href="registrar-noticia.html">enviar historia</a></li>
+		    </c:otherwise>
+		</c:choose>
         <li><a href="">portada</a></li>
         <li><a href="">nuevas</a></li>
         <li><a href="">populares</a></li>

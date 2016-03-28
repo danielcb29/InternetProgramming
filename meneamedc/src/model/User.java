@@ -41,9 +41,5 @@ public class User {
 		this.password = password;
 	}
 	
-	//Metodos adicionales
-	public String karma(){
-		return "20k karmoso";
-	}
 
 }

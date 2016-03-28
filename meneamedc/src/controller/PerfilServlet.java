@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CommentDAO;
+import dao.JDBCCommentDAOImpl;
 import dao.JDBCUserDAOImpl;
 import dao.UserDAO;
 import model.User;
@@ -40,8 +44,15 @@ public class PerfilServlet extends HttpServlet {
 		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
 		UserDAO userDao = new JDBCUserDAOImpl();
 		userDao.setConnection(conn);
+		CommentDAO commentDao = new JDBCCommentDAOImpl();
+		commentDao.setConnection(conn);
+		
 		User u = userDao.get(id);
+		Integer totalComments = commentDao.getAllByOwner(u.getId()).size();
+		Map<String, Integer> profMap = new HashMap<String, Integer>();
+		profMap.put("comentarios", totalComments);
 		request.setAttribute("user", u);
+		request.setAttribute("profMap", profMap);
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Perfil.jsp");
 		view.forward(request,response);
 	}
