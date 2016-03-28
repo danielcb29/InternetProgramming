@@ -17,7 +17,7 @@ import es.unex.giiis.pi.dao.OrderDAO;
  * Servlet implementation class DeleteOrderServlet
  */
 @WebServlet(
-		urlPatterns = { "/DeleteOrderServlet" }
+		urlPatterns = { "/orders/DeleteOrderServlet" }
 		)
 public class DeleteOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

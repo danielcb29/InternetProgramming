@@ -1,0 +1,13 @@
+127.0.0.1 - - [16/Mar/2016:15:14:43 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:50 +0100] "GET /meneamedc HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:51 +0100] "GET /meneamedc HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:54 +0100] "GET /meneamedc/ HTTP/1.1" 200 10576
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:54 +0100] "GET /meneamedc/css/lista-noticias.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:54 +0100] "GET /meneamedc/css/base.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:54 +0100] "GET /meneamedc/img/menu.png HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:55 +0100] "GET /meneamedc/img/fb.png HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:55 +0100] "GET /meneamedc/img/logo-top.png HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:55 +0100] "GET /meneamedc/img/elef.png HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:55 +0100] "GET /meneamedc/img/tw.png HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:55 +0100] "GET /meneamedc/img/door.png HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2016:15:14:55 +0100] "GET /meneamedc/img/logo-bottom.png HTTP/1.1" 304 -

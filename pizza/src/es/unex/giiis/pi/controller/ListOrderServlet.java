@@ -9,14 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
+import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 
 import java.sql.Connection;
 
 
 import es.unex.giiis.pi.model.Order;
+import es.unex.giiis.pi.model.User;
 import es.unex.giiis.pi.dao.JDBCOrderDAOImpl;
 import es.unex.giiis.pi.dao.OrderDAO;
 
@@ -24,7 +24,7 @@ import es.unex.giiis.pi.dao.OrderDAO;
 /**
  * Servlet implementation class ListOrderServlet
  */
-@WebServlet("/ListOrderServlet")
+@WebServlet("/orders/ListOrderServlet")
 public class ListOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());
@@ -51,10 +51,18 @@ public class ListOrderServlet extends HttpServlet {
 		OrderDAO orderDao = new JDBCOrderDAOImpl();
 		orderDao.setConnection(conn);
 		
-		List<Order> orderList = orderDao.getAll();
+		HttpSession session = request.getSession();
+		User user= (User) session.getAttribute("user");
+		
+		
+		List<Order> orderList;
+		
+		if (user.getRole().equals("Administrador")) orderList = orderDao.getAll();
+		else orderList = orderDao.get(user.getName());
+		
 		request.setAttribute("orderList",orderList);
 		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/ListOrder.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/ListOrder.jsp");
 		view.forward(request,response);
 		
 	

@@ -24,7 +24,7 @@ import es.unex.giiis.pi.dao.OrderDAO;
 /**
  * Servlet implementation class CheckOrderServlet
  */
-@WebServlet("/CheckOrderServlet")
+@WebServlet("/orders/CheckOrderServlet")
 public class CheckOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());   
@@ -42,7 +42,7 @@ public class CheckOrderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		logger.info("Atendiendo GET");
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/CheckOrder.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/CheckOrder.jsp");
 		view.forward(request,response);
 	}
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-  <link rel="stylesheet" href="css/stylesheet.css" />
+  <link rel="stylesheet"  href="${pageContext.request.contextPath}/css/stylesheet.css"   />
   <title>The Game of Pizzas - Orders</title>
 
 </head>
@@ -12,21 +12,20 @@
   <h1 id="maintitle">Pizza Order</h1>
   <h2>${messages.error}</h2>
 
+  <h3>Customer name: ${user.name}</h3> 
+  <h3>E-mail:${user.email}</h3>
+        
+    
+
+
 
   <form method="post" action="OrderServlet">
-    <div>
-  
-      <label for="name">Customer name:</label> 
-      <input class="personaldata" type="text" name="name" id="name" placeholder="John Snow" required/>
-    </div>
+   
     <div>
       <label for="tel">Telephone:</label> 
       <input class="personaldata" class="personaldata" type="tel" name="tel" id="tel" placeholder="+34 927 257 000" required/>
     </div>
-    <div>
-      <label for="email">E-mail address:</label>
-      <input class="personaldata" type="email" name="email" id="email" placeholder="jsnow@starks.com" required>  
-    </div>
+    
     <fieldset id="size">
       <legend> Pizza Size </legend>
       <p>        

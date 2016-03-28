@@ -9,6 +9,7 @@ public interface OrderDAO {
 	
 	public List<Order> getAll();
 	public Order get(long id);
+	public List<Order> get(String name);
 	public long add(Order order);
 	public void save(Order order);
 	public void delete(long id);

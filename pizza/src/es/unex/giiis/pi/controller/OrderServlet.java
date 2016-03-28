@@ -1,13 +1,8 @@
 package es.unex.giiis.pi.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
-
 
 
 import javax.servlet.ServletException;
@@ -20,12 +15,13 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 import es.unex.giiis.pi.helper.DateTimeHelper;
 import es.unex.giiis.pi.model.Order;
+import es.unex.giiis.pi.model.User;
 
 /**
  * Servlet implementation class OrderServlet
  */
 @WebServlet(
-		urlPatterns = { "/OrderServlet" }
+		urlPatterns = { "/orders/OrderServlet" }
 		)
 
 public class OrderServlet extends HttpServlet {
@@ -56,7 +52,7 @@ public class OrderServlet extends HttpServlet {
 		logger.info("Session last accessed time: "+DateTimeHelper.time2Date(session.getLastAccessedTime()));
 		logger.info("Session max inactive time: "+DateTimeHelper.time2Date(session.getMaxInactiveInterval()));
 		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Order.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/Order.jsp");
 		view.forward(request,response);	
 				
 	}
@@ -70,11 +66,14 @@ public class OrderServlet extends HttpServlet {
 		
 		logger.info("Atendiendo POST");
 		
-		String name = request.getParameter("name");
+		HttpSession session = request.getSession();
+		User user= (User) session.getAttribute("user");
+		
+		
 		
 		Order order = new Order();
-		order.setName(name);
-		order.setEmail(request.getParameter("email"));
+		order.setName(user.getName());
+		order.setEmail(user.getEmail());
 		order.setTel(request.getParameter("tel"));
 		order.setSize(request.getParameter("size"));
 		
@@ -89,7 +88,7 @@ public class OrderServlet extends HttpServlet {
 			
 		}
 		else order.setToppings(" ");
-			
+		
 		order.setDelivery(request.getParameter("delivery"));
 		order.setComments(request.getParameter("comments"));
 
@@ -97,13 +96,12 @@ public class OrderServlet extends HttpServlet {
 		
 		Map<String, String> messages = new HashMap<String, String>();
 		if (order.validate(messages)) {
-			HttpSession session = request.getSession();
 			session.setAttribute("order",order);
 			response.sendRedirect("CheckOrderServlet");
 		} 
 		else {
 			request.setAttribute("messages",messages);
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Order.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/Order.jsp");
 			view.forward(request,response);
 		}	
 		

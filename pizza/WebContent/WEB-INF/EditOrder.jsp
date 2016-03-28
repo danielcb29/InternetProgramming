@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="css/stylesheet.css" />
+  <link rel="stylesheet"  href="${pageContext.request.contextPath}/css/stylesheet.css"   />
   <title>The Game of Pizzas - Orders</title>
 
 </head>
@@ -12,21 +12,38 @@
   <h1 id="maintitle">Pizza Order</h1>
   <h2>${messages.error}</h2>
 
+  <c:if test="${user.role != 'Administrador'}">
+  <h3>Customer name: ${user.name}</h3> 
+  <h3>E-mail:${user.email}</h3>
+  </c:if>
+  
+        
   <form method="post" action="EditOrderServlet">
   <input type="hidden" name="id" value="${order.id }">
-    <div>
-  
-      <label for="name">Customer name:</label> 
+   <c:if test="${user}">
+   	testig
+   </c:if>
+   <c:if test="${user.role == 'Administrador'}">
+   <div>
+     <label for="name">Customer name:</label> 
       <input class="personaldata" type="text" name="name" id="name" placeholder="John Snow" value="${order.name}" required/>
     </div>
+    </c:if>
+       
     <div>
       <label for="tel">Telephone:</label> 
       <input class="personaldata" class="personaldata" type="tel" name="tel" id="tel" placeholder="+34 927 257 000" value="${order.tel}" required/>
     </div>
+   
+    <c:if test="${user.role == 'Administrador'}">
     <div>
       <label for="email">E-mail address:</label>
       <input class="personaldata" type="email" name="email" id="email" placeholder="jsnow@starks.com" required value="${order.email}">  
     </div>
+     </c:if>
+   
+    
+   
     <fieldset id="size">
       <legend> Pizza Size </legend>
       <p>        

@@ -92,6 +92,48 @@ public class JDBCOrderDAOImpl implements OrderDAO {
 		}
 		return order;
 	}
+	
+	@Override
+	public List<Order> get(String name) {
+logger.info("fetching order: connection with db?");
+		
+		if (conn == null) return null;
+		
+		logger.info("fetching order: connection with db ok");
+				
+		ArrayList<Order> orders = new ArrayList<Order>();
+		try {
+			Statement stmt;
+			ResultSet rs;
+			synchronized(conn){
+			  stmt = conn.createStatement();
+			  rs = stmt.executeQuery("SELECT * FROM Public.Pizzaorder WHERE name ='" + name + "'");
+			}
+			while ( rs.next() ) {
+				Order order = new Order();
+				order.setId(rs.getLong("id"));
+				order.setName(rs.getString("name"));
+				order.setTel(rs.getString("tel"));
+				order.setEmail(rs.getString("email"));
+				order.setSize(rs.getString("size"));
+				order.setToppings(rs.getString("toppings"));
+				order.setDelivery(rs.getString("delivery"));
+				order.setComments(rs.getString("comments"));
+				
+				orders.add(order);
+				logger.info("fetching orders: "+order.getId()+" "+order.getName()+" "+order.getTel()+" "+
+						order.getSize()+" "+order.getToppings()+" "+order.getDelivery()+" "+order.getComments());
+								
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return orders;
+	}
+	
+	
 
 	@Override
 	public long add(Order order) {

@@ -40,5 +40,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	//Metodos adicionales
+	public String karma(){
+		return "20k karmoso";
+	}
 
 }

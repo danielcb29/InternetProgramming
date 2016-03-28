@@ -1,14 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html id="list">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Order confirmed!</title>
+<link rel="stylesheet"  href="${pageContext.request.contextPath}/css/stylesheet.css"   />
+<title>Orders confirmed!</title>
 </head>
 <body>
-<h1>Order confirmed!</h1> 
-	    <a href="OrderServlet">New Order!</a>
+<c:if test="${user.role != 'Administrador'}">
+<h1>Your confirmed orders:</h1> 
+ </c:if>
+ <c:if test="${user.role == 'Administrador'}">
+<h1>All confirmed orders:</h1> 
+ </c:if>
+ <div id="links">
+<a href="OrderServlet">New Order!</a> 
+<a href="${pageContext.request.contextPath}/LogoutServlet">Log out</a>
+</div>
+	    
 		<table>
 		<thead>
 		<tr>

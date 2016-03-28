@@ -15,17 +15,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import es.unex.giiis.pi.dao.JDBCOrderDAOImpl;
 import es.unex.giiis.pi.dao.OrderDAO;
 import es.unex.giiis.pi.model.Order;
+import es.unex.giiis.pi.model.User;
 
 /**
  * Servlet implementation class DetailOrderServlet
  */
 @WebServlet(
-		urlPatterns = { "/EditOrderServlet" }
+		urlPatterns = { "/orders/EditOrderServlet" }
 		)
 public class EditOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -59,7 +60,7 @@ public class EditOrderServlet extends HttpServlet {
 		if (order != null)
 		  request.setAttribute("order",order);
 		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/EditOrder.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/EditOrder.jsp");
 		view.forward(request,response);
 	}
 
@@ -73,10 +74,21 @@ public class EditOrderServlet extends HttpServlet {
 		OrderDAO orderDao = new JDBCOrderDAOImpl();
 		orderDao.setConnection(conn);
 		
+		HttpSession session = request.getSession();
+		User user= (User) session.getAttribute("user");
+		
+		
+		
 		Order order = new Order();
+		if (user.getRole().equals("Administrador")) {
+			order.setName(request.getParameter("name"));
+			order.setEmail(request.getParameter("email"));
+		}
+		else {
+		order.setName(user.getName());
+		order.setEmail(user.getEmail());
+		}
 		order.setId( Long.parseLong(request.getParameter("id")));
-		order.setName(request.getParameter("name"));
-		order.setEmail(request.getParameter("email"));
 		order.setTel(request.getParameter("tel"));
 		order.setSize(request.getParameter("size"));
 		if (request.getParameterValues("topping")!=null)
@@ -101,12 +113,9 @@ public class EditOrderServlet extends HttpServlet {
 		else {
 			request.setAttribute("messages",messages);
 			request.setAttribute("order",order);
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/EditOrder.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/EditOrder.jsp");
 			view.forward(request,response);
 		}	
-		
-		
-		
 	}
 
 }

@@ -13,50 +13,7 @@
 	<link rel="stylesheet" href="css/lista-noticias.css">
 </head>
 <body>
-	<div class="head" id="nombre-categorias">
-		<div>
-			<img alt="" src="img/menu.png">
-			<a href="lista-noticias.html"><img alt="" src="img/logo-top.png"></a>
-			<img alt="" src="img/door.png">
-		</div>
-		<div id="categorias">
-			<ul>
-				<li><a>cultura y tecnologia</a></li>
-				<li><a>edicion general</a></li>
-				<li><a>deportes</a></li>
-			</ul>
-		</div>
-		<div class="rigth">
-			<a href="login.html">login</a> /
-			<a href="CrearUsuario">registrarse</a>
-		</div>
-	</div>
-	<div class="head" id="logo-search">
-		<div><img alt="" src="img/elef.png"></div>
-		<div><b>edicion general</b></div>
-		<div>
-			<img alt="" src="img/fb.png">
-			<img alt="" src="img/tw.png">
-		</div>
-		<div class="rigth">
-			<input id="search" type="text" placeholder="Buscar">
-		</div>
-	</div>
-	<nav>
-        <ul>
-            <li><a href="registrar-noticia.html">enviar historia</a></li>
-            <li><a href="">portada</a></li>
-            <li><a href="">nuevas</a></li>
-            <li><a href="">populares</a></li>
-        </ul>
-    </nav>
-    <aside>
-    	<div id="destacadas">
-
-    	</div>
-    	<div id="votadas"></div>
-    	<div id="visitadas"></div>
-    </aside>
+	<jsp:include page="Header.jsp" />
     <article>
     	<div class="titulo">
     		<div class="titulo-general"><h2>Noticias de categoria:</h2></div>
@@ -67,7 +24,7 @@
 			<section>
 					<div class="info-menem">
 							<div class="votes">
-								${noticia.likes}
+								${noticia.key.likes}
 								<div class="text-votes">
 									meneos
 								</div>
@@ -77,27 +34,27 @@
 								<input class="bt-meneame" type="submit" value="menealo">
 							</div>
 							<div class="clicks">
-								${noticia.hits} clicks
+								${noticia.key.hits} clicks
 							</div>
 					</div>
 					<div class="info-noticia">
-						<h3><a href="${noticia.url }">${noticia.title }</a></h3>
+						<h3><a href="${noticia.key.url }">${noticia.key.title }</a></h3>
 						<div class="info-user-noticia">
 							<!--img alt="Usuario" class="new-pic" src="img/pic-test.jpeg"-->
 							<div class="user-and-date">
 								<div>
 									por
-									<a href="profile">usuario-tal</a>
+									<a href="Perfil?id=${noticia.key.owner}">${noticia.value.name}</a>
 								</div>
 								<div>
-									${noticia.dateStamp } ${noticia.timeStamp }
+									${noticia.key.dateStamp } ${noticia.key.timeStamp }
 								</div>
 							</div>
 						</div>
 						<div class="contenido">
-							<img alt="Vista previa noticia" class="prev-noticia" src="img/pic-test.jpeg">
+							<!-- img alt="Vista previa noticia" class="prev-noticia" src="img/pic-test.jpeg"-->
 							<p>
-								${noticia.text }
+								${noticia.key.text }
 							</p>
 							
 							
@@ -116,7 +73,7 @@
 						<div class="show-comments">
 							<span class="noticia-sep comments-link"><span class="contador">20</span> <a href="view-comment.html">comentarios</a></span>
 							<span class="noticia-sep">| </span>
-							<span class="noticia-sep">${noticia.category } </span>
+							<span class="noticia-sep">${noticia.key.category } </span>
 							<span class="noticia-sep">| </span>
 							<span class="noticia-sep">karma: 7000</span>
 
@@ -140,46 +97,7 @@
 			  <li><a href="#">siguiente»</a></li>
 			</ul>
     </article>
-    <footer>
-	    <div class="footer-sections">
-	    	<div class="section-separator">
-	    		<h4>Categorias</h4>
-	    		<ul>
-		            <li><a href="">Cultura</a></li>
-		            <li><a href="">Tecnologia</a></li>
-		            <li><a href="">Ocio</a></li>
-		            <li><a href="">Actualidad</a></li>
-		        </ul>
-	    	</div>
-	    	<div class="section-separator">
-	    		<h4>Filtros</h4>
-	    		<ul>
-		            <li><a href="registrar-noticia.html">Enviar historia</a></li>
-		            <li><a href="">Portada</a></li>
-		            <li><a href="">Nuevas</a></li>
-		            <li><a href="">Populares</a></li>
-		        </ul>
-	    	</div>
-	    	<div>
-	    		<h4>Usuario</h4>
-	    		<ul>
-		            <li><a href="login.html">Login</a></li>
-		            <li><a href="ver-perfil.html">Ver perfil</a></li>
-		            <li><a href="modificar-perfil.html">Modificar perfil</a></li>
-		            <li><a href="modificar-borrar-noticia.html">Ver mis noticias</a></li>
-		        </ul>
-	    	</div>
-    	</div>
-    	<div class="footer-sections">
-    		<img alt="" src="img/logo-bottom.png">
-    		<div id="copyrigth">
-    			<a>legal </a>/
-    			<a>quienes somos </a>/
-    			<a>HTML5</a> |
-    			Daniel Correa Barrios, Universidad de Extremadura
-    		</div>
-    	</div>
-    </footer>
+    <jsp:include page="Footer.jsp" />
 
 </body>
 </html>

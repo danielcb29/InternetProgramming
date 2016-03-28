@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,13 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.JDBCUserDAOImpl;
+import dao.UserDAO;
+import model.User;
+
 /**
  * Servlet implementation class PerfilServlet
  */
 @WebServlet("/Perfil")
 public class PerfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -29,6 +35,13 @@ public class PerfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//recuperar el usuario
+		long id = Long.parseLong(request.getParameter("id"));
+		logger.info("Consultado usuario de id:"+id);
+		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
+		UserDAO userDao = new JDBCUserDAOImpl();
+		userDao.setConnection(conn);
+		User u = userDao.get(id);
+		request.setAttribute("user", u);
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Perfil.jsp");
 		view.forward(request,response);
 	}
