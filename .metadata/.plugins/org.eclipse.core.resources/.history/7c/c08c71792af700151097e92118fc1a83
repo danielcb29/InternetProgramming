@@ -61,6 +61,7 @@ public class CrearUsuarioServlet extends HttpServlet {
 		if(user.validate_password(messages, confpass)){
 			logger.info("Guardando usuario");
 			userDao.add(user);
+			System.out.println("creado usuario");
 			response.sendRedirect("auth/Perfil?id="+user.getId());
 		}
 		else{

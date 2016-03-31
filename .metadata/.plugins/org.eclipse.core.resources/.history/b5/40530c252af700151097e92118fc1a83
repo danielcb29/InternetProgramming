@@ -49,7 +49,6 @@ public class CrearUsuarioServlet extends HttpServlet {
 		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
 		User user = new User();
 		UserDAO userDao = new JDBCUserDAOImpl();
-		userDao.setConnection(conn);
 		user.setName(request.getParameter("name"));
 		user.setEmail(request.getParameter("email"));
 		user.setPassword(request.getParameter("password"));
@@ -61,6 +60,7 @@ public class CrearUsuarioServlet extends HttpServlet {
 		if(user.validate_password(messages, confpass)){
 			logger.info("Guardando usuario");
 			userDao.add(user);
+			System.out.println("creado usuario");
 			response.sendRedirect("auth/Perfil?id="+user.getId());
 		}
 		else{

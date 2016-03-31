@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -46,10 +45,8 @@ public class CrearUsuarioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		logger.info("Creando usuario");
-		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
 		User user = new User();
 		UserDAO userDao = new JDBCUserDAOImpl();
-		userDao.setConnection(conn);
 		user.setName(request.getParameter("name"));
 		user.setEmail(request.getParameter("email"));
 		user.setPassword(request.getParameter("password"));
