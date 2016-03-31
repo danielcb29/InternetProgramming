@@ -49,16 +49,9 @@ public class NoticiasServlet extends HttpServlet {
 		userDAO.setConnection(conn);
 		
 		String categoria = request.getParameter("categoria");
-		List<News> noticias;
-		if (categoria!=null){
-			noticias = newsDao.getAllByCategory(categoria);
-			request.setAttribute("categoria", categoria);
-		}else{
-			noticias = newsDao.getAll();
-			request.setAttribute("categoria", "Mas recientes");
-			
-		}
-
+		
+		List<News> noticias = newsDao.getAll();
+		
 		Map<News, User> newsMap = new HashMap<News, User>();
 		
 		Iterator<News> it = noticias.iterator();
@@ -73,7 +66,7 @@ public class NoticiasServlet extends HttpServlet {
 		//request.setAttribute("newsMap",newsMap);
 		
 		request.setAttribute("noticias",newsMap);
-		
+		request.setAttribute("categoria", "Mas recientes");
 		
 		
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Noticias.jsp");

@@ -25,7 +25,7 @@ public class JDBCNewsDAOImpl implements NewsDAO {
 		ArrayList<News> newsList = new ArrayList<News>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM News ORDER BY datestamp DESC, timestamp DESC;");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM News");
 						
 			while ( rs.next() ) {
 				News news = new News();

@@ -63,7 +63,7 @@
 		    </c:otherwise>
 		</c:choose>
         <li><a href="">portada</a></li>
-        <li><a href="${pageContext.request.contextPath}/Noticias">nuevas</a></li>
+        <li><a href="">nuevas</a></li>
         <li><a href="">populares</a></li>
     </ul>
 </nav>

@@ -52,11 +52,10 @@ public class NoticiasServlet extends HttpServlet {
 		List<News> noticias;
 		if (categoria!=null){
 			noticias = newsDao.getAllByCategory(categoria);
-			request.setAttribute("categoria", categoria);
+			request.setAttribute("categoria", "Mas recientes");
 		}else{
 			noticias = newsDao.getAll();
-			request.setAttribute("categoria", "Mas recientes");
-			
+			request.setAttribute("categoria", categoria);
 		}
 
 		Map<News, User> newsMap = new HashMap<News, User>();

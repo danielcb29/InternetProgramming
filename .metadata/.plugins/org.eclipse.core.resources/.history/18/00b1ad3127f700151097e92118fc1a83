@@ -4,7 +4,7 @@
 <div class="head" id="nombre-categorias">
 	<div>
 		<img alt="" src="${pageContext.request.contextPath}/img/menu.png">
-		<a href="${pageContext.request.contextPath}/Noticias"><img alt="" src="${pageContext.request.contextPath}/img/logo-top.png"></a>
+		<a href="Noticias"><img alt="" src="${pageContext.request.contextPath}/img/logo-top.png"></a>
 		<img alt="" src="${pageContext.request.contextPath}/img/door.png">
 	</div>
 	<div id="categorias">
@@ -63,7 +63,7 @@
 		    </c:otherwise>
 		</c:choose>
         <li><a href="">portada</a></li>
-        <li><a href="${pageContext.request.contextPath}/Noticias">nuevas</a></li>
+        <li><a href="">nuevas</a></li>
         <li><a href="">populares</a></li>
     </ul>
 </nav>
