@@ -1,0 +1,116 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+ 	<title>Login</title>
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_196x196.png" type="image/png" sizes="196x196">
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_64x64.png" type="image/png" sizes="64x64">
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_16x16.png" type="image/png" sizes="16x16">
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_128x128.png" type="image/png" sizes="128x128">
+ 	<link rel="stylesheet" href="css/base.css">
+ 	<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+	<div class="head" id="nombre-categorias">
+		<div>
+			<img alt="" src="img/menu.png">
+			<a href="lista-noticias.html"><img alt="" src="img/logo-top.png"></a>
+			<img alt="" src="img/door.png">
+		</div>
+		<div id="categorias">
+			<ul>
+				<li><a>cultura y tecnologia</a></li>
+				<li><a>edicion general</a></li>
+				<li><a>deportes</a></li>
+			</ul>
+		</div>
+		<div class="rigth">
+			<a href="login.html">login</a> /
+			<a href="registro.html">registrarse</a>
+		</div>
+	</div>
+	<div class="head" id="logo-search">
+		<div><img alt="" src="img/elef.png"></div>
+		<div><b>edicion general</b></div>
+		<div>
+			<img alt="" src="img/fb.png">
+			<img alt="" src="img/tw.png">
+		</div>
+		<div class="rigth">
+			<input id="search" type="text" placeholder="Buscar">
+		</div>
+	</div>
+	<nav>
+        <ul>
+            <li><a href="registrar-noticia.html">enviar historia</a></li>
+            <li><a href="">portada</a></li>
+            <li><a href="">nuevas</a></li>
+            <li><a href="">populares</a></li>
+        </ul>
+    </nav>
+    <article>
+    	<section class="login-left">
+    		<div class="titulo-general"><h2>Iniciar Sesion</h2></div>
+    		<p>
+    			Bienvenido a meneame,
+    		</p>
+    		<img alt="" src="img/news.png"> 
+    	</section>
+    	<section class="login-rigth">
+    		<div class="login-inputs">
+    			<form action="/" method="post">
+	    			<input class="lg-inp" type="text" placeholder="Nombre de usuario">
+	    			<input class="lg-inp" placeholder="Contraseña">
+	    			<input class="lg-bt" type="submit" value="Entrar">
+    			</form>
+    			<p>
+    				<a href="forgot">¿Ha olvidado su contraseña?</a>
+    			</p>
+    		</div> 
+    	</section>
+    </article>
+    <footer>
+	    <div class="footer-sections">
+	    	<div class="section-separator">
+	    		<h4>Categorias</h4>
+	    		<ul>
+		            <li><a href="">Cultura</a></li>
+		            <li><a href="">Tecnologia</a></li>
+		            <li><a href="">Ocio</a></li>
+		            <li><a href="">Actualidad</a></li>
+		        </ul>
+	    	</div>
+	    	<div class="section-separator">
+	    		<h4>Filtros</h4>
+	    		<ul>
+		            <li><a href="registrar-noticia.html">Enviar historia</a></li>
+		            <li><a href="">Portada</a></li>
+		            <li><a href="">Nuevas</a></li>
+		            <li><a href="">Populares</a></li>
+		        </ul>
+	    	</div>
+	    	<div>
+	    		<h4>Usuario</h4>
+	    		<ul>
+		            <li><a href="login.html">Login</a></li>
+		            <li><a href="ver-perfil.html">Ver perfil</a></li>
+		            <li><a href="modificar-perfil.html">Modificar perfil</a></li>
+		            <li><a href="modificar-borrar-noticia.html">Ver mis noticias</a></li>
+		        </ul>
+	    	</div>
+    	</div>
+    	<div class="footer-sections">
+    		<img alt="" src="img/logo-bottom.png">
+    		<div id="copyrigth">
+    			<a>legal </a>/
+    			<a>quienes somos </a>/
+    			<a>HTML5</a> |
+    			Daniel Correa Barrios, Universidad de Extremadura
+    		</div>
+    	</div>
+    </footer>
+
+</body>
+</html>

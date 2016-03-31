@@ -22,7 +22,7 @@ import model.User;
 /**
  * Servlet implementation class PerfilServlet
  */
-@WebServlet("/Perfil")
+@WebServlet("/auth/Perfil")
 public class PerfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());
@@ -53,7 +53,7 @@ public class PerfilServlet extends HttpServlet {
 		profMap.put("comentarios", totalComments);
 		request.setAttribute("user", u);
 		request.setAttribute("profMap", profMap);
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Perfil.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/Perfil.jsp");
 		view.forward(request,response);
 	}
 

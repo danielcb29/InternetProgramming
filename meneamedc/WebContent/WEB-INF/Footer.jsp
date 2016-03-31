@@ -17,14 +17,14 @@
     		<ul>
 	            <li><a href="registrar-noticia.html">Enviar historia</a></li>
 	            <li><a href="">Portada</a></li>
-	            <li><a href="Noticias">Nuevas</a></li>
+	            <li><a href="${pageContext.request.contextPath}/Noticias">Nuevas</a></li>
 	            <li><a href="">Populares</a></li>
 	        </ul>
     	</div>
     	<div>
     		<h4>Usuario</h4>
     		<ul>
-	            <li><a href="login.html">Login</a></li>
+	            <li><a href="${pageContext.request.contextPath}/LoginServlet">Login</a></li>
 		         <c:choose>
 				    <c:when test="${empty user}">
 				        <br/>
@@ -32,16 +32,16 @@
 				        <br/>
 				    </c:when>
 				    <c:otherwise>
-				    	<li><a href="ver-perfil.html">Ver perfil</a></li>
-			            <li><a href="modificar-perfil.html">Modificar perfil</a></li>
-			            <li><a href="modificar-borrar-noticia.html">Ver mis noticias</a></li>
+				    	<li><a href="${pageContext.request.contextPath}/auth/Perfil?id=${user.id}">Ver perfil</a></li>
+			            <li><a href="">Modificar perfil</a></li>
+			            <li><a href="">Ver mis noticias</a></li>
 				    </c:otherwise>
 				</c:choose>
 	        </ul>
     	</div>
    	</div>
    	<div class="footer-sections">
-   		<img alt="" src="img/logo-bottom.png">
+   		<img alt="" src="${pageContext.request.contextPath}/img/logo-bottom.png">
    		<div id="copyrigth">
    			<a>legal </a>/
    			<a>quienes somos </a>/

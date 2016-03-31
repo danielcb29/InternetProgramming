@@ -9,8 +9,8 @@
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_64x64.png" type="image/png" sizes="64x64">
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_16x16.png" type="image/png" sizes="16x16">
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_128x128.png" type="image/png" sizes="128x128">
- 	<link rel="stylesheet" href="css/base.css">
- 	<link rel="stylesheet" href="css/ver-perfil.css">
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ver-perfil.css">
 </head>
 <body>
 	<jsp:include page="Header.jsp" />
