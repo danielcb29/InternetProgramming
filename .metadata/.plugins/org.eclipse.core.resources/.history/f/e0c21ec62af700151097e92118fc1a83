@@ -2,8 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -41,7 +41,6 @@ public class NoticiasServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		logger.info("Atendiendo GET");
 		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
 		NewsDAO newsDao = new JDBCNewsDAOImpl();
@@ -60,7 +59,7 @@ public class NoticiasServlet extends HttpServlet {
 			
 		}
 
-		Map<News, User> newsMap = new LinkedHashMap<News, User>();
+		Map<News, User> newsMap = new HashMap<News, User>();
 		
 		Iterator<News> it = noticias.iterator();
 		
@@ -77,7 +76,7 @@ public class NoticiasServlet extends HttpServlet {
 		
 		
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/Noticias.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Noticias.jsp");
 		view.forward(request,response);
 	}
 
