@@ -20,7 +20,7 @@
     		<div class="titulo-especifico"><h2>${user.name}</h2></div>
     	</div>
     	<div id="modif-perfil">
-    		<input type="button" value="Modificar Perfil">
+    		<a href="${pageContext.request.contextPath}/auth/EditarPerfilServlet?id=${user.id}"><input type="button" value="Modificar Perfil"></a>
     	</div><br/><br/>
     	<fieldset>
     		<legend>Información personal</legend>

@@ -10,9 +10,10 @@
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="dao.JDBCCommentDAOImpl"/>
+<fullyQualifiedTypeName name="dao.CommentDAO"/>
 <fullyQualifiedTypeName name="model.User"/>
 <fullyQualifiedTypeName name="dao.UserDAO"/>
 <fullyQualifiedTypeName name="dao.JDBCUserDAOImpl"/>
-<fullyQualifiedTypeName name="dao.JDBCCommentDAOImpl"/>
-<fullyQualifiedTypeName name="dao.CommentDAO"/>
+<fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
 </qualifiedTypeNameHistroy>
