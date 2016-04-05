@@ -77,7 +77,7 @@ public class EditarPerfilServlet extends HttpServlet {
 			userDao.save(user);
 			HttpSession session = request.getSession();
 			session.setAttribute("user",user);
-			response.sendRedirect("Perfil?id="+user.getId());
+			response.sendRedirect("auth/EditarPerfil?id="+user.getId());
 		}
 		else{
 			request.setAttribute("messages",messages);

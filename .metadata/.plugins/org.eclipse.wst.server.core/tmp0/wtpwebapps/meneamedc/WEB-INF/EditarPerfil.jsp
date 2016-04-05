@@ -5,7 +5,7 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
- 	<title>nombreusuario</title>
+ 	<title>${user.name}</title>
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_196x196.png" type="image/png" sizes="196x196">
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_64x64.png" type="image/png" sizes="64x64">
  	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_16x16.png" type="image/png" sizes="16x16">
@@ -32,14 +32,15 @@
     		</div-->
             <div class="cambio-perfil">
                 <form action="" method="post">
+                	<h2>${messages.error}</h2>
         			<label>usuario:</label>
-        			<input class="cam-inp" type="text" required placeholder="nombre de usuario" value="${user.name}">
+        			<input class="cam-inp" type="text" name="name" required placeholder="nombre de usuario" value="${user.name}">
         			<label>correo electronico:</label>
-        			<input class="cam-inp" type="emai" required placeholder="correo electronico" value="${user.email}">
+        			<input class="cam-inp" type="emai" name="email" required placeholder="correo electronico" value="${user.email}">
         			<label>clave:</label>
-        			<input class="cam-inp" type="password" required placeholder="clave" value="${user.password}">
+        			<input class="cam-inp" type="password" name="password" required placeholder="clave" value="${user.password}">
         			<label>repetir clave:</label>
-        			<input class="cam-inp" type="password" required placeholder="verificar clave" value="${user.password}">
+        			<input class="cam-inp" type="password" name="confirmpassword" required placeholder="verificar clave" value="${user.password}">
                     <br/>
                     <div class="non-rg">
                         <input type="submit" value="Guardar cambios">

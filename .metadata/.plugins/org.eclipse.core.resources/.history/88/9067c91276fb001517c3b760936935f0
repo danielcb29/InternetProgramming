@@ -32,7 +32,6 @@
     		</div-->
             <div class="cambio-perfil">
                 <form action="" method="post">
-                	<h2>${messages.error}</h2>
         			<label>usuario:</label>
         			<input class="cam-inp" type="text" name="name" required placeholder="nombre de usuario" value="${user.name}">
         			<label>correo electronico:</label>
