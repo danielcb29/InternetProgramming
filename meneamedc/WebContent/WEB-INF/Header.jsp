@@ -9,9 +9,9 @@
 	</div>
 	<div id="categorias">
 		<ul>
-			<li><a>cultura y tecnologia</a></li>
-			<li><a>edicion general</a></li>
-			<li><a>deportes</a></li>
+			<li><a href="${pageContext.request.contextPath}/Noticias?categoria=tecnologia">Tecnologia</a></li>
+			<li><a href="${pageContext.request.contextPath}/Noticias?categoria=ocio">Ocio</a></li>
+			<li><a href="${pageContext.request.contextPath}/Noticias?categoria=cultura">Cultura</a></li>
 		</ul>
 	</div>
 	<c:choose>
@@ -59,12 +59,12 @@
 		    <c:when test="${empty user}">
 		    </c:when>
 		    <c:otherwise>
-		    	<li><a href="registrar-noticia.html">enviar historia</a></li>
+		    	<li><a href="${pageContext.request.contextPath}/auth/CrearNoticia">Enviar Historia</a></li>
 		    </c:otherwise>
 		</c:choose>
-        <li><a href="">portada</a></li>
-        <li><a href="${pageContext.request.contextPath}/Noticias">nuevas</a></li>
-        <li><a href="">populares</a></li>
+		<li><a href="${pageContext.request.contextPath}/Noticias">Nuevas</a></li>
+        <li><a href="${pageContext.request.contextPath}/Noticias?categoria=actualidad">Actualidad</a></li>
+        <li><a href="${pageContext.request.contextPath}/Noticias?categoria=deporte">Deporte</a></li>
     </ul>
 </nav>
    

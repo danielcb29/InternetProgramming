@@ -6,19 +6,20 @@
     	<div class="section-separator">
     		<h4>Categorias</h4>
     		<ul>
-	            <li><a href="">Cultura</a></li>
-	            <li><a href="">Tecnologia</a></li>
-	            <li><a href="">Ocio</a></li>
-	            <li><a href="">Actualidad</a></li>
+	            <li><a href="${pageContext.request.contextPath}/Noticias?categoria=tecnologia">Tecnologia</a></li>
+	            <li><a href="${pageContext.request.contextPath}/Noticias?categoria=ocio">Ocio</a></li>
+	            <li><a href="${pageContext.request.contextPath}/Noticias?categoria=cultura">Cultura</a></li>
+	            <li><a href="${pageContext.request.contextPath}/Noticias?categoria=actualidad">Actualidad</a></li>
 	        </ul>
     	</div>
     	<div class="section-separator">
     		<h4>Filtros</h4>
     		<ul>
-	            <li><a href="registrar-noticia.html">Enviar historia</a></li>
-	            <li><a href="">Portada</a></li>
+	            <li><a href="${pageContext.request.contextPath}/auth/CrearNoticia">Enviar historia</a></li>
 	            <li><a href="${pageContext.request.contextPath}/Noticias">Nuevas</a></li>
-	            <li><a href="">Populares</a></li>
+	            <li><a href="${pageContext.request.contextPath}/Noticias?categoria=deporte">Deportes</a></li>
+	            <!--  li><a href="">Populares</a></li-->
+	            <br>
 	        </ul>
     	</div>
     	<div>
