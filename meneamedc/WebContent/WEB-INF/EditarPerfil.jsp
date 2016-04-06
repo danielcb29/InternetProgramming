@@ -55,7 +55,7 @@
                 Se borrara la información personal
             </p>
             <div class="non-rg">
-                <input type="button" value="Borrar">
+                <a href="${pageContext.request.contextPath}/auth/BorrarUsuario"><input type="button" value="Borrar"></a>
             </div>
     	</fieldset>
         
