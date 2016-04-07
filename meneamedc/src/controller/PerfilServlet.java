@@ -51,7 +51,12 @@ public class PerfilServlet extends HttpServlet {
 		Integer totalComments = commentDao.getAllByOwner(u.getId()).size();
 		Map<String, Integer> profMap = new HashMap<String, Integer>();
 		profMap.put("comentarios", totalComments);
-		request.setAttribute("user", u);
+		if(id == ((User) request.getSession().getAttribute("user")).getId()){
+			request.setAttribute("self", true);
+		}else{
+			request.setAttribute("selft", false);
+		}
+		request.setAttribute("quser", u);
 		request.setAttribute("profMap", profMap);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/Perfil.jsp");
 		view.forward(request,response);

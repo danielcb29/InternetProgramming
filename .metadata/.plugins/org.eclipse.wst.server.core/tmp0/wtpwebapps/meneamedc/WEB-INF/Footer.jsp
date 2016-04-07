@@ -34,7 +34,7 @@
 				    </c:when>
 				    <c:otherwise>
 				    	<li><a href="${pageContext.request.contextPath}/auth/Perfil?id=${user.id}">Ver perfil</a></li>
-			            <li><a href="${pageContext.request.contextPath}/auth/EditarPerfilServlet?id=${user.id}">Modificar perfil</a></li>
+			            <li><a href="${pageContext.request.contextPath}/auth/EditarPerfilServlet">Modificar perfil</a></li>
 			            <li><a href="">Ver mis noticias</a></li>
 				    </c:otherwise>
 				</c:choose>

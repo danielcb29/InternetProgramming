@@ -60,6 +60,7 @@
 		    </c:when>
 		    <c:otherwise>
 		    	<li><a href="${pageContext.request.contextPath}/auth/CrearNoticia">Enviar Historia</a></li>
+		    	<li><a href="${pageContext.request.contextPath}/auth/MisNoticias">Mis Noticias</a></li>
 		    </c:otherwise>
 		</c:choose>
 		<li><a href="${pageContext.request.contextPath}/Noticias">Nuevas</a></li>

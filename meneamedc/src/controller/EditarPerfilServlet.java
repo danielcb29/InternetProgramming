@@ -38,13 +38,14 @@ public class EditarPerfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//recuperar el usuario
-		long id = Long.parseLong(request.getParameter("id"));
-		logger.info("Consultado usuario de id:"+id);
+		//long id = Long.parseLong(request.getParameter("id"));
+		logger.info("Consultado usuario");
 		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
 		UserDAO userDao = new JDBCUserDAOImpl();
 		userDao.setConnection(conn);
-		
-		User u = userDao.get(id);
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		//User u = userDao.get(id);
 		request.setAttribute("user", u);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/EditarPerfil.jsp");
 		view.forward(request,response);

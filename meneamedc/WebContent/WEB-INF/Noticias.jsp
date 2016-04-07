@@ -24,6 +24,7 @@
 		        <h1>No hay noticias disponibles</h1>
 		    </c:when>
 	    <c:otherwise>
+	    	<h2>${messages.error}</h2>
 	    	<c:forEach var="noticia" items="${noticias}">
 	    		<!--una noticia-->
 				<section>
@@ -93,7 +94,7 @@
 	    </c:otherwise>
 		</c:choose>
     		
-		<ul class="pagination">
+		<!--ul class="pagination">
 		  <li><a href="#">«anterior</a></li>
 		  <li><a href="#">1</a></li>
 		  <li><a class="active" href="#">2</a></li>
@@ -103,7 +104,7 @@
 		  <li><a href="#">6</a></li>
 		  <li><a href="#">7</a></li>
 		  <li><a href="#">siguiente»</a></li>
-		</ul>
+		</ul-->
     </article>
     <jsp:include page="Footer.jsp" />
 
