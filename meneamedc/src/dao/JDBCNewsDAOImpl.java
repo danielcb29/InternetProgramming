@@ -96,7 +96,7 @@ public class JDBCNewsDAOImpl implements NewsDAO {
 		ArrayList<News> newsList = new ArrayList<News>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM News WHERE category ='"+category+"'");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM News WHERE category LIKE '%"+category+"%'");
 
 			while ( rs.next() ) {
 				News news = new News();
@@ -165,6 +165,7 @@ public class JDBCNewsDAOImpl implements NewsDAO {
 			Statement stmt;
 			try {
 				stmt = conn.createStatement();
+				System.out.println("insql:"+news.getCategory().getClass().getName());
 				stmt.executeUpdate("INSERT INTO News (owner,datestamp,timestamp,title,text,url,category) VALUES('"+
 									news.getOwner()+"','"+
 									new java.sql.Date(news.getDateStamp().getTime())+"','"+

@@ -24,7 +24,7 @@
 	    <c:otherwise>
 	    	<div class="rigth login-succ">
 				<a href="${pageContext.request.contextPath}/auth/Perfil?id=${user.id}">${user.name}</a>
-				<img id="avatar-login" alt="avatar usuario" src="${pageContext.request.contextPath}/img/pic-test.jpeg">
+				<img id="avatar-login" alt="avatar usuario" src="${pageContext.request.contextPath}/img/user.png">
 				<a href="${pageContext.request.contextPath}/LogoutServlet"><img id="shutdown" alt="" src="${pageContext.request.contextPath}/img/logout.png"></a>
 			</div>
 	    </c:otherwise>
@@ -49,9 +49,9 @@
 		<img alt="" src="${pageContext.request.contextPath}/img/fb.png">
 		<img alt="" src="${pageContext.request.contextPath}/img/tw.png">
 	</div>
-	<div class="rigth">
+	<!--div class="rigth">
 		<input id="search" type="text" placeholder="Buscar">
-	</div>
+	</div-->
 </div>
 <nav>
     <ul>
