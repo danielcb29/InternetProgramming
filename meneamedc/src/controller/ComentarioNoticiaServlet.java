@@ -78,7 +78,6 @@ public class ComentarioNoticiaServlet extends HttpServlet {
 			
 		}
 		newsMap.put("comentarios", comMap);
-		//newsMap.put("comentarios", comentarios);
 		
 		request.setAttribute("info",newsMap);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/ComentariosNoticia.jsp");

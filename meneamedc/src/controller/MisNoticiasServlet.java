@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CommentDAO;
+import dao.JDBCCommentDAOImpl;
 import dao.JDBCNewsDAOImpl;
 import dao.JDBCUserDAOImpl;
 import dao.NewsDAO;
@@ -49,17 +51,26 @@ public class MisNoticiasServlet extends HttpServlet {
 		newDao.setConnection(conn);
 		UserDAO userDAO = new JDBCUserDAOImpl();
 		userDAO.setConnection(conn);
+		CommentDAO cDao = new JDBCCommentDAOImpl();
+		cDao.setConnection(conn);
 		
 		List<News> misNoticias = newDao.getAllByOwner(u.getId());
 		
-		Map<News, User> newsMap = new LinkedHashMap<News, User>();
+		Map<News, Map<String,Object>> newsMap = new LinkedHashMap<News, Map<String,Object>>();
 		
 		Iterator<News> it = misNoticias.iterator();
 		
 		while(it.hasNext()) {
+			Map<String,Object> addMap = new LinkedHashMap<String,Object>();
 			News news = (News) it.next();
 			User user = userDAO.get(news.getOwner());
-			newsMap.put(news, user);
+			Integer cantComm = cDao.getAllByNews(news.getId()).size();
+			Integer karma = cDao.getAllByOwner(user.getId()).size();
+			addMap.put("karma", karma);
+			addMap.put("comments", cantComm);
+			addMap.put("user", user);
+			newsMap.put(news, addMap);
+			//newsMap.put(news, user);
 			
 		}
 		

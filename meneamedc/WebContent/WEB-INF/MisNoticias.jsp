@@ -52,7 +52,7 @@
 									<div class="user-and-date">
 										<div>
 											por
-											<a href="${pageContext.request.contextPath}/auth/Perfil?id=${noticia.key.owner}">${noticia.value.name}</a>
+											<a href="${pageContext.request.contextPath}/auth/Perfil?id=${noticia.key.owner}">${noticia.value.user.name}</a>
 										</div>
 										<div>
 											${noticia.key.dateStamp } ${noticia.key.timeStamp }
@@ -66,9 +66,9 @@
 									</p>
 								</div>
 								<div class="noticia-details">
-									<span class="noticia-sep"><b>usuarios:</b> 90 </span>
-									<span class="noticia-sep"><b>anonimos:</b> 90</span>
-									<span class="noticia-sep"><b>negativos:</b> 90</span>
+									<span class="noticia-sep"><b>usuarios:</b> ${noticia.value.comments } </span>
+									<!--span class="noticia-sep"><b>anonimos:</b> 90</span>
+									<span class="noticia-sep"><b>negativos:</b> 90</span-->
 									<span class="noticia-sep">|</span>
 									<span class="noticia-sep"><b>compartir:</b>
 									 <a href=""><img alt="" class="social-icon" src="${pageContext.request.contextPath}/img/fb.png"></a>
@@ -76,11 +76,11 @@
 									</span>
 								</div>
 								<div class="show-comments">
-									<span class="noticia-sep comments-link"><span class="contador">20</span> <a href="${pageContext.request.contextPath}/auth/ComentarioNoticia?id=${noticia.key.id}">comentarios</a></span>
+									<span class="noticia-sep comments-link"><span class="contador">${noticia.value.comments }</span> <a href="${pageContext.request.contextPath}/auth/ComentarioNoticia?id=${noticia.key.id}">comentarios</a></span>
 									<span class="noticia-sep">| </span>
 									<span class="noticia-sep">${noticia.key.category } </span>
 									<span class="noticia-sep">| </span>
-									<span class="noticia-sep">karma: 7000</span>
+									<span class="noticia-sep">karma: ${noticia.value.karma }</span>
 								</div>
 							</div>
 							<div class="delete-mod">
