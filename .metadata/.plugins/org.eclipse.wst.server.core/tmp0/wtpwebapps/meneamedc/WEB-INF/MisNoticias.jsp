@@ -85,7 +85,7 @@
 							</div>
 							<div class="delete-mod">
 								<a href="${pageContext.request.contextPath}/auth/EditarNoticia?id=${noticia.key.id}"><input type="button" class="bt bt-modificar" value="Modificar Noticia"></a>
-								<input type="button" class="bt bt-borrar" value="Borrar Noticia">
+								<a href="${pageContext.request.contextPath}/auth/BorrarNoticia?id=${noticia.key.id}"><input type="button" class="bt bt-borrar" value="Borrar Noticia"></a>
 							</div>
 					</section>
 					<!--fin una noticia-->
