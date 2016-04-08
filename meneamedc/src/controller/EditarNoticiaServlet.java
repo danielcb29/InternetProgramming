@@ -64,8 +64,39 @@ public class EditarNoticiaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		logger.info("POST editar noticia");
+		long id = Long.parseLong(request.getParameter("id"));
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
+		NewsDAO newDao = new JDBCNewsDAOImpl();
+		newDao.setConnection(conn);
+		
+		News noticia = newDao.get(id);
+		if(noticia.getOwner() == u.getId()){
+			//Si no nos han cambiado el id para cambiar la info de mi noticia con la info de la noticia de otro, editamos la noticia			
+			logger.info("Editar Correcto: Peticion es del dueño");
+			News new_noticia = new News();
+			new_noticia.setOwner(noticia.getOwner());
+			new_noticia.setDateStamp(noticia.getDateStamp());
+			new_noticia.setTimeStamp(noticia.getTimeStamp());			
+			new_noticia.setTitle(request.getParameter("titulo"));
+			new_noticia.setText(request.getParameter("descripcion"));
+			new_noticia.setUrl(request.getParameter("url"));
+			new_noticia.setHits(noticia.getHits());
+			new_noticia.setLikes(noticia.getLikes());
+			new_noticia.setCategory(request.getParameter("categoria"));
+			new_noticia.setId(noticia.getId());
+			newDao.save(new_noticia);
+			logger.info("Edicion terminada");
+			response.sendRedirect(request.getContextPath()+"/Noticias");
+		}else{
+			System.out.println("Editar Incorrecto: Peticion no es del dueño");
+			Map<String, String> messages = new HashMap<String, String>();
+			messages.put("error", "Esta noticia no es tuya, no puedes editarla");
+			request.setAttribute("messages", messages);
+			response.sendRedirect(request.getContextPath()+"/Noticias");
+		}
 	}
 
 }

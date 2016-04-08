@@ -13,9 +13,11 @@
 <fullyQualifiedTypeName name="dao.UserDAO"/>
 <fullyQualifiedTypeName name="dao.JDBCUserDAOImpl"/>
 <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
-<fullyQualifiedTypeName name="model.User"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.sql.Time"/>
 <fullyQualifiedTypeName name="dao.JDBCNewsDAOImpl"/>
 <fullyQualifiedTypeName name="dao.NewsDAO"/>
+<fullyQualifiedTypeName name="model.User"/>
+<fullyQualifiedTypeName name="model.News"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

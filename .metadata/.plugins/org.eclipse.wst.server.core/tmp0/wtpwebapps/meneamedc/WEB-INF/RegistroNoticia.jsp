@@ -34,19 +34,19 @@
         		</div-->
                 <div class="cambio-perfil">
         			<label>enlace:</label>
-        			<input class="cam-inp" type="url" name="url" required placeholder="url de la noticia">
+        			<input class="cam-inp" type="url" name="url" required placeholder="url de la noticia" value="${noticia.url}">
         			<label>titulo:</label>
-        			<input class="cam-inp" type="text" name="titulo" required placeholder="titulo">
+        			<input class="cam-inp" type="text" name="titulo" required placeholder="titulo" value="${noticia.title}">
         			<!-- >label>etiquetas:</label>
         			<input class="cam-inp" type="text" required placeholder="separadas por ,"-->
         			<label>descripcion:</label>
-        			<textarea class="cam-inp" required name="descripcion" cols="70" rows="10"></textarea>
+        			<textarea class="cam-inp" required name="descripcion" cols="70" rows="10">${noticia.text}</textarea>
                     <label>categorias:</label>
-                    <input class="not-check" type="radio" name="categoria" value="tecnologia" required>Tecnologia<br>
-                    <input class="not-check" type="radio" name="categoria" value="ocio" required>Ocio<br>
-                    <input class="not-check" type="radio" name="categoria" value="cultura" required>Cultura<br>
-                    <input class="not-check" type="radio" name="categoria" value="actualidad" required>Actualidad<br>
-                    <input class="not-check" type="radio" name="categoria" value="deporte" required>Deporte
+                    <input class="not-check" type="radio" name="categoria" value="tecnologia" required <c:if test="${noticia.category == 'tecnologia'}">checked</c:if>>Tecnologia<br>
+                    <input class="not-check" type="radio" name="categoria" value="ocio" required <c:if test="${noticia.category == 'ocio'}">checked</c:if>>Ocio<br>
+                    <input class="not-check" type="radio" name="categoria" value="cultura" required <c:if test="${noticia.category == 'cultura'}">checked</c:if>>Cultura<br>
+                    <input class="not-check" type="radio" name="categoria" value="actualidad" required <c:if test="${noticia.category == 'actualidad'}">checked</c:if>>Actualidad<br>
+                    <input class="not-check" type="radio" name="categoria" value="deporte" required <c:if test="${noticia.category == 'deporte'}">checked</c:if>>Deporte
                     <br/>
                     <div class="non-rg">
                         <input type="submit" value="Enviar noticia">
