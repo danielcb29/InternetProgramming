@@ -28,7 +28,7 @@
 	
 								</div>
 								<div class="meneame">
-									<input class="bt-meneame" type="submit" value="menealo">
+									<a href="${pageContext.request.contextPath}/Menear?id=${info.noticia.id}"><input class="bt-meneame" type="submit" value="menealo"></a>
 								</div>
 								<div class="clicks">
 									${info.noticia.hits} clicks
