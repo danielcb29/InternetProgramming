@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.JDBCNewsDAOImpl;
-import dao.JDBCUserDAOImpl;
 import dao.NewsDAO;
-import dao.UserDAO;
 import model.News;
 
 /**
@@ -38,15 +36,11 @@ public class MenearServlet extends HttpServlet {
 		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
 		NewsDAO newDao = new JDBCNewsDAOImpl();
 		newDao.setConnection(conn);
-		UserDAO userDAO = new JDBCUserDAOImpl();
-		userDAO.setConnection(conn);
 		
 		long id = Long.parseLong(request.getParameter("id"));
 		News noticia = newDao.get(id);
 		int new_like = noticia.getLikes() + 1;
-		System.out.println("antes: "+new_like);
 		noticia.setLikes(new_like);
-		System.out.println("despues: "+noticia.getLikes());
 		newDao.save(noticia);
 		logger.info("Noticia meneada");
 		response.sendRedirect(request.getContextPath()+"/Noticias");

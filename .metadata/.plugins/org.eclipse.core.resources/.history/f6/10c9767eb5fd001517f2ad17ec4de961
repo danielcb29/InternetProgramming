@@ -17,7 +17,7 @@ import model.News;
 /**
  * Servlet implementation class HitNoticiaServlet
  */
-@WebServlet("/HitNoticia")
+@WebServlet("/HitNoticiaServlet")
 public class HitNoticiaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());   
@@ -39,11 +39,13 @@ public class HitNoticiaServlet extends HttpServlet {
 		
 		long id = Long.parseLong(request.getParameter("id"));
 		News noticia = newDao.get(id);
-		int new_hit = noticia.getHits() + 1;
-		noticia.setHits(new_hit);
+		int new_like = noticia.getLikes() + 1;
+		System.out.println("antes: "+new_like);
+		noticia.setLikes(new_like);
+		System.out.println("despues: "+noticia.getLikes());
 		newDao.save(noticia);
 		logger.info("Noticia hit");
-		response.sendRedirect(noticia.getUrl());
+		response.sendRedirect(request.getContextPath()+"/Noticias");
 	}
 
 	/**

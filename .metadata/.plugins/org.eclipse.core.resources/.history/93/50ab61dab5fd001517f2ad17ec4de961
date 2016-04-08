@@ -44,7 +44,7 @@
 								</div>
 						</div>
 						<div class="info-noticia">
-							<h3><a href="${pageContext.request.contextPath}/HitNoticia?id=${noticia.key.id}">${noticia.key.title }</a></h3>
+							<h3><a href="${noticia.key.url }">${noticia.key.title }</a></h3>
 							<div class="info-user-noticia">
 								<!--img alt="Usuario" class="new-pic" src="img/pic-test.jpeg"-->
 								<div class="user-and-date">
