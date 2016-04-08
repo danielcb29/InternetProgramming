@@ -116,7 +116,7 @@
 											Votos: <span class="num-votes">${comm.key.likes }</span>
 											<!-- Karma: <b>34</b> -->
 											<!--img alt="" src="${pageContext.request.contextPath}/img/karma.png"-->
-											<a href="${pageContext.request.contextPath}/auth/LikeComment?id=${comm.key.id}&new=${info.noticia.id}"><img alt="" src="${pageContext.request.contextPath}/img/like.png"></a>
+											<img alt="" src="${pageContext.request.contextPath}/img/like.png">
 											<!--img alt="" src="${pageContext.request.contextPath}/img/reply.png" -->
 				
 										</div>
