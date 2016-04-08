@@ -1,0 +1,144 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+	 	<title>Comentarios</title>
+	 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_196x196.png" sizes="196x196">
+	 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_64x64.png" sizes="64x64">
+	 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_16x16.png" sizes="16x16">
+	 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_128x128.png" sizes="128x128">
+	 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lista-noticias.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/view-comment.css">
+	</head>
+	<body>
+		<jsp:include page="Header.jsp" />
+	    <article>
+	    		<!--una noticia-->
+				<section>
+						<div class="info-menem">
+								<div class="votes">
+									${info.noticia.likes}
+									<div class="text-votes">
+										meneos
+									</div>
+	
+								</div>
+								<div class="meneame">
+									<input class="bt-meneame" type="submit" value="menealo">
+								</div>
+								<div class="clicks">
+									${info.noticia.hits} clicks
+								</div>
+						</div>
+						<div class="info-noticia">
+							<h3><a href="${info.noticia.url }">${info.noticia.title }</a></h3>
+							<div class="info-user-noticia">
+								<!--img alt="Usuario" class="new-pic" src="img/pic-test.jpeg"-->
+								<div class="user-and-date">
+									<div>
+										por
+										<a href="${pageContext.request.contextPath}/auth/Perfil?id=${info.owner.id}">${info.owner.name}</a>
+									</div>
+									<div>
+										${info.noticia.dateStamp } ${info.noticia.timeStamp }
+									</div>
+								</div>
+							</div>
+							<div class="contenido">
+								<!-- img alt="Vista previa noticia" class="prev-noticia" src="img/pic-test.jpeg"-->
+								<p>
+									${info.noticia.text }
+								</p>
+								
+								
+								
+							</div>
+							<div class="noticia-details">
+								<span class="noticia-sep"><b>usuarios:</b> 90 </span>
+								<span class="noticia-sep"><b>anonimos:</b> 90</span>
+								<span class="noticia-sep"><b>negativos:</b> 90</span>
+								<span class="noticia-sep">|</span>
+								<span class="noticia-sep"><b>compartir:</b>
+								 <a href=""><img alt="" class="social-icon" src="${pageContext.request.contextPath}/img/fb.png"></a>
+								 <a href=""><img alt="" class="social-icon" src="${pageContext.request.contextPath}/img/tw.png"></a>
+								</span>
+							</div>
+							<div class="show-comments">
+								<span class="noticia-sep comments-link"><span class="contador">${info.cantidadComent}</span> comentarios</span>
+								<span class="noticia-sep">| </span>
+								<span class="noticia-sep">${info.noticia.category } </span>
+								<span class="noticia-sep">| </span>
+								<span class="noticia-sep">karma: 7000</span>
+	
+							</div>
+	
+						</div>
+	
+				</section>
+				<!--fin una noticia-->
+	
+				<!--fin todas las noticias-->
+				<!--inicio comentarios destacados-->
+				<section>
+					<div id="popular-comments">
+						Cantidad de comentarios: ${info.cantidadComent}
+						
+						<img alt="Usuario" class="new-pic" src="${pageContext.request.contextPath}/img/user.png">
+					</div>
+				</section>
+				<!--fin comentarios destacados-->
+				<!--inicio ver comentarios-->
+				<section class="comments-queue">
+					<c:choose>
+					    <c:when test="${empty info.comentarios}">
+					        <h1>No hay comentarios para esta noticia</h1>
+					    </c:when>
+					    <c:otherwise>
+					    	
+					    	<c:forEach var="comm" items="${comentarios}">
+					    		<div class="comment">
+									<div class="comment-body">
+										<p>
+											<span class="num-comment"># ${comm.id}</span> Lo que no se puede hacer es envasar aceite virgen extra en un envase cutre de plástico. Los italianos le compran el aceite a España por cuatro céntimos, luego lo envasan en botellas de vidrio muy chulas y luego lo venden a buen precio. <a href="www.eleconomista.es/empresas-finanzas">a</a>
+										</p>
+									</div>
+									<div class="comment-foot">
+										<div class="comment-user">
+											${comm.dateStamp } ${comm.timeStamp }
+											<a href="user">usuario-tal</a>
+											<img alt="Usuario" class="comment-user-prev" src="${pageContext.request.contextPath}/img/user.png">
+										</div>
+										<div class="comment-votes">
+											Votos: <span class="num-votes">30</span>
+											<!-- Karma: <b>34</b> -->
+											<img alt="" src="${pageContext.request.contextPath}/img/karma.png">
+											<img alt="" src="${pageContext.request.contextPath}/img/vote_none.png">
+											<img alt="" src="${pageContext.request.contextPath}/img/reply.png">
+				
+										</div>
+										
+									</div>
+								</div>
+							</c:forEach>
+					    </c:otherwise>
+					</c:choose>
+				</section>
+				<!--fin ver comentarios-->
+				<!--escribir comentario-->
+				<fieldset id="box-comment" >
+					<legend>Escriba un comentario:</legend>
+					<form method="post" action="">
+						<textarea rows="7" cols="150" name="text"></textarea><br>
+						<input id="bt" type="submit" value="Enviar">
+					</form>
+	
+				</fieldset>
+				<!--fin escribir comentario-->
+	    </article>
+	    <jsp:include page="Footer.jsp" />
+	</body>
+</html>

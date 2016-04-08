@@ -77,7 +77,7 @@
 								</span>
 							</div>
 							<div class="show-comments">
-								<span class="noticia-sep comments-link"><span class="contador">20</span> <a href="view-comment.html">comentarios</a></span>
+								<span class="noticia-sep comments-link"><span class="contador">20</span> <a href="${pageContext.request.contextPath}/auth/ComentarioNoticia?id=${noticia.key.id}">comentarios</a></span>
 								<span class="noticia-sep">| </span>
 								<span class="noticia-sep">${noticia.key.category } </span>
 								<span class="noticia-sep">| </span>
