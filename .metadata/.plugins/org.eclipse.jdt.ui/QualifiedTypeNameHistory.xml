@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javax.servlet.annotation.WebInitParam"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="pizza.model.Order"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.logging.Logger"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
-<fullyQualifiedTypeName name="dao.JDBCCommentDAOImpl"/>
-<fullyQualifiedTypeName name="dao.CommentDAO"/>
 <fullyQualifiedTypeName name="dao.UserDAO"/>
 <fullyQualifiedTypeName name="dao.JDBCUserDAOImpl"/>
 <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.sql.Time"/>
 <fullyQualifiedTypeName name="dao.JDBCNewsDAOImpl"/>
 <fullyQualifiedTypeName name="dao.NewsDAO"/>
 <fullyQualifiedTypeName name="model.User"/>
-<fullyQualifiedTypeName name="model.News"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="model.News"/>
+<fullyQualifiedTypeName name="dao.JDBCCommentDAOImpl"/>
+<fullyQualifiedTypeName name="dao.CommentDAO"/>
+<fullyQualifiedTypeName name="model.Comment"/>
 </qualifiedTypeNameHistroy>
