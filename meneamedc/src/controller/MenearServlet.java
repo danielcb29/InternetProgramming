@@ -33,6 +33,13 @@ public class MenearServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
 		NewsDAO newDao = new JDBCNewsDAOImpl();
 		newDao.setConnection(conn);
@@ -44,14 +51,6 @@ public class MenearServlet extends HttpServlet {
 		newDao.save(noticia);
 		logger.info("Noticia meneada");
 		response.sendRedirect(request.getContextPath()+"/Noticias");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

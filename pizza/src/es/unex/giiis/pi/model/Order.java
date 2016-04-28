@@ -2,7 +2,9 @@ package es.unex.giiis.pi.model;
 
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class Order {
 
 	private Long id;

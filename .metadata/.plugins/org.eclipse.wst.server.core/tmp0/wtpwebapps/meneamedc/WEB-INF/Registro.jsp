@@ -22,7 +22,7 @@
 	    		<img alt="" src="${pageContext.request.contextPath}/img/reg.png">
 	    	</div>
     		<div id="inputs">
-    			<form action="" method="post">
+    			<form action="" method="post" id="form-registro">
     				<h2>${messages.error}</h2>
 	    			<div class="row">
 			    		<label>Nombre de usuario:</label>
@@ -31,7 +31,7 @@
 		    		</div>
 		    		<div class="row">
 			    		<label>Correo electronico:</label>
-			    		<input class="rg-inp" type="email"  name="email" placeholder="email" required>
+			    		<input class="rg-inp" type="email"  name="email" placeholder="email">
 		    		</div>
 		    		<div class="row">
 			    		<label>Clave:</label>
@@ -49,6 +49,13 @@
     	</section>
     </article>
     <jsp:include page="Footer.jsp" />
+    
+    <script   src="https://code.jquery.com/jquery-1.12.3.min.js"   integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
+    <script>
+    	var formulario = "#form-registro";
+    	var clase = ".rg-inp";
+    </script>
+    <script src="${pageContext.request.contextPath}/js/camposVacios.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,73 @@
+<div class="titulo">
+	<div class="titulo-general"><h2>Noticias de categoria:</h2></div>
+	<div class="titulo-especifico"><h2>{{vm.categoria}}</h2></div>
+</div>
+     <h1 ng-hide="vm.noticias">No hay noticias disponibles</h1>
+
+<div ng-show="vm.noticias" ng-repeat="noticia in vm.noticias">
+<section>
+		<div class="info-menem">
+				<div class="votes">
+					{{noticia.likes}}
+					<div class="text-votes">
+						meneos
+					</div>
+
+				</div>
+				<form method="post" action="../Menear">
+					<input type="hidden" name="id" value="{{noticia.id}}">
+					<div class="meneame">
+						<input class="bt-meneame" type="submit" value="menealo">
+					</div>
+				</form>
+				<div class="clicks">
+					{{noticia.hits}} clicks
+				</div>
+		</div>
+		<div class="info-noticia">
+			<h3><a href="../HitNoticia?id=${noticia.key.id}">{{noticia.title }}</a></h3>
+			<div class="info-user-noticia">
+				<!--img alt="Usuario" class="new-pic" src="img/pic-test.jpeg"-->
+			<div class="user-and-date">
+				<div>
+					por
+					<a href="../auth/Perfil?id={{noticia.owner}}">{{noticia.user.name}}</a>
+				</div>
+				<div>
+					{{noticia.dateStamp }} {{noticia.timeStamp }}
+				</div>
+			</div>
+		</div>
+		<div class="contenido">
+			<!-- img alt="Vista previa noticia" class="prev-noticia" src="img/pic-test.jpeg"-->
+			<p>
+				{{noticia.text }}
+			</p>
+			
+			
+			
+		</div>
+		<div class="noticia-details">
+			<span class="noticia-sep"><b>usuarios:</b> {{noticia.comments }} </span>
+			<!--span class="noticia-sep"><b>anonimos:</b> 90</span>
+			<span class="noticia-sep"><b>negativos:</b> 90</span-->
+				<span class="noticia-sep">|</span>
+				<span class="noticia-sep"><b>compartir:</b>
+				 <a href=""><img alt="" class="social-icon" src="../img/fb.png"></a>
+				 <a href=""><img alt="" class="social-icon" src="../img/tw.png"></a>
+				</span>
+			</div>
+			<div class="show-comments">
+				<span class="noticia-sep comments-link"><span class="contador">{{noticia.comments }} </span> <a href="../auth/ComentarioNoticia?id={{noticia.id}}">comentarios</a></span>
+				<span class="noticia-sep">| </span>
+				<span class="noticia-sep">{{noticia.category }} </span>
+				<span class="noticia-sep">| </span>
+				<span class="noticia-sep">karma: {{noticia.karma }}</span>
+
+			</div>
+
+		</div>
+
+</section>
+</div>
+    	

@@ -27,9 +27,13 @@
 									</div>
 	
 								</div>
-								<div class="meneame">
-									<a href="${pageContext.request.contextPath}/Menear?id=${info.noticia.id}"><input class="bt-meneame" type="submit" value="menealo"></a>
-								</div>
+								<form method="post" action="${pageContext.request.contextPath}/Menear">
+									<input type="hidden" name="id" value="${info.noticia.id}">
+									<div class="meneame">
+										<input class="bt-meneame" type="submit" value="menealo">
+									</div>
+								</form>
+								
 								<div class="clicks">
 									${info.noticia.hits} clicks
 								</div>
@@ -131,8 +135,8 @@
 				<!--escribir comentario-->
 				<fieldset id="box-comment" >
 					<legend>Escriba un comentario:</legend>
-					<form method="post" action="">
-						<textarea rows="7" cols="150" name="text"></textarea><br>
+					<form method="post" action="" id="form-comentarios">
+						<textarea rows="7" cols="150" name="text" id="comment" placeholder="Comentario"></textarea><br>
 						<input id="bt" type="submit" value="Enviar">
 					</form>
 	
@@ -140,5 +144,12 @@
 				<!--fin escribir comentario-->
 	    </article>
 	    <jsp:include page="Footer.jsp" />
+	    
+	    <script   src="https://code.jquery.com/jquery-1.12.3.min.js"   integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
+	    <script>
+	    	var formulario = "#form-comentarios";
+	    	var clase = "#comment";
+	    </script>
+	    <script src="${pageContext.request.contextPath}/js/camposVacios.js"></script>
 	</body>
 </html>

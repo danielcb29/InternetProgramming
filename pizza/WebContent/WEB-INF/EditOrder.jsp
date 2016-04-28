@@ -20,9 +20,7 @@
         
   <form method="post" action="EditOrderServlet">
   <input type="hidden" name="id" value="${order.id }">
-   <c:if test="${user}">
-   	testig
-   </c:if>
+   
    <c:if test="${user.role == 'Administrador'}">
    <div>
      <label for="name">Customer name:</label> 

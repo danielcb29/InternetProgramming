@@ -36,9 +36,12 @@
 									</div>
 	
 								</div>
-								<div class="meneame">
-									<a href="${pageContext.request.contextPath}/Menear?id=${noticia.key.id}"><input class="bt-meneame" type="button" value="menealo"></a>
-								</div>
+								<form method="post" action="${pageContext.request.contextPath}/Menear">
+									<input type="hidden" name="id" value="${noticia.key.id}">
+									<div class="meneame">
+										<input class="bt-meneame" type="submit" value="menealo">
+									</div>
+								</form>
 								<div class="clicks">
 									${noticia.key.hits} clicks
 								</div>

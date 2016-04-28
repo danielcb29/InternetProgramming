@@ -1,0 +1,12 @@
+127.0.0.1 - - [17/Apr/2016:17:01:30 +0200] "GET / HTTP/1.1" 404 1004
+127.0.0.1 - - [17/Apr/2016:17:03:02 +0200] "GET / HTTP/1.1" 404 1004
+0:0:0:0:0:0:0:1 - - [17/Apr/2016:17:10:14 +0200] "GET /meneamedc/rest/noticias/ HTTP/1.1" 200 1924
+0:0:0:0:0:0:0:1 - - [17/Apr/2016:17:10:21 +0200] "GET /meneamedc/rest/noticias/20 HTTP/1.1" 200 434
+0:0:0:0:0:0:0:1 - - [17/Apr/2016:17:10:26 +0200] "GET /meneamedc/rest/noticias/deporte HTTP/1.1" 200 357
+0:0:0:0:0:0:0:1 - - [17/Apr/2016:17:10:39 +0200] "GET /meneamedc/rest/noticias/owner/15 HTTP/1.1" 200 2
+0:0:0:0:0:0:0:1 - - [17/Apr/2016:17:10:44 +0200] "GET /meneamedc/rest/noticias/owner/0 HTTP/1.1" 200 1133
+127.0.0.1 - - [17/Apr/2016:17:37:47 +0200] "GET / HTTP/1.1" 404 1004
+0:0:0:0:0:0:0:1 - - [17/Apr/2016:17:37:54 +0200] "GET /meneamedc/rest/noticias/owner/0 HTTP/1.1" 200 1133
+0:0:0:0:0:0:0:1 - - [17/Apr/2016:17:38:07 +0200] "GET /meneamedc/rest/noticias HTTP/1.1" 200 1924
+0:0:0:0:0:0:0:1 - - [17/Apr/2016:17:41:17 +0200] "PUT /meneamedc/rest/noticias/ HTTP/1.1" 415 1164
+0:0:0:0:0:0:0:1 - - [17/Apr/2016:17:41:42 +0200] "PUT /meneamedc/rest/noticias/ HTTP/1.1" 415 1164

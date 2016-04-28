@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Move &apos;angular&apos; to &apos;js&apos;" description="Move &apos;angular&apos; to &apos;js&apos;" destination="WebContent/js" element1="/pizzeria/WebContent/js/angular" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1461836028814" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;meneamedc/WebContent/pages/lista-noticias.html&apos; to &apos;index.html&apos;" description="Rename resource &apos;lista-noticias.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/pages/lista-noticias.html" name="index.html" stamp="1461836770176" updateReferences="true"/>
+</session>

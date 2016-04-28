@@ -19,7 +19,7 @@
 	            <li><a href="${pageContext.request.contextPath}/Noticias">Nuevas</a></li>
 	            <li><a href="${pageContext.request.contextPath}/Noticias?categoria=deporte">Deportes</a></li>
 	            <!--  li><a href="">Populares</a></li-->
-	            <br>
+	            <br/>
 	        </ul>
     	</div>
     	<div>

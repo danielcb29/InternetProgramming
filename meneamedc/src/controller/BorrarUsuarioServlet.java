@@ -34,6 +34,14 @@ public class BorrarUsuarioServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
 		UserDAO userDao = new JDBCUserDAOImpl();
@@ -44,15 +52,6 @@ public class BorrarUsuarioServlet extends HttpServlet {
 		userDao.delete(id);
 		session.invalidate();
 		response.sendRedirect(request.getContextPath()+"/Noticias");
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

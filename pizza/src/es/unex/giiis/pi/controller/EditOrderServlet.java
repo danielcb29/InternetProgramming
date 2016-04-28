@@ -98,8 +98,7 @@ public class EditOrderServlet extends HttpServlet {
 			Iterator<String> it = arrayToppings.iterator();
 			toppings= it.next();
 			while(it.hasNext()) toppings= toppings+" "+it.next();
-			order.setToppings(toppings);
-			
+			order.setToppings(toppings);			
 		}
 		else order.setToppings(" ");
 		order.setDelivery(request.getParameter("delivery"));

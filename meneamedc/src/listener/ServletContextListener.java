@@ -89,7 +89,7 @@ public class ServletContextListener implements javax.servlet.ServletContextListe
 			}
 			
 			//init data
-			stmt.executeUpdate("INSERT INTO User (name, password, email) SELECT 'vader', 'anakin', 'darth.vader@darksideoftheforce.org' FROM INFORMATION_SCHEMA.TABLES WHERE not exists (select  * from User where name='vader')  LIMIT 1");
+			/*stmt.executeUpdate("INSERT INTO User (name, password, email) SELECT 'vader', 'anakin', 'darth.vader@darksideoftheforce.org' FROM INFORMATION_SCHEMA.TABLES WHERE not exists (select  * from User where name='vader')  LIMIT 1");
 			stmt.executeUpdate("INSERT INTO User (name, password, email) SELECT 'doe', 'john', 'jdoe@nothing.es' FROM INFORMATION_SCHEMA.TABLES WHERE not exists (select  * from User where name='doe')  LIMIT 1");
 			
 			
@@ -125,7 +125,7 @@ public class ServletContextListener implements javax.servlet.ServletContextListe
 			stmt.executeUpdate("INSERT INTO Comment (owner,news,text) "
 					+ "SELECT 0,1,'Y tanto' "
 					+ "FROM INFORMATION_SCHEMA.TABLES WHERE not exists (select  * from Comment where id=4)  LIMIT 1");
-
+			*/
 			
 			//store db connection object into ServletContext
 			

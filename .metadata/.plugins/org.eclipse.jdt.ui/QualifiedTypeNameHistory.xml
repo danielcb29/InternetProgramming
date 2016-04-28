@@ -11,14 +11,19 @@
 <fullyQualifiedTypeName name="dao.JDBCUserDAOImpl"/>
 <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
 <fullyQualifiedTypeName name="java.sql.Time"/>
-<fullyQualifiedTypeName name="dao.JDBCNewsDAOImpl"/>
-<fullyQualifiedTypeName name="dao.NewsDAO"/>
-<fullyQualifiedTypeName name="model.User"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="model.User"/>
+<fullyQualifiedTypeName name="dao.NewsDAO"/>
+<fullyQualifiedTypeName name="dao.JDBCNewsDAOImpl"/>
+<fullyQualifiedTypeName name="org.glassfish.jersey.client.ClientResponse"/>
+<fullyQualifiedTypeName name="org.glassfish.jersey.client.JerseyWebTarget"/>
+<fullyQualifiedTypeName name="javax.ws.rs.client.ClientBuilder"/>
+<fullyQualifiedTypeName name="javax.ws.rs.client.Client"/>
 <fullyQualifiedTypeName name="model.News"/>
-<fullyQualifiedTypeName name="dao.JDBCCommentDAOImpl"/>
 <fullyQualifiedTypeName name="dao.CommentDAO"/>
+<fullyQualifiedTypeName name="dao.JDBCCommentDAOImpl"/>
 <fullyQualifiedTypeName name="model.Comment"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 </qualifiedTypeNameHistroy>

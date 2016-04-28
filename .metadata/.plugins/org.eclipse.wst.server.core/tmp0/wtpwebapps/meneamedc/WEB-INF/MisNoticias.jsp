@@ -38,9 +38,12 @@
 										</div>
 		
 									</div>
-									<div class="meneame">
-										<a href="${pageContext.request.contextPath}/Menear?id=${noticia.key.id}"><input class="bt-meneame" type="button" value="menealo"></a>
-									</div>
+									<form method="post" action="${pageContext.request.contextPath}/Menear">
+										<input type="hidden" name="id" value="${noticia.key.id}">
+										<div class="meneame">
+											<input class="bt-meneame" type="submit" value="menealo">
+										</div>
+									</form>
 									<div class="clicks">
 										${noticia.key.hits} clicks
 									</div>
@@ -83,10 +86,16 @@
 									<span class="noticia-sep">karma: ${noticia.value.karma }</span>
 								</div>
 							</div>
+							<form method="post" action="${pageContext.request.contextPath}/auth/BorrarNoticia">
 							<div class="delete-mod">
 								<a href="${pageContext.request.contextPath}/auth/EditarNoticia?id=${noticia.key.id}"><input type="button" class="bt bt-modificar" value="Modificar Noticia"></a>
-								<a href="${pageContext.request.contextPath}/auth/BorrarNoticia?id=${noticia.key.id}"><input type="button" class="bt bt-borrar" value="Borrar Noticia"></a>
+								
+									<input name="id" type="hidden" value="${noticia.key.id}">
+									<input type="submit" class="bt bt-borrar" value="Borrar Noticia">
+								
+								
 							</div>
+							</form>
 					</section>
 					<!--fin una noticia-->
 				</c:forEach>

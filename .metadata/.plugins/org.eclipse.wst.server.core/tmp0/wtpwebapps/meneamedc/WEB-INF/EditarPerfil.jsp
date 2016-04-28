@@ -31,12 +31,12 @@
     			<input id="bt-cambiar" type="button" value="Cambiar">
     		</div-->
             <div class="cambio-perfil">
-                <form action="" method="post">
+                <form action="" method="post" id="#form-edicion">
                 	<h2>${messages.error}</h2>
         			<label>usuario:</label>
         			<input class="cam-inp" type="text" name="name" required placeholder="nombre de usuario" value="${user.name}">
         			<label>correo electronico:</label>
-        			<input class="cam-inp" type="emai" name="email" required placeholder="correo electronico" value="${user.email}">
+        			<input class="cam-inp" type="email" name="email" required placeholder="correo electronico" value="${user.email}">
         			<label>clave:</label>
         			<input class="cam-inp" type="password" name="password" required placeholder="clave" value="${user.password}">
         			<label>repetir clave:</label>
@@ -54,13 +54,22 @@
                 ¡Atención!, la cuenta sera deshabilitada,
                 Se borrara la información personal
             </p>
+            <form method="post" action="${pageContext.request.contextPath}/auth/BorrarUsuario">
             <div class="non-rg">
-                <a href="${pageContext.request.contextPath}/auth/BorrarUsuario"><input type="button" value="Borrar"></a>
+                <input type="submit" value="Borrar">
             </div>
+            </form>
     	</fieldset>
         
     </article>
     <jsp:include page="Footer.jsp" />
+    
+    <script   src="https://code.jquery.com/jquery-1.12.3.min.js"   integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
+    <script>
+    	var formulario = "#form-edicion";
+    	var clase = ".cam-inp";
+    </script>
+    <script src="${pageContext.request.contextPath}/js/camposVacios.js"></script>
 
 </body>
 </html>

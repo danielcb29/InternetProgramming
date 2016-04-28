@@ -1,0 +1,30 @@
+<div >
+		<table>
+		<thead>
+		<tr>
+		<th>Order id</th>
+		<th>Customer phone</th>
+		<th>Size</th>
+		<th>Type</th>
+		<th>Delivery</th>
+		<th>Comments</th>
+		<th>EDIT</th>
+		<th>DELETE</th>
+		</thead>
+		<tbody>
+		
+<tr class="orders" ng-repeat="order in vm.ordenes"> 
+		<td>{{ order.id }}</td>
+		<td>{{ order.tel }}</td>
+	    <td>{{ order.size }}</td>
+		<td>{{ order.type }}</td>
+		<td>{{ order.delivery }}</td>
+		<td>{{ order.comments }}</td>
+		<td class="icono"><a ng-href="#/editOrder/{{ order.id }}" ><img ng-src="../img/edit.png" alt="edit {{ order.id }}" /> </a></td>
+		<td class="icono"><a ng-href="#/deleteOrder/{{ order.id }}" ><img ng-src="../img/delete.png" alt="delete {{ order.id }}" /></a></td>
+	    </tr>
+			    </tbody>	
+		</table>
+		
+</div>	
+

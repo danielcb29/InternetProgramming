@@ -26,7 +26,7 @@
     	</div><br/><br/>
     	<fieldset>
     		<legend>Información de la noticia</legend>
-            <form action="" method="post">
+            <form action="" method="post" id="form-noticia">
         		<!--div id="pic-user">
                     <label>Vista previa:</label>
         			<img alt="previsualizacion noticia" src="img/pic-test.jpeg">
@@ -56,6 +56,13 @@
     	</fieldset>
     </article>
     <jsp:include page="Footer.jsp" />
+    
+    <script   src="https://code.jquery.com/jquery-1.12.3.min.js"   integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
+    <script>
+    	var formulario = "#form-noticia";
+    	var clase = ".cam-inp";
+    </script>
+    <script src="${pageContext.request.contextPath}/js/camposVacios.js"></script>
 
 </body>
 </html>
