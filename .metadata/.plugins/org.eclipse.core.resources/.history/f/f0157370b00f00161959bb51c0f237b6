@@ -214,11 +214,16 @@ angular.module('meneameApp', ["ngRoute"])
 			login : function(){
 				usersFactory.login().then(function(usuario){
 					if(usuario.status==404){
-						console.log("No hay nadie en sesion");
+						console.log("Errorsini");
 					}else{
-						console.log("Bienvenido usuario");
+						console.log("todo bello");
 						vm.user=usuario.data;
 					}
+					
+					//return true;
+				},function(usuario){
+					console.log("Errorsini");
+					//return false;
 				});
 			}
     };

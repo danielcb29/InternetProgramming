@@ -60,7 +60,7 @@ public class UserResource {
 	@GET
 	  @Path("/sesion")
 	  @Produces(MediaType.APPLICATION_JSON)
-	  public Response getSesionJSON(@Context HttpServletRequest request) {
+	  public User getSesionJSON(@Context HttpServletRequest request) {
 		Connection conn = (Connection) sc.getAttribute("dbConn");
 		UserDAO uDao = new JDBCUserDAOImpl();
 		uDao.setConnection(conn);
@@ -71,10 +71,10 @@ public class UserResource {
 		logger.info("Consultado usuario de sesion por rest ");
 		
 		if(user==null){
-			return Response.status(Response.Status.NOT_FOUND).build();
+			 Response.status(404).entity({"Not Session User"}).type(MediaType.APPLICATION_JSON).build();
 		}
-		return Response.status(Response.Status.OK).entity(user).build();
-		//return user;
+		
+		return user;
 		
 		
 	  }

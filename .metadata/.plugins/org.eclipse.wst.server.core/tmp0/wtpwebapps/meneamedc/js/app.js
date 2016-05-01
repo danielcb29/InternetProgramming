@@ -83,8 +83,10 @@ angular.module('meneameApp', ["ngRoute"])
             	 var geturl = url + "sesion";
                  return $http.get(geturl)
                  .then(function(response){
+                	 console.log("desde fac bello");
     				 return response;
 				 },function(response){
+					 console.log("desde fac error");
 					 return response;
 				 });
              }
@@ -211,14 +213,17 @@ angular.module('meneameApp', ["ngRoute"])
     vm.funciones = {
 			login : function(){
 				usersFactory.login().then(function(usuario){
-					console.log("todo bello");
-					return true;
-				},function(usuario){
-					console.log("Errorsini");
-					return false;
+					if(usuario.status==404){
+						console.log("No hay nadie en sesion");
+					}else{
+						console.log("Bienvenido usuario");
+						vm.user=usuario.data;
+					}
 				});
 			}
     };
+    
+    vm.funciones.login();
 })
 ;
 

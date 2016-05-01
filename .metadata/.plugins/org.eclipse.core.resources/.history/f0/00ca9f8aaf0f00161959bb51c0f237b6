@@ -71,7 +71,8 @@ public class UserResource {
 		logger.info("Consultado usuario de sesion por rest ");
 		
 		if(user==null){
-			return Response.status(Response.Status.NOT_FOUND).build();
+			System.out.println("null found");
+			 Response.status(404).entity("Not Session User").type(MediaType.TEXT_PLAIN).build();
 		}
 		return Response.status(Response.Status.OK).entity(user).build();
 		//return user;

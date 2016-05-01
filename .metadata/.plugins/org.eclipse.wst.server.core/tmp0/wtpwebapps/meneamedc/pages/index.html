@@ -37,8 +37,8 @@
 					<a href="../CrearUsuario">registrarse</a>
 				</div>
 		    
-		    	<!--div class="rigth login-succ" ng-show="vm.user"-->
-		    	<div class="rigth login-succ" ng-show="vm.login()">
+		    	<div class="rigth login-succ" ng-show="vm.user">
+		    	<!--div class="rigth login-succ" ng-show="vm.login()"-->
 					<a href="../auth/Perfil?id={{vm.user.id}}">{{vm.user.name}}</a>
 					<img id="avatar-login" alt="avatar usuario" src="../img/user.png">
 					<a href="../LogoutServlet"><img id="shutdown" alt="" src="../img/logout.png"></a>
