@@ -1,0 +1,93 @@
+angular.module('meneameApp', ["ngRoute"])
+.config(function($routeProvider){
+	$routeProvider
+	.when("/", {
+		controller: "noticiasCtrl",
+		controllerAs: "vm",
+		templateUrl: "listar-noticias.html",
+		resolve: {
+		      // provoca 100 milisegundos (0,1 segundos) de delay que deberían ser suficientes para que el servidor haga cualquier actualización que se le haya pedido antes de leer las órdenes.
+			  // extraído del script.js utilizado como ejemplo en https://docs.angularjs.org/api/ngRoute/service/$route
+		      delay: function($q, $timeout) {
+		        var delay = $q.defer();
+		        $timeout(delay.resolve, 100);
+		        return delay.promise;
+		      }
+		}
+	});
+})
+.factory("noticiasFactory", function($http){
+   var url = 'http://localhost:8080/meneamedc/rest/noticias/';
+
+    var interfaz = {
+    		
+    		 leerNoticias: function(){
+    			 return $http.get(url)
+    			 .then(function(response){
+    				 return response.data;
+    				 });
+    			 }
+    					  
+		
+    }
+    return interfaz;
+})
+.factory("usersFactory", function($http){
+   var url = 'http://localhost:8080/meneamedc/rest/usuarios/';
+
+    var interfaz = {
+    		   		
+    	     leerUser : function(id){
+                  url = url + id ;
+                      return $http.get(url)
+                      .then(function(response){
+         				 return response.data;
+     				 });
+                 }			  
+		
+    }
+    return interfaz;
+})
+.controller("noticiasCtrl", function(noticiasFactory,usersFactory){
+    var vm = this;
+    vm.noticias=[];
+       
+    vm.funciones = {
+			
+			obtenerNoticias : function() {
+		        noticiasFactory.leerNoticias()
+					.then(function(respuesta){
+		    			console.log("Trayendo todas las noticias: ", respuesta);
+		    			//Falta agregar a vm los parametros por noticia, comentarios y usuario
+		    			vm.noticias = respuesta;
+		    			for(var i=0;i<vm.noticias.length;i++){
+		    				var not = vm.noticias[i];
+		    				console.log(not);
+		    				usersFactory.leerUser(not.owner).then(function(usuario){
+		    					console.log("Usuario de la noticia:"+not.id,usuario);
+		    					not.user=usuario;
+		    				},function(usuario){
+		    					console.log("Error en la consulta al usuario");
+		    				});
+		    				//not.user = u;
+		    			}
+	    			}, function(respuesta){
+	    			console.log("Error obteniendo noticias");
+	    			})
+		}
+    
+    
+    
+	}
+	vm.funciones.obtenerNoticias();
+   
+})
+.controller("mainAppCtrl", function($location){
+    var vm = this;
+    vm.funciones = {
+			estoy : function(ruta){
+	            return $location.path() == ruta;
+	        }
+    };
+})
+;

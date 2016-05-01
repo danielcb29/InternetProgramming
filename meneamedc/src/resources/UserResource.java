@@ -14,6 +14,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
 import dao.UserDAO;
+import dao.CommentDAO;
+import dao.JDBCCommentDAOImpl;
 import dao.JDBCUserDAOImpl;
 import model.User;
 
@@ -37,5 +39,18 @@ public class UserResource {
 		User usuario = uDao.get(user);	
 		
 	    return usuario; 
+	  }
+	
+	@GET
+	  @Path("/karma/{user: [0-9]+}")
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public Integer getUserKarma(@PathParam("user") long user) {
+		Connection conn = (Connection) sc.getAttribute("dbConn");
+		CommentDAO cDao = new JDBCCommentDAOImpl();
+		cDao.setConnection(conn);
+		logger.info("Consultado karma usuario por rest id:"+user);
+		Integer karma = cDao.getAllByOwner(user).size();	
+		
+	    return karma; 
 	  }
 }
