@@ -10,12 +10,14 @@
  	<link rel="stylesheet" href="../css/base.css">
  	<div ng-controller="mainAppCtrl as vm">
 		<link rel="stylesheet" href="../css/lista-noticias.css" ng-show="vm.funciones.estoy('/')">
+		<link rel="stylesheet" href="../css/view-comment.css" ng-show="vm.funciones.estoy('/noticia/')">
 	</div>
 	<script src="../js/angular/angular.js"></script>
 	<script src="../js/angular/angular-route.js"></script>
 	<script src="../js/app.js"></script>
 </head>
 <body>
+	<div ng-controller="loginAppCtrl as vm">
 	<div class="head" id="nombre-categorias">
 		<div>
 			<img alt="" src="../img/menu.png">
@@ -24,9 +26,9 @@
 		</div>
 		<div id="categorias">
 			<ul>
-				<li><a href="">Tecnologia</a></li>
-				<li><a href="">Ocio</a></li>
-				<li><a href="">Cultura</a></li>
+				<li><a href="#/categoria/tecnologia">Tecnologia</a></li>
+				<li><a href="#/categoria/ocio">Ocio</a></li>
+				<li><a href="#/categoria/cultura">Cultura</a></li>
 			</ul>
 		</div>
 		
@@ -35,7 +37,8 @@
 					<a href="../CrearUsuario">registrarse</a>
 				</div>
 		    
-		    	<div class="rigth login-succ" ng-show="vm.user">
+		    	<!--div class="rigth login-succ" ng-show="vm.user"-->
+		    	<div class="rigth login-succ" ng-show="vm.login()">
 					<a href="../auth/Perfil?id={{vm.user.id}}">{{vm.user.name}}</a>
 					<img id="avatar-login" alt="avatar usuario" src="../img/user.png">
 					<a href="../LogoutServlet"><img id="shutdown" alt="" src="../img/logout.png"></a>
@@ -49,7 +52,7 @@
 			
 			    	<p ng-hidde="vm.categoria">Meneame</p>
 			    
-			    	<p ng-show="vm.categoria">${categoria }</p>
+			    	<p ng-show="vm.categoria">{{vm.categoria}}</p>
 			    
 		</b></div>
 		<div>
@@ -65,11 +68,12 @@
 	    	
 			    	<li ng-show="vm.user"><a href="../auth/CrearNoticia">Enviar Historia</a></li>
 			    	<li ng-show="vm.user"><a href="../auth/MisNoticias">Mis Noticias</a></li>
-			<li><a href="../Noticias">Nuevas</a></li>
-	        <li><a href="../Noticias?categoria=actualidad">Actualidad</a></li>
-	        <li><a href="../Noticias?categoria=deporte">Deporte</a></li>
+			<li><a href="#/">Nuevas</a></li>
+	        <li><a href="#/categoria/actualidad">Actualidad</a></li>
+	        <li><a href="#/categoria/deporte">Deporte</a></li>
 	    </ul>
 	</nav>
+	</div>
     <article>
     	<div ng-view></div>
     </article>
@@ -78,18 +82,18 @@
     	<div class="section-separator">
     		<h4>Categorias</h4>
     		<ul>
-	            <li><a href="../Noticias?categoria=tecnologia">Tecnologia</a></li>
-	            <li><a href="../Noticias?categoria=ocio">Ocio</a></li>
-	            <li><a href="../Noticias?categoria=cultura">Cultura</a></li>
-	            <li><a href="../Noticias?categoria=actualidad">Actualidad</a></li>
+	            <li><a href="#/categoria/tecnologia">Tecnologia</a></li>
+	            <li><a href="#/categoria/ocio">Ocio</a></li>
+	            <li><a href="#/categoria/cultura">Cultura</a></li>
+	            <li><a href="#/categoria/actualidad">Actualidad</a></li>
 	        </ul>
     	</div>
     	<div class="section-separator">
     		<h4>Filtros</h4>
     		<ul>
 	            <li><a href="../auth/CrearNoticia">Enviar historia</a></li>
-	            <li><a href="../Noticias">Nuevas</a></li>
-	            <li><a href="../Noticias?categoria=deporte">Deportes</a></li>
+	            <li><a href="#/">Nuevas</a></li>
+	            <li><a href="#/categoria/deporte">Deportes</a></li>
 	            <!--  li><a href="">Populares</a></li-->
 	            <br/>
 	        </ul>

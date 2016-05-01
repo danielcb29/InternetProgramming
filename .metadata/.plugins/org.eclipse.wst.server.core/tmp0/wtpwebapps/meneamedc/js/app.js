@@ -19,6 +19,11 @@ angular.module('meneameApp', ["ngRoute"])
         controller: "categoriasCtrl",
         controllerAs: "vm",
         templateUrl: "listar-noticias.html"
+    })
+	.when("/noticia/:ID", {
+        controller: "mostrarNoticiaCtrl",
+        controllerAs: "vm",
+        templateUrl: "info-noticia.html"
     });
 })
 .factory("noticiasFactory", function($http){
@@ -39,7 +44,15 @@ angular.module('meneameApp', ["ngRoute"])
 	    			 .then(function(response){
 	    				 return response.data;
 	    				 });
-    			 }
+    			 }, 
+    			 
+    			 leerNoticia: function(id){
+    				 var geturl = url+id;
+        			 return $http.get(geturl)
+        			 .then(function(response){
+        				 return response.data;
+        				 });
+        			 },
     					  
 		
     }
@@ -64,6 +77,16 @@ angular.module('meneameApp', ["ngRoute"])
                  .then(function(response){
     				 return response.data;
 				 });
+             },
+             
+             login : function(){
+            	 var geturl = url + "sesion";
+                 return $http.get(geturl)
+                 .then(function(response){
+    				 return response;
+				 },function(response){
+					 return response;
+				 });
              }
 		
     }
@@ -74,7 +97,7 @@ angular.module('meneameApp', ["ngRoute"])
 
     var interfaz = {
     		   		
-    	     cantidadPorNoticia : function(id){
+    		leerComentarios : function(id){
                   var geturl = url + "noticia/" + id ;
                       return $http.get(geturl)
                       .then(function(response){
@@ -141,16 +164,60 @@ angular.module('meneameApp', ["ngRoute"])
 	vm.funciones.obtenerNoticiasCategoria();
    
 })
+.controller("mostrarNoticiaCtrl", function(noticiasFactory,usersFactory,commentsFactory,$routeParams){
+    var vm = this;
+    vm.comentarios=[];
+    vm.noticia={};
+    vm.funciones = {
+			
+			obtenerDetalleNoticia : function(id) {
+		        noticiasFactory.leerNoticia(id)
+					.then(function(respuesta){
+		    			console.log("Trayendo todas la noticia: ", respuesta);
+		    			respuesta = getUserNew(respuesta,usersFactory);
+		    			respuesta = getNumberComments(respuesta,commentsFactory);
+		    			respuesta = getKarmaUser(respuesta,usersFactory);
+		    			vm.noticia = respuesta;
+	    			}, function(respuesta){
+	    			console.log("Error obteniendo noticias");
+	    			});
+		        
+		        commentsFactory.leerComentarios(id).then(function(respuesta){
+		        	angular.forEach(respuesta, function(value) {
+	    				value = getUserNew(value,usersFactory);
+	    			});
+		        	vm.comentarios=respuesta;
+		        },function(respuesta){
+		        	console.log("Errror consultando comentarios");
+		        });
+		}
+    
+    
+    
+	}
+	vm.funciones.obtenerDetalleNoticia($routeParams.ID);
+   
+})
 .controller("mainAppCtrl", function($location){
     var vm = this;
     vm.funciones = {
 			estoy : function(ruta){
 	            return $location.path() == ruta;
 	        }, 
-	        
-	        empty : function(lista){
-	        	return lista;
-	        }
+    };
+})
+.controller("loginAppCtrl", function(usersFactory){
+    var vm = this;
+    vm.funciones = {
+			login : function(){
+				usersFactory.login().then(function(usuario){
+					console.log("todo bello");
+					return true;
+				},function(usuario){
+					console.log("Errorsini");
+					return false;
+				});
+			}
     };
 })
 ;
@@ -169,7 +236,7 @@ function getUserNew(value,usersFactory){
 
 //Consultar cantidad comments noticia
 function getNumberComments(value,commentsFactory){
-	commentsFactory.cantidadPorNoticia(value.id).then(function(cantidad){
+	commentsFactory.leerComentarios(value.id).then(function(cantidad){
 		console.log("Cantidad de comentarios",cantidad);
 		value.comments = cantidad.length;
 	},function(cantidad){

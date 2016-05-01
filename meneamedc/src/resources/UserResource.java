@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -12,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.Response;
 
 import dao.UserDAO;
 import dao.CommentDAO;
@@ -52,5 +55,27 @@ public class UserResource {
 		Integer karma = cDao.getAllByOwner(user).size();	
 		
 	    return karma; 
+	  }
+	
+	@GET
+	  @Path("/sesion")
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public User getSesionJSON(@Context HttpServletRequest request) {
+		Connection conn = (Connection) sc.getAttribute("dbConn");
+		UserDAO uDao = new JDBCUserDAOImpl();
+		uDao.setConnection(conn);
+		
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		
+		logger.info("Consultado usuario de sesion por rest ");
+		
+		if(user==null){
+			 Response.status(404).entity("Not Session User").type(MediaType.APPLICATION_JSON).build();
+		}
+		
+		return user;
+		
+		
 	  }
 }

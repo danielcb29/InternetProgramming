@@ -1,12 +1,14 @@
+<div class="titulo" ng-show="vm.noticias.length">
+	<div class="titulo-general"><h2>Noticias de categoria:</h2></div>
+	<div class="titulo-especifico"><h2>{{vm.categoria}}</h2></div>
+</div>
+
 <div ng-show="!vm.noticias.length">
      <h1 >No hay noticias disponibles</h1>
 </div>
 
 <div ng-show="vm.noticias.length" ng-repeat="noticia in vm.noticias">
-<div class="titulo">
-	<div class="titulo-general"><h2>Noticias de categoria:</h2></div>
-	<div class="titulo-especifico"><h2>{{vm.categoria}}</h2></div>
-</div>
+
 <section>
 		<div class="info-menem">
 				<div class="votes">
