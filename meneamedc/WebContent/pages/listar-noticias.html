@@ -1,10 +1,12 @@
+<div ng-show="!vm.noticias.length">
+     <h1 >No hay noticias disponibles</h1>
+</div>
+
+<div ng-show="vm.noticias.length" ng-repeat="noticia in vm.noticias">
 <div class="titulo">
 	<div class="titulo-general"><h2>Noticias de categoria:</h2></div>
 	<div class="titulo-especifico"><h2>{{vm.categoria}}</h2></div>
 </div>
-     <h1 ng-hide="vm.noticias">No hay noticias disponibles</h1>
-
-<div ng-show="vm.noticias" ng-repeat="noticia in vm.noticias">
 <section>
 		<div class="info-menem">
 				<div class="votes">

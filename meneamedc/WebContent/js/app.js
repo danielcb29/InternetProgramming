@@ -14,7 +14,12 @@ angular.module('meneameApp', ["ngRoute"])
 		        return delay.promise;
 		      }
 		}
-	});
+	})
+	.when("/categoria/:CAT", {
+        controller: "categoriasCtrl",
+        controllerAs: "vm",
+        templateUrl: "listar-noticias.html"
+    });
 })
 .factory("noticiasFactory", function($http){
    var url = 'http://localhost:8080/meneamedc/rest/noticias/';
@@ -26,6 +31,14 @@ angular.module('meneameApp', ["ngRoute"])
     			 .then(function(response){
     				 return response.data;
     				 });
+    			 },
+    			
+    			 leerNoticiasCategoria: function(categoria){
+    				 var geturl = url + categoria;
+	    			 return $http.get(geturl)
+	    			 .then(function(response){
+	    				 return response.data;
+	    				 });
     			 }
     					  
 		
@@ -88,6 +101,7 @@ angular.module('meneameApp', ["ngRoute"])
 		    				value = getKarmaUser(value,usersFactory);
 		    			});
 		    			vm.noticias = respuesta;
+		    			vm.categoria = "Nuevas";
 	    			}, function(respuesta){
 	    			console.log("Error obteniendo noticias");
 	    			})
@@ -99,11 +113,43 @@ angular.module('meneameApp', ["ngRoute"])
 	vm.funciones.obtenerNoticias();
    
 })
+.controller("categoriasCtrl", function(noticiasFactory,usersFactory,commentsFactory,$routeParams){
+    var vm = this;
+    vm.noticias=[];
+       
+    vm.funciones = {
+			
+			obtenerNoticiasCategoria : function() {
+		        noticiasFactory.leerNoticiasCategoria($routeParams.CAT)
+					.then(function(respuesta){
+		    			console.log("Trayendo todas las noticias: ", respuesta);
+		    			angular.forEach(respuesta, function(value) {
+		    				value = getUserNew(value,usersFactory);
+		    				value = getNumberComments(value,commentsFactory);
+		    				value = getKarmaUser(value,usersFactory);
+		    			});
+		    			vm.noticias = respuesta;
+		    			vm.categoria = $routeParams.CAT;
+	    			}, function(respuesta){
+	    			console.log("Error obteniendo noticias");
+	    			})
+		}
+    
+    
+    
+	}
+	vm.funciones.obtenerNoticiasCategoria();
+   
+})
 .controller("mainAppCtrl", function($location){
     var vm = this;
     vm.funciones = {
 			estoy : function(ruta){
 	            return $location.path() == ruta;
+	        }, 
+	        
+	        empty : function(lista){
+	        	return lista;
 	        }
     };
 })
