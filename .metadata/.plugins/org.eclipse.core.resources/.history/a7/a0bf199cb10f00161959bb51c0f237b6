@@ -166,7 +166,7 @@ angular.module('meneameApp', ["ngRoute"])
 	vm.funciones.obtenerNoticiasCategoria();
    
 })
-.controller("mostrarNoticiaCtrl", function(noticiasFactory,usersFactory,commentsFactory,$routeParams,$window){
+.controller("mostrarNoticiaCtrl", function(noticiasFactory,usersFactory,commentsFactory,$routeParams){
     var vm = this;
     vm.comentarios=[];
     vm.noticia={};
@@ -175,8 +175,8 @@ angular.module('meneameApp', ["ngRoute"])
 			obtenerDetalleNoticia : function(id) {
 				
 				usersFactory.login().then(function(response){
-					if(response.status==404){
-						$window.location.href = "/meneamedc/LoginServlet";
+					if(usuario.status==404){
+						
 					}else{
 						noticiasFactory.leerNoticia(id)
 						.then(function(respuesta){

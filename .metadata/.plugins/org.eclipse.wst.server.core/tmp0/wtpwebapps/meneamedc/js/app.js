@@ -166,32 +166,41 @@ angular.module('meneameApp', ["ngRoute"])
 	vm.funciones.obtenerNoticiasCategoria();
    
 })
-.controller("mostrarNoticiaCtrl", function(noticiasFactory,usersFactory,commentsFactory,$routeParams){
+.controller("mostrarNoticiaCtrl", function(noticiasFactory,usersFactory,commentsFactory,$routeParams,$window){
     var vm = this;
     vm.comentarios=[];
     vm.noticia={};
     vm.funciones = {
 			
 			obtenerDetalleNoticia : function(id) {
-		        noticiasFactory.leerNoticia(id)
-					.then(function(respuesta){
-		    			console.log("Trayendo todas la noticia: ", respuesta);
-		    			respuesta = getUserNew(respuesta,usersFactory);
-		    			respuesta = getNumberComments(respuesta,commentsFactory);
-		    			respuesta = getKarmaUser(respuesta,usersFactory);
-		    			vm.noticia = respuesta;
-	    			}, function(respuesta){
-	    			console.log("Error obteniendo noticias");
-	    			});
+				
+				usersFactory.login().then(function(response){
+					if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						noticiasFactory.leerNoticia(id)
+						.then(function(respuesta){
+			    			console.log("Trayendo todas la noticia: ", respuesta);
+			    			respuesta = getUserNew(respuesta,usersFactory);
+			    			respuesta = getNumberComments(respuesta,commentsFactory);
+			    			respuesta = getKarmaUser(respuesta,usersFactory);
+			    			vm.noticia = respuesta;
+		    			}, function(respuesta){
+		    			console.log("Error obteniendo noticias");
+		    			});
+			        
+				        commentsFactory.leerComentarios(id).then(function(respuesta){
+				        	angular.forEach(respuesta, function(value) {
+			    				value = getUserNew(value,usersFactory);
+			    			});
+				        	vm.comentarios=respuesta;
+			        	},function(respuesta){
+				        	console.log("Errror consultando comentarios");
+				        });
+					}
+				});
+				
 		        
-		        commentsFactory.leerComentarios(id).then(function(respuesta){
-		        	angular.forEach(respuesta, function(value) {
-	    				value = getUserNew(value,usersFactory);
-	    			});
-		        	vm.comentarios=respuesta;
-		        },function(respuesta){
-		        	console.log("Errror consultando comentarios");
-		        });
 		}
     
     

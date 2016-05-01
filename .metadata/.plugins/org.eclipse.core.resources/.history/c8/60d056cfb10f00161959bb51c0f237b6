@@ -166,7 +166,7 @@ angular.module('meneameApp', ["ngRoute"])
 	vm.funciones.obtenerNoticiasCategoria();
    
 })
-.controller("mostrarNoticiaCtrl", function(noticiasFactory,usersFactory,commentsFactory,$routeParams,$window){
+.controller("mostrarNoticiaCtrl", function(noticiasFactory,usersFactory,commentsFactory,$routeParams){
     var vm = this;
     vm.comentarios=[];
     vm.noticia={};
