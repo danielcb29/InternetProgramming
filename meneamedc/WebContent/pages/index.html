@@ -11,6 +11,7 @@
  	<div ng-controller="mainAppCtrl as vm">
 		<link rel="stylesheet" href="../css/lista-noticias.css" ng-show="vm.funciones.estoy('/')">
 		<link rel="stylesheet" href="../css/view-comment.css" ng-show="vm.funciones.estoy('/noticia/')">
+		<link rel="stylesheet" href="../css/modificar-borrar-noticia.css" ng-show="vm.funciones.estoy('/misnoticia/')">
 	</div>
 	<script src="../js/angular/angular.js"></script>
 	<script src="../js/angular/angular-route.js"></script>
@@ -67,7 +68,7 @@
 	    <ul>
 	    	
 			    	<li ng-show="vm.user"><a href="../auth/CrearNoticia">Enviar Historia</a></li>
-			    	<li ng-show="vm.user"><a href="../auth/MisNoticias">Mis Noticias</a></li>
+			    	<li ng-show="vm.user"><a href="#/misnoticias">Mis Noticias</a></li>
 			<li><a href="#/">Nuevas</a></li>
 	        <li><a href="#/categoria/actualidad">Actualidad</a></li>
 	        <li><a href="#/categoria/deporte">Deporte</a></li>
@@ -78,6 +79,7 @@
     	<div ng-view></div>
     </article>
     <footer>
+    <div ng-controller="loginAppCtrl as vm">
     <div class="footer-sections">
     	<div class="section-separator">
     		<h4>Categorias</h4>
@@ -109,7 +111,7 @@
 				    
 				    	<li ng-show="vm.user" ><a href="../auth/Perfil?id=${user.id}">Ver perfil</a></li>
 			            <li ng-show="vm.user"><a href="../auth/EditarPerfilServlet">Modificar perfil</a></li>
-			            <li ng-show="vm.user"><a href="">Ver mis noticias</a></li>
+			            <li ng-show="vm.user"><a href="#/misnoticias">Ver mis noticias</a></li>
 				    
 	        </ul>
     	</div>
@@ -122,6 +124,7 @@
    			<a>HTML5</a> |
    			Daniel Correa Barrios, Universidad de Extremadura
    		</div>
+   	</div>
    	</div>
    </footer>
 

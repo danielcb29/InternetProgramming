@@ -24,6 +24,11 @@ angular.module('meneameApp', ["ngRoute"])
         controller: "mostrarNoticiaCtrl",
         controllerAs: "vm",
         templateUrl: "info-noticia.html"
+    })
+    .when("/misnoticias", {
+        controller: "misNoticiasCtrl",
+        controllerAs: "vm",
+        templateUrl: "mis-noticias.html"
     });
 })
 .factory("noticiasFactory", function($http){
@@ -31,28 +36,44 @@ angular.module('meneameApp', ["ngRoute"])
 
     var interfaz = {
     		
-    		 leerNoticias: function(){
-    			 return $http.get(url)
-    			 .then(function(response){
-    				 return response.data;
-    				 });
-    			 },
-    			
-    			 leerNoticiasCategoria: function(categoria){
-    				 var geturl = url + categoria;
-	    			 return $http.get(geturl)
-	    			 .then(function(response){
-	    				 return response.data;
-	    				 });
-    			 }, 
-    			 
-    			 leerNoticia: function(id){
-    				 var geturl = url+id;
-        			 return $http.get(geturl)
-        			 .then(function(response){
-        				 return response.data;
-        				 });
-        			 },
+    		leerNoticias: function(){
+    			return $http.get(url)
+    			.then(function(response){
+    				return response.data;
+    			});
+    		},
+
+    		leerNoticiasCategoria: function(categoria){
+    			var geturl = url + categoria;
+    			return $http.get(geturl)
+    			.then(function(response){
+    				return response.data;
+    			});
+    		}, 
+
+    		leerNoticia: function(id){
+    			var geturl = url+id;
+    			return $http.get(geturl)
+    			.then(function(response){
+    				return response.data;
+    			});
+    		},
+
+    		leerMisNoticias: function(id){
+    			var geturl = url+"owner/"+id;
+    			return $http.get(geturl)
+    			.then(function(response){
+    				return response.data;
+    			});
+    		},
+    		
+    		eliminarNoticia : function(id){
+    			var urlid = url+id;
+    			return $http.delete(urlid)
+    			.then(function(response){
+    				return response.status;
+    			});
+    		}	
     					  
 		
     }
@@ -83,10 +104,8 @@ angular.module('meneameApp', ["ngRoute"])
             	 var geturl = url + "sesion";
                  return $http.get(geturl)
                  .then(function(response){
-                	 console.log("desde fac bello");
     				 return response;
 				 },function(response){
-					 console.log("desde fac error");
 					 return response;
 				 });
              }
@@ -123,21 +142,21 @@ angular.module('meneameApp', ["ngRoute"])
        
     vm.funciones = {
 			
-			obtenerNoticias : function() {
-		        noticiasFactory.leerNoticias()
-					.then(function(respuesta){
-		    			console.log("Trayendo todas las noticias: ", respuesta);
-		    			angular.forEach(respuesta, function(value) {
-		    				value = getUserNew(value,usersFactory);
-		    				value = getNumberComments(value,commentsFactory);
-		    				value = getKarmaUser(value,usersFactory);
-		    			});
-		    			vm.noticias = respuesta;
-		    			vm.categoria = "Nuevas";
-	    			}, function(respuesta){
-	    			console.log("Error obteniendo noticias");
-	    			})
-		}
+    		obtenerNoticias : function() {
+    			noticiasFactory.leerNoticias()
+    			.then(function(respuesta){
+    				console.log("Trayendo todas las noticias: ", respuesta);
+    				angular.forEach(respuesta, function(value) {
+    					value = getUserNew(value,usersFactory);
+    					value = getNumberComments(value,commentsFactory);
+    					value = getKarmaUser(value,usersFactory);
+    				});
+    				vm.noticias = respuesta;
+    				vm.categoria = "Nuevas";
+    			}, function(respuesta){
+    				console.log("Error obteniendo noticias");
+    			})
+    		}
     
     
     
@@ -225,6 +244,51 @@ angular.module('meneameApp', ["ngRoute"])
 	}
 	vm.funciones.obtenerDetalleNoticia($routeParams.ID);
    
+})
+.controller("misNoticiasCtrl", function(noticiasFactory,usersFactory,commentsFactory,$window,$route){
+    var vm = this;
+    vm.funciones = {
+     		obtenerNoticias : function() {
+     			
+     			usersFactory.login().then(function(response){
+     				if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						var userid = response.data.id;
+						noticiasFactory.leerMisNoticias(userid).then(function(respuesta){
+							angular.forEach(respuesta, function(value) {
+		    					value = getUserNew(value,usersFactory);
+		    					value = getNumberComments(value,commentsFactory);
+		    					value = getKarmaUser(value,usersFactory);
+		    				});
+		    				vm.noticias = respuesta;
+						},function(respuesta){
+							console.log("Error obteniendo mis noticias");
+						});
+					}
+     			});
+     			
+    		}, 
+    		
+    		borrarNoticia : function(id){
+    			usersFactory.login().then(function(response){
+     				if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						
+						noticiasFactory.eliminarNoticia(id).then(function(respuesta){
+							console.log("Noticia eliminada con exito");
+						},function(respuesta){
+							console.log("Error borrando noticia");
+						});
+					}
+     			});
+    			
+    			$route.reload();
+    		}
+    };
+    
+    vm.funciones.obtenerNoticias();
 })
 .controller("mainAppCtrl", function($location){
     var vm = this;

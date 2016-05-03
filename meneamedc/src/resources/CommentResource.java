@@ -19,18 +19,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import dao.CommentDAO;
 import dao.JDBCCommentDAOImpl;
-import dao.JDBCNewsDAOImpl;
-import dao.JDBCUserDAOImpl;
-import dao.NewsDAO;
-import dao.UserDAO;
 import model.Comment;
-import model.News;
 import model.User;
 
 @Path("/comentarios")
@@ -110,22 +104,10 @@ public class CommentResource {
 		Connection conn = (Connection) sc.getAttribute("dbConn");
 		CommentDAO commentDao = new JDBCCommentDAOImpl();
 		commentDao.setConnection(conn);
-		
-		//long id = Long.parseLong(request.getParameter("id"));
-		
-		
-		/*NewsDAO newDao = new JDBCNewsDAOImpl();
-		newDao.setConnection(conn);
-
-		News noticia = newDao.get(id);*/
-
-		//Comment c = new Comment();
 		comentario.setOwner(user.getId());
-		//comentario.setNews(noticia.getId());
 		Date hoy = new Date();
 		comentario.setDateStamp(hoy);
 		comentario.setTimeStamp(new Time(hoy.getTime()));
-		//c.setText(formParams.getFirst("text"));
 		comentario.setLikes(0);
 		commentDao.add(comentario);
 		System.out.println("valor de id de noticia:"+comentario.getNews());

@@ -143,7 +143,7 @@ class ApplicationConfig {&#xD;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note that the &lt;code&gt;@Indexed&lt;/code&gt; annotation used on &lt;code&gt;firstname&lt;/code&gt; allows the usage of the property within the derived query method. This also works on nested or embedded objects. For more information about custom Object mapping strategies, expiration times and listeners as well as storing object references please refer to the &lt;a href="http://docs.spring.io/spring-data/redis/docs/1.7.x/reference/html/#redis.repositories"&gt;Spring Data Redis reference documentation&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#spring-data-rest" class="anchor" name="spring-data-rest"&gt;&lt;/a&gt;Spring Data REST&lt;/h2&gt;
-&lt;p&gt;A common request for Spring Data REST was to use the value of a unique property of an aggregate to make up the URI for the collection resource exposed. Imagine a very simple entity &lt;code&gt;Country&lt;/code&gt; for which you&amp;rsquo;d like to its unique name in the URI.&lt;/p&gt;
+&lt;p&gt;A common request for Spring Data REST was to use the value of a unique property of an aggregate to make up the URI for the item resource exposed. Imagine a very simple entity &lt;code&gt;Country&lt;/code&gt; for which you&amp;rsquo;d like to its unique name in the URI.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="prettyprint java"&gt;@Entity&#xD;
 class Country {&#xD;
 &#xD;
