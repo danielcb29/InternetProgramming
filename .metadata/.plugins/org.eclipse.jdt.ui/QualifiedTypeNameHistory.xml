@@ -19,11 +19,11 @@
 <fullyQualifiedTypeName name="javax.ws.rs.client.ClientBuilder"/>
 <fullyQualifiedTypeName name="javax.ws.rs.client.Client"/>
 <fullyQualifiedTypeName name="model.News"/>
-<fullyQualifiedTypeName name="dao.CommentDAO"/>
-<fullyQualifiedTypeName name="dao.JDBCCommentDAOImpl"/>
 <fullyQualifiedTypeName name="model.Comment"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="model.User"/>
 <fullyQualifiedTypeName name="dao.UserDAO"/>
 <fullyQualifiedTypeName name="dao.JDBCUserDAOImpl"/>
+<fullyQualifiedTypeName name="dao.CommentDAO"/>
+<fullyQualifiedTypeName name="dao.JDBCCommentDAOImpl"/>
 </qualifiedTypeNameHistroy>

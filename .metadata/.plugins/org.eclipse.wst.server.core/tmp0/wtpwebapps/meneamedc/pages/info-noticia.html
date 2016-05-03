@@ -108,9 +108,10 @@
 <!--escribir comentario-->
 <fieldset id="box-comment">
 	<legend>Escriba un comentario:</legend>
-	<form method="post" action="" id="form-comentarios">
+	<form ng-submit="vm.funciones.insertarComentario()" id="form-comentarios">
 		<textarea rows="7" cols="150" name="text" id="comment"
-			placeholder="Comentario"></textarea>
+			placeholder="Comentario" ng-model="vm.comentario.text"></textarea>
+		<input type="hidden" value="vm.noticia.id" ng-model="vm.comentario.news">
 		<br> <input id="bt" type="submit" value="Enviar">
 	</form>
 

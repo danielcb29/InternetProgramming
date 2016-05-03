@@ -105,7 +105,14 @@ angular.module('meneameApp', ["ngRoute"])
                       .then(function(response){
          				 return response.data;
      				 });
-                 }			  
+                 }, 
+            
+            nuevoComentario : function(comentario){
+            	return $http.post(url,comentario)
+                .then(function(response){
+     				 return response.status;
+ 				 });
+            }
 		
     }
     return interfaz;
@@ -166,7 +173,7 @@ angular.module('meneameApp', ["ngRoute"])
 	vm.funciones.obtenerNoticiasCategoria();
    
 })
-.controller("mostrarNoticiaCtrl", function(noticiasFactory,usersFactory,commentsFactory,$routeParams,$window){
+.controller("mostrarNoticiaCtrl", function(noticiasFactory,usersFactory,commentsFactory,$window,$routeParams,$route){
     var vm = this;
     vm.comentarios=[];
     vm.noticia={};
@@ -201,6 +208,16 @@ angular.module('meneameApp', ["ngRoute"])
 				});
 				
 		        
+		}, 
+		
+		insertarComentario : function(){
+			vm.comentario.news=vm.noticia.id;
+			commentsFactory.nuevoComentario(vm.comentario).then(function(respuesta){
+				console.log("Nuevo comentario insertado");
+			},function(respuesta){
+				console.log("Error insertando comentario");
+			});
+			$route.reload();
 		}
     
     

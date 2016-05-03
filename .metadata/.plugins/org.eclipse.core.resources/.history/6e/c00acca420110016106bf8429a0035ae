@@ -1,0 +1,159 @@
+package resources;
+
+import java.sql.Connection;
+import java.sql.Time;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Logger;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+
+import dao.CommentDAO;
+import dao.JDBCCommentDAOImpl;
+import dao.JDBCNewsDAOImpl;
+import dao.JDBCUserDAOImpl;
+import dao.NewsDAO;
+import dao.UserDAO;
+import model.Comment;
+import model.News;
+import model.User;
+
+@Path("/comentarios")
+public class CommentResource {
+	@Context
+	ServletContext sc;
+	@Context
+	UriInfo uriInfo;
+	
+	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());
+	
+	@GET
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public List<Comment> getCommentListJSON() {
+		Connection conn = (Connection) sc.getAttribute("dbConn");
+		CommentDAO commDao = new JDBCCommentDAOImpl();
+		commDao.setConnection(conn);
+		
+		List<Comment> comentarios = commDao.getAll();	
+		
+	    return comentarios; 
+	  }
+	
+	@GET
+	  @Path("/noticia/{newid: [0-9]+}")
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public List<Comment> getCommentsNewJSON(@PathParam("newid") long newid) {
+		Connection conn = (Connection) sc.getAttribute("dbConn");
+		CommentDAO commDao = new JDBCCommentDAOImpl();
+		commDao.setConnection(conn);
+		
+		List<Comment> comentarios = commDao.getAllByNews(newid);	
+		
+	    return comentarios; 
+	  }
+	
+	@GET
+	  @Path("/owner/{owner: [0-9]+}")
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public List<Comment> getCommentsOwnerJSON(@PathParam("owner") long owner) {
+		Connection conn = (Connection) sc.getAttribute("dbConn");
+		CommentDAO commDao = new JDBCCommentDAOImpl();
+		commDao.setConnection(conn);
+		
+		List<Comment> comentarios = commDao.getAllByOwner(owner);	
+		
+	    return comentarios; 
+	  }
+	
+	@GET
+	  @Path("/{comment: [0-9]+}")
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public Comment getCommentJSON(@PathParam("comment") long comment) {
+		Connection conn = (Connection) sc.getAttribute("dbConn");
+		CommentDAO commDao = new JDBCCommentDAOImpl();
+		commDao.setConnection(conn);
+		
+		Comment comentario = commDao.get(comment);	
+		
+	    return comentario; 
+	  }
+	
+	@POST	  	  
+	  @Consumes(MediaType.APPLICATION_JSON)
+	  public Response postComment(Comment comentarios, @Context HttpServletRequest request) {	
+		  
+		  Response res;
+		  Connection conn = (Connection) sc.getAttribute("dbConn");
+		  CommentDAO commentDao = new JDBCCommentDAOImpl();
+		  commentDao.setConnection(conn);
+		  NewsDAO newDao = new JDBCNewsDAOImpl();
+		  newDao.setConnection(conn);
+		  
+		  long id = Long.parseLong(request.getParameter("id"));
+		  HttpSession session = request.getSession();
+		  User user = (User) session.getAttribute("user");
+		  
+		  /*UserDAO userDao = new JDBCUserDAOImpl();
+		  userDao.setConnection(conn);
+		  
+		  User user = userDao.get("alejandra");*/
+		  
+		  
+		  News noticia = newDao.get(id);
+	
+		  Comment c = new Comment();
+		  c.setOwner(user.getId());
+		  c.setNews(noticia.getId());
+		  Date hoy = new Date();
+		  c.setDateStamp(hoy);
+		  c.setTimeStamp(new Time(hoy.getTime()));
+		  c.setText(formParams.getFirst("text"));
+		  c.setLikes(0);
+		  commentDao.add(c);
+			
+		  logger.info("Nuevo comentario registrado REST");
+	
+		  res = Response //return 201 and Location: /orders/newid
+				  .created(
+						  uriInfo
+						  .getAbsolutePathBuilder()
+						  .path(Long.toString(id))
+						  .build())
+						  .contentLocation(
+								  uriInfo
+								  .getAbsolutePathBuilder()
+								  .path(Long.toString(id))
+								  .build())
+				  .build();
+
+		  return res; 
+	  }
+	
+	@DELETE
+	  @Path("/{comment: [0-9]+}")	  
+	  public Response deleteOrder(@PathParam("comment") long comment) {
+		  
+		Connection conn = (Connection) sc.getAttribute("dbConn");
+		CommentDAO commDao = new JDBCCommentDAOImpl();
+		commDao.setConnection(conn);
+		logger.info("Borrando comentario REST");
+		commDao.delete(comment);
+		
+	    return Response.noContent().build(); //204 no content 
+	  }
+}

@@ -94,66 +94,70 @@ public class CommentResource {
 	  }
 	
 	@POST	  	  
-	  @Consumes("application/x-www-form-urlencoded")
-	  public Response postComment(MultivaluedMap<String, String> formParams, @Context HttpServletRequest request) {	
+	  @Consumes(MediaType.APPLICATION_JSON)
+	  public Response postComment(Comment comentario, @Context HttpServletRequest request) throws Exception {	
 		  
-		  Response res;
-		  Connection conn = (Connection) sc.getAttribute("dbConn");
-		  CommentDAO commentDao = new JDBCCommentDAOImpl();
-		  commentDao.setConnection(conn);
-		  NewsDAO newDao = new JDBCNewsDAOImpl();
-		  newDao.setConnection(conn);
-		  
-		  long id = Long.parseLong(request.getParameter("id"));
-		  HttpSession session = request.getSession();
-		  User user = (User) session.getAttribute("user");
-		  
-		  /*UserDAO userDao = new JDBCUserDAOImpl();
-		  userDao.setConnection(conn);
-		  
-		  User user = userDao.get("alejandra");*/
-		  
-		  
-		  News noticia = newDao.get(id);
-	
-		  Comment c = new Comment();
-		  c.setOwner(user.getId());
-		  c.setNews(noticia.getId());
-		  Date hoy = new Date();
-		  c.setDateStamp(hoy);
-		  c.setTimeStamp(new Time(hoy.getTime()));
-		  c.setText(formParams.getFirst("text"));
-		  c.setLikes(0);
-		  commentDao.add(c);
-			
-		  logger.info("Nuevo comentario registrado REST");
-	
-		  res = Response //return 201 and Location: /orders/newid
-				  .created(
-						  uriInfo
-						  .getAbsolutePathBuilder()
-						  .path(Long.toString(id))
-						  .build())
-						  .contentLocation(
-								  uriInfo
-								  .getAbsolutePathBuilder()
-								  .path(Long.toString(id))
-								  .build())
-				  .build();
+		Response res;
+		
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
 
-		  return res; 
-	  }
-	
+		if (user==null){
+			System.out.println("No hay login");
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+			
+		Connection conn = (Connection) sc.getAttribute("dbConn");
+		CommentDAO commentDao = new JDBCCommentDAOImpl();
+		commentDao.setConnection(conn);
+		
+		//long id = Long.parseLong(request.getParameter("id"));
+		
+		
+		/*NewsDAO newDao = new JDBCNewsDAOImpl();
+		newDao.setConnection(conn);
+
+		News noticia = newDao.get(id);*/
+
+		//Comment c = new Comment();
+		comentario.setOwner(user.getId());
+		//comentario.setNews(noticia.getId());
+		Date hoy = new Date();
+		comentario.setDateStamp(hoy);
+		comentario.setTimeStamp(new Time(hoy.getTime()));
+		//c.setText(formParams.getFirst("text"));
+		comentario.setLikes(0);
+		commentDao.add(comentario);
+		System.out.println("valor de id de noticia:"+comentario.getNews());
+
+		logger.info("Nuevo comentario registrado REST");
+
+		res = Response //return 201 and Location: /orders/newid
+				.created(
+						uriInfo
+						.getAbsolutePathBuilder()
+						.path(Long.toString(comentario.getNews()))
+						.build())
+				.contentLocation(
+						uriInfo
+						.getAbsolutePathBuilder()
+						.path(Long.toString(comentario.getNews()))
+						.build())
+				.build();
+
+		return res; 
+	}
+
 	@DELETE
-	  @Path("/{comment: [0-9]+}")	  
-	  public Response deleteOrder(@PathParam("comment") long comment) {
-		  
+	@Path("/{comment: [0-9]+}")	  
+	public Response deleteOrder(@PathParam("comment") long comment) {
+
 		Connection conn = (Connection) sc.getAttribute("dbConn");
 		CommentDAO commDao = new JDBCCommentDAOImpl();
 		commDao.setConnection(conn);
 		logger.info("Borrando comentario REST");
 		commDao.delete(comment);
-		
-	    return Response.noContent().build(); //204 no content 
-	  }
+
+		return Response.noContent().build(); //204 no content 
+	}
 }
