@@ -29,7 +29,13 @@ angular.module('meneameApp', ["ngRoute"])
         controller: "misNoticiasCtrl",
         controllerAs: "vm",
         templateUrl: "mis-noticias.html"
-    });
+    })
+    .when("/nueva-noticia", {
+        controller: "noticiaCtrl",
+        controllerAs: "vm",
+        templateUrl: "noticia.html"
+    })
+    ;
 })
 .factory("noticiasFactory", function($http){
    var url = 'http://localhost:8080/meneamedc/rest/noticias/';
@@ -73,7 +79,14 @@ angular.module('meneameApp', ["ngRoute"])
     			.then(function(response){
     				return response.status;
     			});
-    		}	
+    		},
+    		
+    		insertarNoticia : function(noticia){
+    			return $http.post(url,noticia)
+                .then(function(response){
+     				 return response.status;
+ 				 });
+    		},
     					  
 		
     }
@@ -289,6 +302,44 @@ angular.module('meneameApp', ["ngRoute"])
     };
     
     vm.funciones.obtenerNoticias();
+})
+.controller("noticiaCtrl", function($location,noticiasFactory,usersFactory,$window){
+    var vm = this;
+    vm.funciones = {
+			estoy : function(ruta){
+	            return $location.path() == ruta;
+	        },
+	        insertarNoticia : function(){
+	        	
+	        	noticiasFactory.insertarNoticia(vm.noticia).then(function(response){
+	        		console.log("Noticia insertada con exito");
+	        	},function(response){
+	        		console.log("Ocurrio un error insertando la noticia");
+	        	});
+	        	
+	        },
+	        
+	        index : function(){
+	        	
+	        	if(vm.funciones.estoy("/nueva-noticia")){
+	        		vm.funciones.insertarNoticia();
+	        	}else{
+	        		
+	        	}
+	        	
+	        	$location.path('/');
+	        },
+	        
+	        mostrarForm : function(){
+	        	usersFactory.login().then(function(response){
+	        		if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}
+	        	});
+	        }
+    };
+    
+    vm.funciones.mostrarForm();
 })
 .controller("mainAppCtrl", function($location){
     var vm = this;

@@ -1,12 +1,15 @@
 package resources;
 
 import java.sql.Connection;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -25,6 +28,7 @@ import dao.JDBCNewsDAOImpl;
 import dao.NewsDAO;
 import resources.exceptions.*;
 import model.News;
+import model.User;
 
 @Path("/noticias")
 public class NewsResource {
@@ -96,29 +100,48 @@ public class NewsResource {
 	  @POST
 		@Consumes(MediaType.APPLICATION_JSON)
 		public Response postNew(News noticia, @Context HttpServletRequest request) throws Exception{
-			Response response = null;
-			System.out.println("post noticia rest");
-			Connection conn = (Connection)sc.getAttribute("dbConn");
-			NewsDAO newDao = new JDBCNewsDAOImpl();
-			newDao.setConnection(conn);
-						
-			logger.info("Registrando noticia por API REST");
-			long id = newDao.add(noticia);
-			logger.info("Nueva noticia registrada");
 			
-			response = Response //return 201
-					  .created(
-							  uriInfo
-							  .getAbsolutePathBuilder()
-							  .path(Long.toString(id))
-							  .build())
-					  .contentLocation(
-						      uriInfo
-							  .getAbsolutePathBuilder()
-							  .path(Long.toString(id))
-							  .build())
-					  .build();		
-			return response;
+		  Response response;
+
+		  HttpSession session = request.getSession();
+		  User user = (User) session.getAttribute("user");
+
+		  if (user==null){
+			  System.out.println("No hay login");
+			  return Response.status(Response.Status.BAD_REQUEST).build();
+		  }
+		  
+		  
+		  System.out.println("post noticia rest");
+		  Connection conn = (Connection)sc.getAttribute("dbConn");
+		  NewsDAO newDao = new JDBCNewsDAOImpl();
+		  newDao.setConnection(conn);
+		  
+		  noticia.setOwner(user.getId());
+		  Date hoy = new Date();
+		  noticia.setDateStamp(hoy);
+		  Time yaMismo = new Time(hoy.getTime());
+		  noticia.setTimeStamp(yaMismo);
+		  noticia.setHits(0);
+		  noticia.setLikes(0);
+		  
+		  logger.info("Registrando noticia por API REST");
+		  long id = newDao.add(noticia);
+		  logger.info("Nueva noticia registrada");
+
+		  response = Response //return 201
+				  .created(
+						  uriInfo
+						  .getAbsolutePathBuilder()
+						  .path(Long.toString(id))
+						  .build())
+				  .contentLocation(
+						  uriInfo
+						  .getAbsolutePathBuilder()
+						  .path(Long.toString(id))
+						  .build())
+				  .build();		
+		  return response;
 			
 		}
 	  
