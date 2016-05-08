@@ -35,6 +35,11 @@ angular.module('meneameApp', ["ngRoute"])
         controllerAs: "vm",
         templateUrl: "noticia.html"
     })
+    .when("/editar-noticia/:ID", {
+        controller: "noticiaCtrl",
+        controllerAs: "vm",
+        templateUrl: "noticia.html"
+    })
     ;
 })
 .factory("noticiasFactory", function($http){
@@ -83,6 +88,14 @@ angular.module('meneameApp', ["ngRoute"])
     		
     		insertarNoticia : function(noticia){
     			return $http.post(url,noticia)
+                .then(function(response){
+     				 return response.status;
+ 				 });
+    		},
+    		
+    		editarNoticia : function(noticia){
+    			var urlid = url+noticia.id;
+    			return $http.put(urlid,noticia)
                 .then(function(response){
      				 return response.status;
  				 });
@@ -303,7 +316,7 @@ angular.module('meneameApp', ["ngRoute"])
     
     vm.funciones.obtenerNoticias();
 })
-.controller("noticiaCtrl", function($location,noticiasFactory,usersFactory,$window){
+.controller("noticiaCtrl", function($location,noticiasFactory,usersFactory,$window,$routeParams){
     var vm = this;
     vm.funciones = {
 			estoy : function(ruta){
@@ -319,12 +332,20 @@ angular.module('meneameApp', ["ngRoute"])
 	        	
 	        },
 	        
+	        editarNoticia : function(){
+	        	noticiasFactory.editarNoticia(vm.noticia).then(function(response){
+	        		console.log("Noticia editada con exito");
+	        	},function(response){
+	        		console.log("Error editando noticia");
+	        	});
+	        },
+	        
 	        index : function(){
 	        	
 	        	if(vm.funciones.estoy("/nueva-noticia")){
 	        		vm.funciones.insertarNoticia();
 	        	}else{
-	        		
+	        		vm.funciones.editarNoticia();
 	        	}
 	        	
 	        	$location.path('/');
@@ -334,6 +355,24 @@ angular.module('meneameApp', ["ngRoute"])
 	        	usersFactory.login().then(function(response){
 	        		if(response.status==404){
 						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						if(vm.funciones.estoy("/editar-noticia/"+$routeParams.ID)){
+							var usuario = response.data;
+							noticiasFactory.leerNoticia($routeParams.ID).then(function(response){
+								var noticia = response;
+								if(noticia.owner == usuario.id){
+									vm.noticia = noticia;
+									delete vm.noticia.dateStamp;
+									delete vm.noticia.timeStamp;
+								}else{
+									console.log("Esta no es tu noticia!!");
+									alert("¿Estas intentando editar una noticia que no es tuya?, Este comportamiento no es permitido aqui!");
+									$location.path('/');
+								}
+							},function(response){
+								console.log("Error trayendo noticia");
+							});
+						}
 					}
 	        	});
 	        }

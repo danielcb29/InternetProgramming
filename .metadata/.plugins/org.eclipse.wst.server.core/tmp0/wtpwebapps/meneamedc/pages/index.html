@@ -16,6 +16,10 @@
 		<link rel="stylesheet" href="../css/ver-perfil.css" ng-show="vm.funciones.estoy('/nueva-noticia')">
     	<link rel="stylesheet" href="../css/modificar-perfil.css" ng-show="vm.funciones.estoy('/nueva-noticia')">
     	<link rel="stylesheet" href="../css/registrar-noticia.css" ng-show="vm.funciones.estoy('/nueva-noticia')">
+    	
+    	<link rel="stylesheet" href="../css/ver-perfil.css" ng-show="vm.funciones.estoy('/editar-noticia/')">
+    	<link rel="stylesheet" href="../css/modificar-perfil.css" ng-show="vm.funciones.estoy('/editar-noticia/')">
+    	<link rel="stylesheet" href="../css/registrar-noticia.css" ng-show="vm.funciones.estoy('/editar-noticia/')">
 		
 	</div>
 	<script src="../js/angular/angular.js"></script>
@@ -72,7 +76,7 @@
 	<nav>
 	    <ul>
 	    	
-			    	<li ng-show="vm.user"><a href="#/nueva-noticia">Enviar Historia</a></li>
+			    	<li ng-show="vm.user"><a href="#/auth/CrearNoticia">Enviar Historia</a></li>
 			    	<li ng-show="vm.user"><a href="#/misnoticias">Mis Noticias</a></li>
 			<li><a href="#/">Nuevas</a></li>
 	        <li><a href="#/categoria/actualidad">Actualidad</a></li>

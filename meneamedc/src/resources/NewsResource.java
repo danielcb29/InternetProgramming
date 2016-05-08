@@ -149,33 +149,54 @@ public class NewsResource {
 	  @PUT
 	  @Path("/{newid: [0-9]+}")
 		@Consumes(MediaType.APPLICATION_JSON)
-		public Response putNew(News noticiaUp, @PathParam("newid") long newid) throws Exception{
-			Response response = null;
+		public Response putNew(News noticiaUp, @PathParam("newid") long newid, @Context HttpServletRequest request) throws Exception{
+			Response response;
+			
+			HttpSession session = request.getSession();
+			  User user = (User) session.getAttribute("user");
+
+			  if (user==null){
+				  return Response.status(Response.Status.BAD_REQUEST).build();
+			  }
 			
 			Connection conn = (Connection)sc.getAttribute("dbConn");
 			NewsDAO newDao = new JDBCNewsDAOImpl();
 			newDao.setConnection(conn);
 						
 			
-			//Comprobamos que existe la orden
+			//Comprobamos que existe la noticia
 			News noticia = newDao.get(noticiaUp.getId());
 			if(noticia != null){
 				if (noticia.getId()!=newid)
-					{
-					throw new CustomBadRequestException("Error in id");
-					}
+				{
+					throw new CustomBadRequestException("Error en id");
+				}
 				else 
 				{
-						logger.info("Actualizando noticia REST");
-						newDao.save(noticiaUp);
-					  
+					logger.info("Actualizando noticia REST");
+					noticiaUp.setDateStamp(noticia.getDateStamp());
+					noticiaUp.setTimeStamp(noticia.getTimeStamp());
+					
+					newDao.save(noticiaUp);
+
 				}
 			}
-				
+
 			else{
-				
 				throw new WebApplicationException(Response.Status.NOT_FOUND);
-			}			
+			}
+			response = Response //return 201
+					  .created(
+							  uriInfo
+							  .getAbsolutePathBuilder()
+							  .path(Long.toString(newid))
+							  .build())
+					  .contentLocation(
+							  uriInfo
+							  .getAbsolutePathBuilder()
+							  .path(Long.toString(newid))
+							  .build())
+					  .build();	
 			return response;
 			
 		}
