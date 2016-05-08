@@ -40,6 +40,11 @@ angular.module('meneameApp', ["ngRoute"])
         controllerAs: "vm",
         templateUrl: "noticia.html"
     })
+    .when("/nuevo-usuario", {
+        controller: "nuevoUsuarioCtrl",
+        controllerAs: "vm",
+        templateUrl: "registro-usuario.html"
+    })
     ;
 })
 .factory("noticiasFactory", function($http){
@@ -134,6 +139,13 @@ angular.module('meneameApp', ["ngRoute"])
 				 },function(response){
 					 return response;
 				 });
+             }, 
+             
+             registroUsuario : function(usuario){
+            	 return $http.post(url,usuario)
+                 .then(function(response){
+      				 return response.status;
+  				 });
              }
 		
     }
@@ -379,6 +391,19 @@ angular.module('meneameApp', ["ngRoute"])
     };
     
     vm.funciones.mostrarForm();
+})
+.controller("nuevoUsuarioCtrl", function($location,usersFactory,$window){
+    var vm = this;
+    vm.funciones = {
+			registroUsuario : function(){
+				usersFactory.registroUsuario(vm.usuario).then(function(response){
+					console.log("Registro exitoso");
+					$window.location.href = "/meneamedc/LoginServlet";
+				},function(response){
+					console.log("Error en registro de usuario");
+				});
+			}
+    };
 })
 .controller("mainAppCtrl", function($location){
     var vm = this;

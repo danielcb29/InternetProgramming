@@ -7,7 +7,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -75,4 +77,30 @@ public class UserResource {
 		}
 		return Response.status(Response.Status.OK).entity(user).build();
 	  }
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response newUser(User usuario, @Context HttpServletRequest request) throws Exception{
+		Response response;
+		
+		Connection conn = (Connection)sc.getAttribute("dbConn");
+		UserDAO userDao = new JDBCUserDAOImpl();
+		userDao.setConnection(conn);
+		logger.info("Registro de usuario por rest ");
+		long id = userDao.add(usuario);
+		
+		response = Response //return 201
+				  .created(
+						  uriInfo
+						  .getAbsolutePathBuilder()
+						  .path(Long.toString(id))
+						  .build())
+				  .contentLocation(
+						  uriInfo
+						  .getAbsolutePathBuilder()
+						  .path(Long.toString(id))
+						  .build())
+				  .build();	
+
+		return response;
+	}
 }
