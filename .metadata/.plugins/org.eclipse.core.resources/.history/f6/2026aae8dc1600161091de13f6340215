@@ -343,7 +343,6 @@ angular.module('meneameApp', ["ngRoute"])
 						if (conf){
 							noticiasFactory.eliminarNoticia(id).then(function(respuesta){
 								console.log("Noticia eliminada con exito");
-								$route.reload();
 							},function(respuesta){
 								console.log("Error borrando noticia");
 							});
@@ -352,7 +351,7 @@ angular.module('meneameApp', ["ngRoute"])
 					}
      			});
     			
-    			
+    			$route.reload();
     		}
     };
     

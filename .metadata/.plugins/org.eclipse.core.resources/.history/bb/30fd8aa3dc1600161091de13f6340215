@@ -339,20 +339,16 @@ angular.module('meneameApp', ["ngRoute"])
      				if(response.status==404){
 						$window.location.href = "/meneamedc/LoginServlet";
 					}else{
-						var conf = confirm("Esta seguro que desea eliminar su cuenta?");
-						if (conf){
-							noticiasFactory.eliminarNoticia(id).then(function(respuesta){
-								console.log("Noticia eliminada con exito");
-								$route.reload();
-							},function(respuesta){
-								console.log("Error borrando noticia");
-							});
-						}
 						
+						noticiasFactory.eliminarNoticia(id).then(function(respuesta){
+							console.log("Noticia eliminada con exito");
+						},function(respuesta){
+							console.log("Error borrando noticia");
+						});
 					}
      			});
     			
-    			
+    			$route.reload();
     		}
     };
     

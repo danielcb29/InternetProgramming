@@ -339,20 +339,16 @@ angular.module('meneameApp', ["ngRoute"])
      				if(response.status==404){
 						$window.location.href = "/meneamedc/LoginServlet";
 					}else{
-						var conf = confirm("Esta seguro que desea eliminar su cuenta?");
-						if (conf){
-							noticiasFactory.eliminarNoticia(id).then(function(respuesta){
-								console.log("Noticia eliminada con exito");
-								$route.reload();
-							},function(respuesta){
-								console.log("Error borrando noticia");
-							});
-						}
 						
+						noticiasFactory.eliminarNoticia(id).then(function(respuesta){
+							console.log("Noticia eliminada con exito");
+						},function(respuesta){
+							console.log("Error borrando noticia");
+						});
 					}
      			});
     			
-    			
+    			$route.reload();
     		}
     };
     
@@ -505,20 +501,15 @@ angular.module('meneameApp', ["ngRoute"])
 			
 			borrarPerfil : function(){
 				usersFactory.login().then(function(response){
-					if(response.status==404){
-						$window.location.href = "/meneamedc/LoginServlet";
-					}else{
-						var conf = confirm("Esta seguro que desea eliminar su cuenta?");
-						if(conf){
-							usersFactory.eliminarUsuario(response.data.id).then(function(respuesta){
-								console.log("Usuario eliminado con exito");
-								$window.location.href = "/meneamedc/LogoutServlet";
-							},function(respuesta){
-								console.log("Error eliminandote")
-							});
-						}
+					var conf = confirm("Esta seguro que desea eliminar su cuenta?");
+					if(conf){
+						usersFactory.eliminarUsuario(response.data.id).then(function(respuesta){
+							console.log("Usuario eliminado con exito");
+							$window.location.href = "/meneamedc/LogoutServlet";
+						},function(respuesta){
+							console.log("Error eliminandote")
+						});
 					}
-					
 					
 				});
 				
