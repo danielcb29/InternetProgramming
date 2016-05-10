@@ -505,7 +505,6 @@ angular.module('meneameApp', ["ngRoute"])
 					if(conf){
 						usersFactory.eliminarUsuario(response.data.id).then(function(respuesta){
 							console.log("Usuario eliminado con exito");
-							$window.location.href = "/meneamedc/LogoutServlet";
 						},function(respuesta){
 							console.log("Error eliminandote")
 						});

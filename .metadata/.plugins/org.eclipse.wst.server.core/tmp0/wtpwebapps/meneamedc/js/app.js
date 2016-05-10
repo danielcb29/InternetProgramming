@@ -500,6 +500,18 @@ angular.module('meneameApp', ["ngRoute"])
 			},
 			
 			borrarPerfil : function(){
+				usersFactory.login().then(function(response){
+					var conf = confirm("Esta seguro que desea eliminar su cuenta?");
+					if(conf){
+						usersFactory.eliminarUsuario(response.data.id).then(function(respuesta){
+							console.log("Usuario eliminado con exito");
+							$window.location.href = "/meneamedc/LogoutServlet";
+						},function(respuesta){
+							console.log("Error eliminandote")
+						});
+					}
+					
+				});
 				
 			}
     };
