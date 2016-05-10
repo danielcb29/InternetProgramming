@@ -203,7 +203,7 @@ public class NewsResource {
 	  
 	  @DELETE
 	  @Path("/{newid: [0-9]+}")	  
-	  public Response deleteOrder(@PathParam("newid") long newid) {
+	  public Response deleteNoticia(@PathParam("newid") long newid) {
 		  
 		Connection conn = (Connection) sc.getAttribute("dbConn");
 		NewsDAO newDao = new JDBCNewsDAOImpl();

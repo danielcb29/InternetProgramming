@@ -8,11 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
@@ -23,6 +26,7 @@ import dao.CommentDAO;
 import dao.JDBCCommentDAOImpl;
 import dao.JDBCUserDAOImpl;
 import model.User;
+import resources.exceptions.CustomBadRequestException;
 
 @Path("/usuarios")
 public class UserResource {
@@ -102,5 +106,64 @@ public class UserResource {
 				  .build();	
 
 		return response;
+	}
+	
+	@PUT
+	@Path("/{userid: [0-9]+}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response editUser(User newusuario, @PathParam("userid") long userid,@Context HttpServletRequest request) throws Exception{
+		Response response;
+
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+
+		if (user==null){
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+		
+		Connection conn = (Connection)sc.getAttribute("dbConn");
+		UserDAO userDao = new JDBCUserDAOImpl();
+		userDao.setConnection(conn);
+		
+		User usuario = userDao.get(newusuario.getId());
+		if(usuario!=null){
+			if(usuario.getId()!=userid){
+				throw new CustomBadRequestException("Error en id");
+			}else{
+				userDao.save(newusuario);
+			}
+		}else{
+			throw new WebApplicationException(Response.Status.NOT_FOUND);
+		}
+		
+		
+		
+		response = Response //return 201
+				  .created(
+						  uriInfo
+						  .getAbsolutePathBuilder()
+						  .path(Long.toString(userid))
+						  .build())
+				  .contentLocation(
+						  uriInfo
+						  .getAbsolutePathBuilder()
+						  .path(Long.toString(userid))
+						  .build())
+				  .build();	
+
+		return response;
+	}
+	
+	@DELETE
+	@Path("/{userid: [0-9]+}")	  
+	public Response deleteUsuario(@PathParam("userid") long userid) {
+
+		Connection conn = (Connection) sc.getAttribute("dbConn");
+		UserDAO userDao = new JDBCUserDAOImpl();
+		userDao.setConnection(conn);
+
+		userDao.delete(userid);
+
+		return Response.noContent().build(); //204 no content 
 	}
 }

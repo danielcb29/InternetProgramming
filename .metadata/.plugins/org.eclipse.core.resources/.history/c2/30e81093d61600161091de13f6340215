@@ -1,0 +1,42 @@
+<div class="titulo">
+	<div class="titulo-general">
+		<h2>Información del perfil:</h2>
+	</div>
+	<div class="titulo-especifico">
+		<h2>{{vm.usuario.name}}</h2>
+	</div>
+</div>
+<div id="modif-perfil">
+	<a href="#/ver-usuario/{{vm.usuario.id}}"><input
+		type="button" value="Cancelar"></a>
+</div>
+<br />
+<br />
+<fieldset>
+	<legend>Información personal</legend>
+	<div class="cambio-perfil">
+		<form ng-submit="vm.funciones.editarPerfil()" id="#form-edicion">
+			<label>usuario:</label> <input class="cam-inp" type="text"
+				name="name" required placeholder="nombre de usuario"
+				ng-model="vm.usuario.name"> <label>correo electronico:</label> <input
+				class="cam-inp" type="email" name="email" required
+				placeholder="correo electronico" ng-model="vm.usuario.email"> <label>clave:</label>
+			<input class="cam-inp" type="password" name="password" required
+				placeholder="clave" ng-model="vm.usuario.password"> <label>repetir
+				clave:</label> <input class="cam-inp" type="password" name="confirmpassword"
+				required placeholder="verificar clave" value="{{vm.usuario.password}}">
+			<br />
+			<div class="non-rg">
+				<input type="submit" value="Guardar cambios">
+			</div>
+		</form>
+	</div>
+</fieldset>
+<fieldset>
+	<legend>Borrar cuenta</legend>
+	<p>¡Atención!, la cuenta sera deshabilitada, Se borrara la
+		información personal</p>
+		<div class="non-rg">
+			<input type="button" value="Borrar" ng-click="vm.funciones.borrarPerfil()">
+		</div>
+</fieldset>

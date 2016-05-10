@@ -1,0 +1,36 @@
+<div class="titulo">
+	<div class="titulo-general">
+		<h2>Enviar noticia:</h2>
+	</div>
+</div>
+<div id="modif-perfil">
+	<a href="#/"><input
+		type="button" value="Cancelar"></a>
+</div>
+<br />
+<br />
+<fieldset>
+	<legend>Información de la noticia</legend>
+	<form id="form-noticia" ng-submit>
+		<div class="cambio-perfil">
+			<label>enlace:</label> <input class="cam-inp" type="url" name="url"
+				required placeholder="url de la noticia" ng-model="vm.noticia.url">
+			<label>titulo:</label> <input class="cam-inp" type="text"
+				name="titulo" required placeholder="titulo" ng-model="vm.noticia.title">
+			<!-- >label>etiquetas:</label>
+     			<input class="cam-inp" type="text" required placeholder="separadas por ,"-->
+			<label>descripcion:</label>
+			<textarea class="cam-inp" required name="descripcion" cols="70"
+				rows="10" ng-model="vm.noticia.text"></textarea>
+			<label>categorias:</label> 
+			<input class="not-check" type="radio" name="categoria" value="tecnologia" ng-model="vm.noticia.categoria"  required>Tecnologia<br> 
+			<input class="not-check" type="radio" name="categoria" value="ocio" ng-model="vm.noticia.categoria" required>Ocio<br> 
+			<input class="not-check" type="radio" name="categoria" value="cultura" ng-model="vm.noticia.categoria" required>Cultura<br> 
+			<input class="not-check" type="radio" name="categoria" value="actualidad" ng-model="vm.noticia.categoria" required>Actualidad<br> 
+			<input class="not-check" type="radio"name="categoria" value="deporte" ng-model="vm.noticia.categoria" required>Deporte <br />
+			<div class="non-rg">
+				<input type="submit" value="Enviar noticia">
+			</div>
+		</div>
+	</form>
+</fieldset>

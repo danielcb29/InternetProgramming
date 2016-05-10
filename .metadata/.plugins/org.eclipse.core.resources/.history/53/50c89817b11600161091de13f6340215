@@ -1,0 +1,40 @@
+<div class="titulo">
+	<div class="titulo-general">
+		<h2>Información del perfil:</h2>
+	</div>
+	<div class="titulo-especifico">
+		<h2>${quser.name}</h2>
+	</div>
+</div>
+<c:if test="${self}">
+	<div id="modif-perfil">
+		<a href="${pageContext.request.contextPath}/auth/EditarPerfilServlet"><input
+			type="button" value="Modificar Perfil"></a>
+	</div>
+	<br />
+	<br />
+</c:if>
+<fieldset>
+	<legend>Información personal</legend>
+	<table>
+		<tbody>
+			<tr>
+				<th>usuario:</th>
+				<td>${quser.name}</td>
+			</tr>
+			<tr>
+				<th>email:</th>
+				<td>${quser.email}</td>
+			</tr>
+			<tr>
+				<th>comentarios:</th>
+				<td>${profMap.comentarios}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</fieldset>
+<fieldset>
+	<legend>Karma</legend>
+	${profMap.comentarios} k
+</fieldset>

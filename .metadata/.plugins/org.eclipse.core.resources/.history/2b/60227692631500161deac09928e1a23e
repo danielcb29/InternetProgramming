@@ -1,0 +1,31 @@
+<h2 id="titulo">Registro</h2>
+<section id="bloque-registro">
+	<div class="img-sg">
+		<img alt="" src="../img/reg.png">
+	</div>
+	<div id="inputs">
+		<form action="" method="post" id="form-registro">
+			<div class="row">
+				<label>Nombre de usuario:</label> <input class="rg-inp" type="text"
+					name="name" placeholder="nombre usuario" required ng-model="usuario.name">
+				<!--  input type="button" value="Verificar"-->
+			</div>
+			<div class="row">
+				<label>Correo electronico:</label> <input class="rg-inp"
+					type="email" name="email" placeholder="email" ng-model="usuario.email">
+			</div>
+			<div class="row">
+				<label>Clave:</label> <input class="rg-inp" type="password"
+					name="password" placeholder="clave" required ng-model="usuario.password">
+			</div>
+			<div class="row">
+				<label>Confirmar clave:</label> <input class="rg-inp"
+					type="password" name="confirmpassword"
+					placeholder="verificar clave" required>
+			</div>
+			<input type="checkbox" required name="vehicle" value="ok">Acepto
+			los terminos y condiciones <br />
+			<br /> <input class="rg-bt" type="submit" value="Enviar">
+		</form>
+	</div>
+</section>

@@ -50,6 +50,11 @@ angular.module('meneameApp', ["ngRoute"])
         controllerAs: "vm",
         templateUrl: "ver-perfil.html"
     })
+    .when("/editar-perfil", {
+        controller: "opcionesUsuarioCtrl",
+        controllerAs: "vm",
+        templateUrl: "editar-perfil.html"
+    })
     ;
 })
 .factory("noticiasFactory", function($http){
@@ -151,7 +156,23 @@ angular.module('meneameApp', ["ngRoute"])
                  .then(function(response){
       				 return response.status;
   				 });
-             }
+             },
+             
+             editarUsuario : function(usuario){
+     			var urlid = url+usuario.id;
+     			return $http.put(urlid,usuario)
+                 .then(function(response){
+      				 return response.status;
+  				 });
+     		},
+     		
+     		eliminarUsuario : function(id){
+    			var urlid = url+id;
+    			return $http.delete(urlid)
+    			.then(function(response){
+    				return response.status;
+    			});
+    		}
 		
     }
     return interfaz;
@@ -401,12 +422,17 @@ angular.module('meneameApp', ["ngRoute"])
     var vm = this;
     vm.funciones = {
 			registroUsuario : function(){
-				usersFactory.registroUsuario(vm.usuario).then(function(response){
-					console.log("Registro exitoso");
-					$window.location.href = "/meneamedc/LoginServlet";
-				},function(response){
-					console.log("Error en registro de usuario");
-				});
+				if(vm.confpass != vm.usuario.password){
+					alert("Las contraseñas no coinciden, vuelve a intentarlo!");
+				}else{
+					usersFactory.registroUsuario(vm.usuario).then(function(response){
+						console.log("Registro exitoso");
+						$window.location.href = "/meneamedc/LoginServlet";
+					},function(response){
+						console.log("Error en registro de usuario");
+					});
+				}
+				
 			}
     };
 })
@@ -437,6 +463,49 @@ angular.module('meneameApp', ["ngRoute"])
     };
     
     vm.funciones.verPerfil();
+})
+.controller("opcionesUsuarioCtrl", function($location,usersFactory,$window,$routeParams){
+    var vm = this;
+    vm.funciones = {
+    		
+    		cargarPerfil : function(){
+    			usersFactory.login().then(function(response){
+	        		if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						vm.usuario = response.data;
+						vm.confpass = response.data.password;
+					}
+				});
+    		},
+    		
+			editarPerfil : function(){
+				usersFactory.login().then(function(response){
+	        		if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						if(vm.usuario.password != vm.confpass){
+							alert("Las contraseñas no coinciden, vuelve a intentarlo!");
+						}else{
+							usersFactory.editarUsuario(vm.usuario).then(function(response){
+								console.log("Edicion correcta");
+								$location.path("/ver-usuario/"+vm.usuario.id);
+							},function(response){
+								console.log("Error editando usuario");
+							});
+						}
+						
+					}
+				});
+			},
+			
+			borrarPerfil : function(){
+				
+			}
+    };
+    
+    vm.funciones.cargarPerfil();
+    
 })
 .controller("mainAppCtrl", function($location){
     var vm = this;

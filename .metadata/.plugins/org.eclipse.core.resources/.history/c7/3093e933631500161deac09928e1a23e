@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="meneameApp">
+<head>
+	<meta charset="utf-8">
+ 	<title>Meneame</title>
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_196x196.png" sizes="196x196">
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_64x64.png" sizes="64x64">
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_16x16.png" sizes="16x16">
+ 	<link rel="shortcut icon" href="https://mnmstatic.net/v_40/img/favicons/logo_128x128.png" sizes="128x128">
+ 	<link rel="stylesheet" href="../css/base.css">
+ 	<div ng-controller="mainAppCtrl as vm">
+		<link rel="stylesheet" href="../css/lista-noticias.css" ng-show="vm.funciones.estoy('/')">
+		<link rel="stylesheet" href="../css/view-comment.css" ng-show="vm.funciones.estoy('/noticia/')">
+		<link rel="stylesheet" href="../css/modificar-borrar-noticia.css" ng-show="vm.funciones.estoy('/misnoticia/')">
+		
+		<link rel="stylesheet" href="../css/ver-perfil.css" ng-show="vm.funciones.estoy('/nueva-noticia')">
+    	<link rel="stylesheet" href="../css/modificar-perfil.css" ng-show="vm.funciones.estoy('/nueva-noticia')">
+    	<link rel="stylesheet" href="../css/registrar-noticia.css" ng-show="vm.funciones.estoy('/nueva-noticia')">
+    	
+    	<link rel="stylesheet" href="../css/ver-perfil.css" ng-show="vm.funciones.estoy('/editar-noticia/')">
+    	<link rel="stylesheet" href="../css/modificar-perfil.css" ng-show="vm.funciones.estoy('/editar-noticia/')">
+    	<link rel="stylesheet" href="../css/registrar-noticia.css" ng-show="vm.funciones.estoy('/editar-noticia/')">
+		
+	</div>
+	<script src="../js/angular/angular.js"></script>
+	<script src="../js/angular/angular-route.js"></script>
+	<script src="../js/app.js"></script>
+</head>
+<body>
+	<div ng-controller="loginAppCtrl as vm">
+	<div class="head" id="nombre-categorias">
+		<div>
+			<img alt="" src="../img/menu.png">
+			<a href="../Noticias"><img alt="" src="../img/logo-top.png"></a>
+			<img alt="" src="../img/door.png">
+		</div>
+		<div id="categorias">
+			<ul>
+				<li><a href="#/categoria/tecnologia">Tecnologia</a></li>
+				<li><a href="#/categoria/ocio">Ocio</a></li>
+				<li><a href="#/categoria/cultura">Cultura</a></li>
+			</ul>
+		</div>
+		
+		        <div class="rigth" ng-hide="vm.user">
+					<a href="../LoginServlet">login</a> /
+					<a href="../CrearUsuario">registrarse</a>
+				</div>
+		    
+		    	<div class="rigth login-succ" ng-show="vm.user">
+		    	<!--div class="rigth login-succ" ng-show="vm.login()"-->
+					<a href="../auth/Perfil?id={{vm.user.id}}">{{vm.user.name}}</a>
+					<img id="avatar-login" alt="avatar usuario" src="../img/user.png">
+					<a href="../LogoutServlet"><img id="shutdown" alt="" src="../img/logout.png"></a>
+				</div>
+		   
+		
+	</div>
+	<div class="head" id="logo-search">
+		<div><img alt="" src="../img/elef.png"></div>
+		<div><b>
+			
+			    	<p ng-hidde="vm.categoria">Meneame</p>
+			    
+			    	<p ng-show="vm.categoria">{{vm.categoria}}</p>
+			    
+		</b></div>
+		<div>
+			<img alt="" src="../img/fb.png">
+			<img alt="" src="../img/tw.png">
+		</div>
+		<!--div class="rigth">
+			<input id="search" type="text" placeholder="Buscar">
+		</div-->
+	</div>
+	<nav>
+	    <ul>
+	    	
+			    	<li ng-show="vm.user"><a href="#/auth/CrearNoticia">Enviar Historia</a></li>
+			    	<li ng-show="vm.user"><a href="#/misnoticias">Mis Noticias</a></li>
+			<li><a href="#/">Nuevas</a></li>
+	        <li><a href="#/categoria/actualidad">Actualidad</a></li>
+	        <li><a href="#/categoria/deporte">Deporte</a></li>
+	    </ul>
+	</nav>
+	</div>
+    <article>
+    	<div ng-view></div>
+    </article>
+    <footer>
+    <div ng-controller="loginAppCtrl as vm">
+    <div class="footer-sections">
+    	<div class="section-separator">
+    		<h4>Categorias</h4>
+    		<ul>
+	            <li><a href="#/categoria/tecnologia">Tecnologia</a></li>
+	            <li><a href="#/categoria/ocio">Ocio</a></li>
+	            <li><a href="#/categoria/cultura">Cultura</a></li>
+	            <li><a href="#/categoria/actualidad">Actualidad</a></li>
+	        </ul>
+    	</div>
+    	<div class="section-separator">
+    		<h4>Filtros</h4>
+    		<ul>
+	            <li><a href="../auth/CrearNoticia">Enviar historia</a></li>
+	            <li><a href="#/">Nuevas</a></li>
+	            <li><a href="#/categoria/deporte">Deportes</a></li>
+	            <!--  li><a href="">Populares</a></li-->
+	            <br/>
+	        </ul>
+    	</div>
+    	<div>
+    		<h4>Usuario</h4>
+    		<ul>
+	            <li><a href="../LoginServlet">Login</a></li>
+		         
+				        <br ng-hide="vm.user" />
+				        <br ng-hide="vm.user" />
+				        <br ng-hide="vm.user" />
+				    
+				    	<li ng-show="vm.user" ><a href="../auth/Perfil?id=${user.id}">Ver perfil</a></li>
+			            <li ng-show="vm.user"><a href="../auth/EditarPerfilServlet">Modificar perfil</a></li>
+			            <li ng-show="vm.user"><a href="#/misnoticias">Ver mis noticias</a></li>
+				    
+	        </ul>
+    	</div>
+   	</div>
+   	<div class="footer-sections">
+   		<img alt="" src="../img/logo-bottom.png">
+   		<div id="copyrigth">
+   			<a>legal </a>/
+   			<a>quienes somos </a>/
+   			<a>HTML5</a> |
+   			Daniel Correa Barrios, Universidad de Extremadura
+   		</div>
+   	</div>
+   	</div>
+   </footer>
+
+</body>
+</html>

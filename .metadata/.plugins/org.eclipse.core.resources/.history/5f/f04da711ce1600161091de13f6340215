@@ -1,0 +1,50 @@
+<div class="titulo">
+	<div class="titulo-general">
+		<h2>Información del perfil:</h2>
+	</div>
+	<div class="titulo-especifico">
+		<h2>{{vm.usuario.name}}</h2>
+	</div>
+</div>
+<div id="modif-perfil">
+	<a href="#/ver-usuario/{{vm.usuario.id}"><input
+		type="button" value="Cancelar"></a>
+</div>
+<br />
+<br />
+<fieldset>
+	<legend>Información personal</legend>
+	<!--div id="pic-user">
+   			<img alt="avatar usuario" src="img/pic-test.jpeg">
+   			<input id="bt-cambiar" type="button" value="Cambiar">
+   		</div-->
+	<div class="cambio-perfil">
+		<form action="" method="post" id="#form-edicion">
+			<h2>${messages.error}</h2>
+			<label>usuario:</label> <input class="cam-inp" type="text"
+				name="name" required placeholder="nombre de usuario"
+				value="${user.name}"> <label>correo electronico:</label> <input
+				class="cam-inp" type="email" name="email" required
+				placeholder="correo electronico" value="${user.email}"> <label>clave:</label>
+			<input class="cam-inp" type="password" name="password" required
+				placeholder="clave" value="${user.password}"> <label>repetir
+				clave:</label> <input class="cam-inp" type="password" name="confirmpassword"
+				required placeholder="verificar clave" value="${user.password}">
+			<br />
+			<div class="non-rg">
+				<input type="submit" value="Guardar cambios">
+			</div>
+		</form>
+	</div>
+</fieldset>
+<fieldset>
+	<legend>Borrar cuenta</legend>
+	<p>¡Atención!, la cuenta sera deshabilitada, Se borrara la
+		información personal</p>
+	<form method="post"
+		action="${pageContext.request.contextPath}/auth/BorrarUsuario">
+		<div class="non-rg">
+			<input type="submit" value="Borrar">
+		</div>
+	</form>
+</fieldset>

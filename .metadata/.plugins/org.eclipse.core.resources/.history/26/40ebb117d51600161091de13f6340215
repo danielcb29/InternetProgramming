@@ -1,0 +1,552 @@
+angular.module('meneameApp', ["ngRoute"])
+.config(function($routeProvider){
+	$routeProvider
+	.when("/", {
+		controller: "noticiasCtrl",
+		controllerAs: "vm",
+		templateUrl: "listar-noticias.html",
+		resolve: {
+		      // provoca 100 milisegundos (0,1 segundos) de delay que deberían ser suficientes para que el servidor haga cualquier actualización que se le haya pedido antes de leer las órdenes.
+			  // extraído del script.js utilizado como ejemplo en https://docs.angularjs.org/api/ngRoute/service/$route
+		      delay: function($q, $timeout) {
+		        var delay = $q.defer();
+		        $timeout(delay.resolve, 100);
+		        return delay.promise;
+		      }
+		}
+	})
+	.when("/categoria/:CAT", {
+        controller: "categoriasCtrl",
+        controllerAs: "vm",
+        templateUrl: "listar-noticias.html"
+    })
+	.when("/noticia/:ID", {
+        controller: "mostrarNoticiaCtrl",
+        controllerAs: "vm",
+        templateUrl: "info-noticia.html"
+    })
+    .when("/misnoticias", {
+        controller: "misNoticiasCtrl",
+        controllerAs: "vm",
+        templateUrl: "mis-noticias.html"
+    })
+    .when("/nueva-noticia", {
+        controller: "noticiaCtrl",
+        controllerAs: "vm",
+        templateUrl: "noticia.html"
+    })
+    .when("/editar-noticia/:ID", {
+        controller: "noticiaCtrl",
+        controllerAs: "vm",
+        templateUrl: "noticia.html"
+    })
+    .when("/nuevo-usuario", {
+        controller: "nuevoUsuarioCtrl",
+        controllerAs: "vm",
+        templateUrl: "registro-usuario.html"
+    })
+    .when("/ver-usuario/:ID", {
+        controller: "verUsuarioCtrl",
+        controllerAs: "vm",
+        templateUrl: "ver-perfil.html"
+    })
+    .when("/editar-perfil", {
+        controller: "opcionesUsuarioCtrl",
+        controllerAs: "vm",
+        templateUrl: "editar-perfil.html"
+    })
+    ;
+})
+.factory("noticiasFactory", function($http){
+   var url = 'http://localhost:8080/meneamedc/rest/noticias/';
+
+    var interfaz = {
+    		
+    		leerNoticias: function(){
+    			return $http.get(url)
+    			.then(function(response){
+    				return response.data;
+    			});
+    		},
+
+    		leerNoticiasCategoria: function(categoria){
+    			var geturl = url + categoria;
+    			return $http.get(geturl)
+    			.then(function(response){
+    				return response.data;
+    			});
+    		}, 
+
+    		leerNoticia: function(id){
+    			var geturl = url+id;
+    			return $http.get(geturl)
+    			.then(function(response){
+    				return response.data;
+    			});
+    		},
+
+    		leerMisNoticias: function(id){
+    			var geturl = url+"owner/"+id;
+    			return $http.get(geturl)
+    			.then(function(response){
+    				return response.data;
+    			});
+    		},
+    		
+    		eliminarNoticia : function(id){
+    			var urlid = url+id;
+    			return $http.delete(urlid)
+    			.then(function(response){
+    				return response.status;
+    			});
+    		},
+    		
+    		insertarNoticia : function(noticia){
+    			return $http.post(url,noticia)
+                .then(function(response){
+     				 return response.status;
+ 				 });
+    		},
+    		
+    		editarNoticia : function(noticia){
+    			var urlid = url+noticia.id;
+    			return $http.put(urlid,noticia)
+                .then(function(response){
+     				 return response.status;
+ 				 });
+    		},
+    					  
+		
+    }
+    return interfaz;
+})
+.factory("usersFactory", function($http){
+   var url = 'http://localhost:8080/meneamedc/rest/usuarios/';
+
+    var interfaz = {
+    		   		
+    	     leerUser : function(id){
+                  var geturl = url + id ;
+                      return $http.get(geturl)
+                      .then(function(response){
+         				 return response.data;
+     				 });
+                 },
+             
+             karma : function(id){
+            	 var geturl = url + "karma/" + id ;
+                 return $http.get(geturl)
+                 .then(function(response){
+    				 return response.data;
+				 });
+             },
+             
+             login : function(){
+            	 var geturl = url + "sesion";
+                 return $http.get(geturl)
+                 .then(function(response){
+    				 return response;
+				 },function(response){
+					 return response;
+				 });
+             }, 
+             
+             registroUsuario : function(usuario){
+            	 return $http.post(url,usuario)
+                 .then(function(response){
+      				 return response.status;
+  				 });
+             },
+             
+             editarUsuario : function(usuario){
+     			var urlid = url+usuario.id;
+     			return $http.put(usuario,noticia)
+                 .then(function(response){
+      				 return response.status;
+  				 });
+     		},
+     		
+     		eliminarUsuario : function(id){
+    			var urlid = url+id;
+    			return $http.delete(urlid)
+    			.then(function(response){
+    				return response.status;
+    			});
+    		}
+		
+    }
+    return interfaz;
+})
+.factory("commentsFactory", function($http){
+   var url = 'http://localhost:8080/meneamedc/rest/comentarios/';
+
+    var interfaz = {
+    		   		
+    		leerComentarios : function(id){
+                  var geturl = url + "noticia/" + id ;
+                      return $http.get(geturl)
+                      .then(function(response){
+         				 return response.data;
+     				 });
+                 }, 
+            
+            nuevoComentario : function(comentario){
+            	return $http.post(url,comentario)
+                .then(function(response){
+     				 return response.status;
+ 				 });
+            }
+		
+    }
+    return interfaz;
+})
+.controller("noticiasCtrl", function(noticiasFactory,usersFactory,commentsFactory){
+    var vm = this;
+    vm.noticias=[];
+       
+    vm.funciones = {
+			
+    		obtenerNoticias : function() {
+    			noticiasFactory.leerNoticias()
+    			.then(function(respuesta){
+    				console.log("Trayendo todas las noticias: ", respuesta);
+    				angular.forEach(respuesta, function(value) {
+    					value = getUserNew(value,usersFactory);
+    					value = getNumberComments(value,commentsFactory);
+    					value = getKarmaUser(value,usersFactory);
+    				});
+    				vm.noticias = respuesta;
+    				vm.categoria = "Nuevas";
+    			}, function(respuesta){
+    				console.log("Error obteniendo noticias");
+    			})
+    		}
+    
+    
+    
+	}
+	vm.funciones.obtenerNoticias();
+   
+})
+.controller("categoriasCtrl", function(noticiasFactory,usersFactory,commentsFactory,$routeParams){
+    var vm = this;
+    vm.noticias=[];
+       
+    vm.funciones = {
+			
+			obtenerNoticiasCategoria : function() {
+		        noticiasFactory.leerNoticiasCategoria($routeParams.CAT)
+					.then(function(respuesta){
+		    			console.log("Trayendo todas las noticias: ", respuesta);
+		    			angular.forEach(respuesta, function(value) {
+		    				value = getUserNew(value,usersFactory);
+		    				value = getNumberComments(value,commentsFactory);
+		    				value = getKarmaUser(value,usersFactory);
+		    			});
+		    			vm.noticias = respuesta;
+		    			vm.categoria = $routeParams.CAT;
+	    			}, function(respuesta){
+	    			console.log("Error obteniendo noticias");
+	    			})
+		}
+    
+    
+    
+	}
+	vm.funciones.obtenerNoticiasCategoria();
+   
+})
+.controller("mostrarNoticiaCtrl", function(noticiasFactory,usersFactory,commentsFactory,$window,$routeParams,$route){
+    var vm = this;
+    vm.comentarios=[];
+    vm.noticia={};
+    vm.funciones = {
+			
+			obtenerDetalleNoticia : function(id) {
+				
+				usersFactory.login().then(function(response){
+					if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						noticiasFactory.leerNoticia(id)
+						.then(function(respuesta){
+			    			console.log("Trayendo todas la noticia: ", respuesta);
+			    			respuesta = getUserNew(respuesta,usersFactory);
+			    			respuesta = getNumberComments(respuesta,commentsFactory);
+			    			respuesta = getKarmaUser(respuesta,usersFactory);
+			    			vm.noticia = respuesta;
+		    			}, function(respuesta){
+		    			console.log("Error obteniendo noticias");
+		    			});
+			        
+				        commentsFactory.leerComentarios(id).then(function(respuesta){
+				        	angular.forEach(respuesta, function(value) {
+			    				value = getUserNew(value,usersFactory);
+			    			});
+				        	vm.comentarios=respuesta;
+			        	},function(respuesta){
+				        	console.log("Errror consultando comentarios");
+				        });
+					}
+				});
+				
+		        
+		}, 
+		
+		insertarComentario : function(){
+			vm.comentario.news=vm.noticia.id;
+			commentsFactory.nuevoComentario(vm.comentario).then(function(respuesta){
+				console.log("Nuevo comentario insertado");
+			},function(respuesta){
+				console.log("Error insertando comentario");
+			});
+			$route.reload();
+		}
+    
+    
+    
+	}
+	vm.funciones.obtenerDetalleNoticia($routeParams.ID);
+   
+})
+.controller("misNoticiasCtrl", function(noticiasFactory,usersFactory,commentsFactory,$window,$route){
+    var vm = this;
+    vm.funciones = {
+     		obtenerNoticias : function() {
+     			
+     			usersFactory.login().then(function(response){
+     				if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						var userid = response.data.id;
+						noticiasFactory.leerMisNoticias(userid).then(function(respuesta){
+							angular.forEach(respuesta, function(value) {
+		    					value = getUserNew(value,usersFactory);
+		    					value = getNumberComments(value,commentsFactory);
+		    					value = getKarmaUser(value,usersFactory);
+		    				});
+		    				vm.noticias = respuesta;
+						},function(respuesta){
+							console.log("Error obteniendo mis noticias");
+						});
+					}
+     			});
+     			
+    		}, 
+    		
+    		borrarNoticia : function(id){
+    			usersFactory.login().then(function(response){
+     				if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						
+						noticiasFactory.eliminarNoticia(id).then(function(respuesta){
+							console.log("Noticia eliminada con exito");
+						},function(respuesta){
+							console.log("Error borrando noticia");
+						});
+					}
+     			});
+    			
+    			$route.reload();
+    		}
+    };
+    
+    vm.funciones.obtenerNoticias();
+})
+.controller("noticiaCtrl", function($location,noticiasFactory,usersFactory,$window,$routeParams){
+    var vm = this;
+    vm.funciones = {
+			estoy : function(ruta){
+	            return $location.path() == ruta;
+	        },
+	        insertarNoticia : function(){
+	        	
+	        	noticiasFactory.insertarNoticia(vm.noticia).then(function(response){
+	        		console.log("Noticia insertada con exito");
+	        	},function(response){
+	        		console.log("Ocurrio un error insertando la noticia");
+	        	});
+	        	
+	        },
+	        
+	        editarNoticia : function(){
+	        	noticiasFactory.editarNoticia(vm.noticia).then(function(response){
+	        		console.log("Noticia editada con exito");
+	        	},function(response){
+	        		console.log("Error editando noticia");
+	        	});
+	        },
+	        
+	        index : function(){
+	        	
+	        	if(vm.funciones.estoy("/nueva-noticia")){
+	        		vm.funciones.insertarNoticia();
+	        	}else{
+	        		vm.funciones.editarNoticia();
+	        	}
+	        	
+	        	$location.path('/');
+	        },
+	        
+	        mostrarForm : function(){
+	        	usersFactory.login().then(function(response){
+	        		if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						if(vm.funciones.estoy("/editar-noticia/"+$routeParams.ID)){
+							var usuario = response.data;
+							noticiasFactory.leerNoticia($routeParams.ID).then(function(response){
+								var noticia = response;
+								if(noticia.owner == usuario.id){
+									vm.noticia = noticia;
+									delete vm.noticia.dateStamp;
+									delete vm.noticia.timeStamp;
+								}else{
+									console.log("Esta no es tu noticia!!");
+									alert("¿Estas intentando editar una noticia que no es tuya?, Este comportamiento no es permitido aqui!");
+									$location.path('/');
+								}
+							},function(response){
+								console.log("Error trayendo noticia");
+							});
+						}
+					}
+	        	});
+	        }
+    };
+    
+    vm.funciones.mostrarForm();
+})
+.controller("nuevoUsuarioCtrl", function($location,usersFactory,$window){
+    var vm = this;
+    vm.funciones = {
+			registroUsuario : function(){
+				usersFactory.registroUsuario(vm.usuario).then(function(response){
+					console.log("Registro exitoso");
+					$window.location.href = "/meneamedc/LoginServlet";
+				},function(response){
+					console.log("Error en registro de usuario");
+				});
+			}
+    };
+})
+.controller("verUsuarioCtrl", function($location,usersFactory,$window,$routeParams){
+    var vm = this;
+    vm.funciones = {
+			verPerfil : function(){
+				usersFactory.login().then(function(response){
+	        		if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						usersFactory.leerUser($routeParams.ID).then(function(usuario){
+							var usess = response.data;
+							usuario.owner = usuario.id
+							if(usess.id === usuario.id){
+								usuario.self = true;
+							}else{
+								usuario.self=false;
+							}
+							usuario = getKarmaUser(usuario,usersFactory);
+							vm.usuario = usuario;
+						},function(usuario){
+							console.log("Errror del servidor leyendo el usuario");
+						});
+					}
+				});
+			}
+    };
+    
+    vm.funciones.verPerfil();
+})
+.controller("opcionesUsuarioCtrl", function($location,usersFactory,$window,$routeParams){
+    var vm = this;
+    vm.funciones = {
+    		
+    		cargarPerfil : function(){
+    			usersFactory.login().then(function(response){
+	        		if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						vm.usuario = response.data;
+					}
+				});
+    		},
+    		
+			editarPerfil : function(){
+				usersFactory.login().then(function(response){
+	        		if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						
+					}
+				});
+			},
+			
+			borrarPerfil : function(){
+				
+			}
+    };
+    
+    vm.funciones.cargarPerfil();
+    
+})
+.controller("mainAppCtrl", function($location){
+    var vm = this;
+    vm.funciones = {
+			estoy : function(ruta){
+	            return $location.path() == ruta;
+	        }, 
+    };
+})
+.controller("loginAppCtrl", function(usersFactory){
+    var vm = this;
+    vm.funciones = {
+			login : function(){
+				usersFactory.login().then(function(usuario){
+					if(usuario.status==404){
+						console.log("No hay nadie en sesion");
+					}else{
+						console.log("Bienvenido usuario");
+						vm.user=usuario.data;
+					}
+				});
+			}
+    };
+    
+    vm.funciones.login();
+})
+;
+
+//Funciones utiles
+//Consultar usuario noticia
+function getUserNew(value,usersFactory){
+	usersFactory.leerUser(value.owner).then(function(usuario){
+		console.log("Usuario obtenido",usuario);
+		value.user=usuario;
+	},function(usuario){
+		console.log("Error en la consulta al usuario");
+	});
+	return value;
+};
+
+//Consultar cantidad comments noticia
+function getNumberComments(value,commentsFactory){
+	commentsFactory.leerComentarios(value.id).then(function(cantidad){
+		console.log("Cantidad de comentarios",cantidad);
+		value.comments = cantidad.length;
+	},function(cantidad){
+		console.log("Error consultando cantidad");
+	});
+	return value;
+};
+//Consultar karma de usuario para noticia
+function getKarmaUser(value,usersFactory){
+	usersFactory.karma(value.owner).then(function(karma){
+		console.log("Karma obtenido",karma);
+		value.karma = karma;
+	},function(karma){
+		console.log("Consulta de karma erronea");
+	});
+	return value;
+};

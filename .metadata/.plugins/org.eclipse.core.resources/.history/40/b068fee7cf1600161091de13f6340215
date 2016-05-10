@@ -1,0 +1,40 @@
+<div class="titulo">
+	<div class="titulo-general">
+		<h2>Información del perfil:</h2>
+	</div>
+	<div class="titulo-especifico">
+		<h2>{{vm.usuario.name}}</h2>
+	</div>
+</div>
+	<div ng-show="vm.usuario.self">
+		<div id="modif-perfil" ng-show="vm.usuario.self">
+			<a href="../auth/EditarPerfilServlet"><input type="button" value="Modificar Perfil"></a>
+		</div>
+		<br />
+		<br />
+	</div>
+
+<fieldset>
+	<legend>Información personal</legend>
+	<table>
+		<tbody>
+			<tr>
+				<th>usuario:</th>
+				<td>{{vm.usuario.name}}</td>
+			</tr>
+			<tr>
+				<th>email:</th>
+				<td>{{vm.usuario.email}}</td>
+			</tr>
+			<tr>
+				<th>comentarios:</th>
+				<td>{{vm.usuario.karma}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</fieldset>
+<fieldset>
+	<legend>Karma</legend>
+	{{vm.usuario.karma}} k
+</fieldset>
