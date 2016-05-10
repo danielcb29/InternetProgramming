@@ -22,6 +22,7 @@
     	<link rel="stylesheet" href="../css/registrar-noticia.css" ng-show="vm.funciones.estoy('/editar-noticia/')">
     	
     	<link rel="stylesheet" href="../css/registro.css" ng-show="vm.funciones.estoy('/nuevo-usuario')">
+    	<link rel="stylesheet" href="../css/ver-perfil.css" ng-show="vm.funciones.estoy('/ver-usuario/')">
     	
 		
 	</div>
@@ -52,7 +53,7 @@
 		    
 		    	<div class="rigth login-succ" ng-show="vm.user">
 		    	<!--div class="rigth login-succ" ng-show="vm.login()"-->
-					<a href="../auth/Perfil?id={{vm.user.id}}">{{vm.user.name}}</a>
+					<a href="#/ver-usuario/{{vm.user.id}}">{{vm.user.name}}</a>
 					<img id="avatar-login" alt="avatar usuario" src="../img/user.png">
 					<a href="../LogoutServlet"><img id="shutdown" alt="" src="../img/logout.png"></a>
 				</div>
@@ -105,7 +106,7 @@
     	<div class="section-separator">
     		<h4>Filtros</h4>
     		<ul>
-	            <li><a href="../auth/CrearNoticia">Enviar historia</a></li>
+	            <li><a href="#/nueva-noticia">Enviar historia</a></li>
 	            <li><a href="#/">Nuevas</a></li>
 	            <li><a href="#/categoria/deporte">Deportes</a></li>
 	            <!--  li><a href="">Populares</a></li-->
@@ -121,7 +122,7 @@
 				        <br ng-hide="vm.user" />
 				        <br ng-hide="vm.user" />
 				    
-				    	<li ng-show="vm.user" ><a href="../auth/Perfil?id=${user.id}">Ver perfil</a></li>
+				    	<li ng-show="vm.user" ><a href="#/ver-usuario/{{vm.user.id}}">Ver perfil</a></li>
 			            <li ng-show="vm.user"><a href="../auth/EditarPerfilServlet">Modificar perfil</a></li>
 			            <li ng-show="vm.user"><a href="#/misnoticias">Ver mis noticias</a></li>
 				    

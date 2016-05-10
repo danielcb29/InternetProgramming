@@ -45,6 +45,11 @@ angular.module('meneameApp', ["ngRoute"])
         controllerAs: "vm",
         templateUrl: "registro-usuario.html"
     })
+    .when("/ver-usuario/:ID", {
+        controller: "verUsuarioCtrl",
+        controllerAs: "vm",
+        templateUrl: "ver-perfil.html"
+    })
     ;
 })
 .factory("noticiasFactory", function($http){
@@ -404,6 +409,34 @@ angular.module('meneameApp', ["ngRoute"])
 				});
 			}
     };
+})
+.controller("verUsuarioCtrl", function($location,usersFactory,$window,$routeParams){
+    var vm = this;
+    vm.funciones = {
+			verPerfil : function(){
+				usersFactory.login().then(function(response){
+	        		if(response.status==404){
+						$window.location.href = "/meneamedc/LoginServlet";
+					}else{
+						usersFactory.leerUser($routeParams.ID).then(function(usuario){
+							var usess = response.data;
+							usuario.owner = usuario.id
+							if(usess.id === usuario.id){
+								usuario.self = true;
+							}else{
+								usuario.self=false;
+							}
+							usuario = getKarmaUser(usuario,usersFactory);
+							vm.usuario = usuario;
+						},function(usuario){
+							console.log("Errror del servidor leyendo el usuario");
+						});
+					}
+				});
+			}
+    };
+    
+    vm.funciones.verPerfil();
 })
 .controller("mainAppCtrl", function($location){
     var vm = this;

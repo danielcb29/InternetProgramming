@@ -25,7 +25,7 @@
 			<div class="user-and-date">
 				<div>
 					por
-					<a href="../auth/Perfil?id={{vm.noticia.owner}}">{{vm.noticia.user.name}}</a>
+					<a href="#/ver-usuario/{{vm.noticia.owner}}">{{vm.noticia.user.name}}</a>
 				</div>
 				<div>
 					{{vm.noticia.dateStamp }} {{vm.noticia.timeStamp }}
@@ -86,7 +86,7 @@
 					</div>
 					<div class="comment-foot">
 						<div class="comment-user">
-							{{comm.dateStamp }} {{comm.timeStamp }} <a href="">{{comm.user.name}}</a> <img alt="Usuario" class="comment-user-prev"
+							{{comm.dateStamp }} {{comm.timeStamp }} <a href="#/ver-usuario/{{comm.user.id}}">{{comm.user.name}}</a> <img alt="Usuario" class="comment-user-prev"
 								src="../img/user.png">
 						</div>
 						<div class="comment-votes">
